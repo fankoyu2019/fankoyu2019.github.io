@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/all.min.css" integrity="sha256-mUZM63G8m73Mcidfrv5E+Y61y7a12O5mW4ezU3bxqW4=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+<meta name="description" content="1256. 加密数字解法1：位运算0         1 2             3   4    5     6 “”        0 1            00 01 10 11 找规律就完事了">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Leetcode-第13场双周赛">
+<meta property="og:url" content="http://example.com/2021/10/26/leetcode/zhou-sai/di-13-chang-shuang-zhou-sai/index.html">
+<meta property="og:site_name" content="前程似锦，一路繁华">
+<meta property="og:description" content="1256. 加密数字解法1：位运算0         1 2             3   4    5     6 “”        0 1            00 01 10 11 找规律就完事了">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2021-10-26T04:09:13.662Z">
+<meta property="article:modified_time" content="2021-10-26T04:09:13.663Z">
+<meta property="article:author" content="fanko">
+<meta property="article:tag" content="Leetcode">
+<meta property="article:tag" content="周赛">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://example.com/2021/10/26/leetcode/zhou-sai/di-13-chang-shuang-zhou-sai/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://example.com/2021/10/26/leetcode/zhou-sai/di-13-chang-shuang-zhou-sai/","path":"2021/10/26/leetcode/zhou-sai/di-13-chang-shuang-zhou-sai/","title":"Leetcode-第13场双周赛"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>Leetcode-第13场双周赛 | 前程似锦，一路繁华</title>
+  
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">前程似锦，一路繁华</h1>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">坚持,努力,认真</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li>
+        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li>
+        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#1256-%E5%8A%A0%E5%AF%86%E6%95%B0%E5%AD%97"><span class="nav-number">1.</span> <span class="nav-text">1256. 加密数字</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E8%A7%A3%E6%B3%951%EF%BC%9A%E4%BD%8D%E8%BF%90%E7%AE%97"><span class="nav-number">1.1.</span> <span class="nav-text">解法1：位运算</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1257-%E6%9C%80%E5%B0%8F%E5%85%AC%E5%85%B1%E5%8C%BA%E5%9F%9F"><span class="nav-number">2.</span> <span class="nav-text">1257. 最小公共区域</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E8%A7%A3%E6%B3%95-map-set"><span class="nav-number">2.1.</span> <span class="nav-text">解法:map+set</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1258-%E8%BF%91%E4%B9%89%E8%AF%8D%E5%8F%A5%E5%AD%90"><span class="nav-number">3.</span> <span class="nav-text">1258. 近义词句子</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E8%A7%A3%E6%B3%95%EF%BC%9A%E5%B9%B6%E6%9F%A5%E9%9B%86-DFS"><span class="nav-number">3.1.</span> <span class="nav-text">解法：并查集+DFS</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1259-%E4%B8%8D%E7%9B%B8%E4%BA%A4%E7%9A%84%E6%8F%A1%E6%89%8B"><span class="nav-number">4.</span> <span class="nav-text">1259. 不相交的握手</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E8%A7%A3%E6%B3%95%EF%BC%9A%E5%8D%A1%E7%89%B9%E5%85%B0%E6%95%B0"><span class="nav-number">4.1.</span> <span class="nav-text">解法：卡特兰数</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="fanko"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">fanko</p>
+  <div class="site-description" itemprop="description">-------- 济南大学17级本科生 --------大连理工大学21级研究生</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">172</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">37</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/fankoyu2019" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;fankoyu2019" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+  </div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/10/26/leetcode/zhou-sai/di-13-chang-shuang-zhou-sai/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="fanko">
+      <meta itemprop="description" content="-------- 济南大学17级本科生 --------大连理工大学21级研究生">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="前程似锦，一路繁华">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Leetcode-第13场双周赛
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2021-10-26 12:09:13" itemprop="dateCreated datePublished" datetime="2021-10-26T12:09:13+08:00">2021-10-26</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%91%A8%E8%B5%9B/" itemprop="url" rel="index"><span itemprop="name">周赛</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h4 id="1256-加密数字"><a href="#1256-加密数字" class="headerlink" title="1256. 加密数字"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/encode-number/">1256. 加密数字</a></h4><h5 id="解法1：位运算"><a href="#解法1：位运算" class="headerlink" title="解法1：位运算"></a>解法1：位运算</h5><p>0         1 2             3   4    5     6</p>
+<p>“”        0 1            00 01 10 11</p>
+<p>找规律就完事了</p>
+<span id="more"></span>
+
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function">string <span class="title">encode</span><span class="params">(<span class="keyword">int</span> num)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> k=<span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span> temp=<span class="number">1</span>;</span><br><span class="line">        string res=<span class="string">&quot;&quot;</span>;</span><br><span class="line">        <span class="keyword">while</span>(num&gt;=temp)</span><br><span class="line">        &#123;</span><br><span class="line">            num-=temp;</span><br><span class="line">            temp=temp&lt;&lt;<span class="number">1</span>;</span><br><span class="line">            k++;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">char</span> c;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">while</span>(k--)</span><br><span class="line">        &#123;</span><br><span class="line">            c=(num&amp;<span class="number">1</span>)+<span class="string">&#x27;0&#x27;</span>;</span><br><span class="line">            res+=c;</span><br><span class="line">            num=num&gt;&gt;<span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">reverse</span>(res.<span class="built_in">begin</span>(),res.<span class="built_in">end</span>());</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<h4 id="1257-最小公共区域"><a href="#1257-最小公共区域" class="headerlink" title="1257. 最小公共区域"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/smallest-common-region/">1257. 最小公共区域</a></h4><h5 id="解法-map-set"><a href="#解法-map-set" class="headerlink" title="解法:map+set"></a>解法:map+set</h5><p>将每个的父区域记录。</p>
+<p>然后找region1，和region2的父区域，若两者相同直接返回，若不相同将找到的父区域记录，同时找父区域的父区域，直到找到，返回。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function">string <span class="title">findSmallestRegion</span><span class="params">(vector&lt;vector&lt;string&gt;&gt;&amp; regions, string region1, string region2)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> n=regions.<span class="built_in">size</span>();</span><br><span class="line">        map&lt;string,string&gt; pre;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;n;i++)</span><br><span class="line">        &#123;</span><br><span class="line">            string f=regions[i][<span class="number">0</span>];</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">1</span>;j&lt;regions[i].<span class="built_in">size</span>();j++)</span><br><span class="line">            &#123;</span><br><span class="line">                pre[regions[i][j]]=f;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        set&lt;string&gt; temp;</span><br><span class="line">        temp.<span class="built_in">insert</span>(region1);</span><br><span class="line">        temp.<span class="built_in">insert</span>(region2);</span><br><span class="line">        <span class="keyword">while</span>(pre[region1]!=pre[region2])</span><br><span class="line">        &#123;</span><br><span class="line">            region1=pre[region1];</span><br><span class="line">            region2=pre[region2];</span><br><span class="line">            cout&lt;&lt;region1&lt;&lt;<span class="string">&quot; &quot;</span>&lt;&lt;region2&lt;&lt;endl;</span><br><span class="line">            <span class="keyword">if</span>(temp.<span class="built_in">find</span>(region1)!=temp.<span class="built_in">end</span>())</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="keyword">return</span> region1;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span>(temp.<span class="built_in">find</span>(region2)!=temp.<span class="built_in">end</span>())</span><br><span class="line">            &#123;</span><br><span class="line">                cout&lt;&lt;<span class="string">&quot;!&quot;</span>;</span><br><span class="line">                <span class="keyword">return</span> region2;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span>(region1!=<span class="string">&quot;&quot;</span>)</span><br><span class="line">                temp.<span class="built_in">insert</span>(region1);</span><br><span class="line">            <span class="keyword">if</span>(region2!=<span class="string">&quot;&quot;</span>)</span><br><span class="line">                temp.<span class="built_in">insert</span>(region2);</span><br><span class="line">            </span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> pre[region1];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<h4 id="1258-近义词句子"><a href="#1258-近义词句子" class="headerlink" title="1258. 近义词句子"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/synonymous-sentences/">1258. 近义词句子</a></h4><h5 id="解法：并查集-DFS"><a href="#解法：并查集-DFS" class="headerlink" title="解法：并查集+DFS"></a>解法：并查集+DFS</h5><p>注：题目被限制会员才能看了，没权限，没法提交，先用二哥的题解，有机会了写个c++版</p>
+<p>from：小白二号</p>
+<p>先把所有的近义词集合求出来。题目中 AA 是 BB 的近义词，如果 AA 是 BB 的近义词，AA 是 CC 的近义词，那么 AA，BB，CC 都是近义词，这一步如果数据量大需要用到并查集，数据量小，瞎搞搞咯</p>
+<p>然后再dfs，把句子中每个词的近义词都拿出来计算一次。。。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.*;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">dfs</span><span class="params">(Map&lt;String, Set&lt;String&gt;&gt; map, String[] col, List&lt;String&gt; result, <span class="keyword">int</span> index)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (index == col.length) &#123;</span><br><span class="line">            result.add(String.join(<span class="string">&quot; &quot;</span>, col));</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span> (map.containsKey(col[index])) &#123;</span><br><span class="line">            String s = col[index];</span><br><span class="line">            <span class="keyword">for</span> (String sub: map.get(col[index])) &#123;</span><br><span class="line">                col[index] = sub;</span><br><span class="line">                dfs(map, col, result, index + <span class="number">1</span>);</span><br><span class="line">            &#125;</span><br><span class="line">            col[index] = s;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            dfs(map, col, result, index + <span class="number">1</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> List&lt;String&gt; <span class="title">generateSentences</span><span class="params">(List&lt;List&lt;String&gt;&gt; synonyms, String text)</span> </span>&#123;</span><br><span class="line">        Map&lt;String, Set&lt;String&gt;&gt; map = <span class="keyword">new</span> HashMap&lt;&gt;();</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">for</span> (List&lt;String&gt; synonym: synonyms) &#123;</span><br><span class="line">            Set&lt;String&gt; s1 = map.getOrDefault(synonym.get(<span class="number">0</span>), <span class="keyword">new</span> HashSet&lt;&gt;());</span><br><span class="line">            Set&lt;String&gt; s2 = map.getOrDefault(synonym.get(<span class="number">1</span>), <span class="keyword">new</span> HashSet&lt;&gt;());</span><br><span class="line">            <span class="keyword">if</span> (s1 == s2) &#123;</span><br><span class="line">                <span class="keyword">continue</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            HashSet&lt;String&gt; ret = <span class="keyword">new</span> HashSet&lt;&gt;();</span><br><span class="line">            ret.addAll(s1);</span><br><span class="line">            ret.addAll(s2);</span><br><span class="line">            ret.add(synonym.get(<span class="number">0</span>));</span><br><span class="line">            ret.add(synonym.get(<span class="number">1</span>));</span><br><span class="line">            </span><br><span class="line">            <span class="keyword">for</span> (String sub: ret) &#123;</span><br><span class="line">                map.put(sub, ret);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        String[] col = text.split(<span class="string">&quot; &quot;</span>);</span><br><span class="line">        List&lt;String&gt; result = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">        dfs(map, col, result, <span class="number">0</span>);</span><br><span class="line"></span><br><span class="line">        Collections.sort(result);</span><br><span class="line">        <span class="keyword">return</span> result;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>作者：小白二号<br>链接：<a target="_blank" rel="noopener" href="https://leetcode-cn.com/circle/discuss/4bcTK1/view/j97Wxb/">https://leetcode-cn.com/circle/discuss/4bcTK1/view/j97Wxb/</a><br>来源：力扣（LeetCode）<br>著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。</p>
+<h4 id="1259-不相交的握手"><a href="#1259-不相交的握手" class="headerlink" title="1259. 不相交的握手"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/handshakes-that-dont-cross/">1259. 不相交的握手</a></h4><h5 id="解法：卡特兰数"><a href="#解法：卡特兰数" class="headerlink" title="解法：卡特兰数"></a>解法：卡特兰数</h5><p><a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E5%8D%A1%E7%89%B9%E5%85%B0%E6%95%B0/6125746?fr=aladdin">卡特兰数</a></p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">numberOfWays</span><span class="params">(<span class="keyword">int</span> num_people)</span> </span>&#123;</span><br><span class="line">        <span class="function">vector&lt;<span class="keyword">long</span> <span class="keyword">long</span>&gt; <span class="title">h</span><span class="params">(<span class="number">1010</span>,<span class="number">0</span>)</span></span>;</span><br><span class="line">        h[<span class="number">0</span>]=<span class="number">1</span>;h[<span class="number">1</span>]=<span class="number">1</span>;</span><br><span class="line">        <span class="keyword">int</span> mod=<span class="built_in">pow</span>(<span class="number">10</span>,<span class="number">9</span>)+<span class="number">7</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">2</span>;i&lt;=<span class="number">500</span>;i++)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">int</span> res=<span class="number">0</span>;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>;j&lt;i;j++)</span><br><span class="line">            &#123;</span><br><span class="line">                res+=h[j]*h[i-j<span class="number">-1</span>]%mod;</span><br><span class="line">                res%=mod;</span><br><span class="line">            &#125;</span><br><span class="line">            h[i]=res;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> h[num_people/<span class="number">2</span>];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Leetcode/" rel="tag"># Leetcode</a>
+              <a href="/tags/%E5%91%A8%E8%B5%9B/" rel="tag"># 周赛</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2021/10/26/leetcode/101-200/125.yan-zheng-hui-wen-chuan/" rel="prev" title="Leetcode-125. 验证回文串">
+                  <i class="fa fa-chevron-left"></i> Leetcode-125. 验证回文串
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2021/10/26/leetcode/zhou-sai/di-12-chang-shuang-zhou-sai/" rel="next" title="Leetcode-第12场双周赛">
+                  Leetcode-第12场双周赛 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">fanko</span>
+</div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+<script src="https://cdn.jsdelivr.net/npm/hexo-generator-searchdb@1.4.0/dist/search.js" integrity="sha256-vXZMYLEqsROAXkEw93GGIvaB2ab+QW6w3+1ahD9nXXA=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+</body>
+</html>

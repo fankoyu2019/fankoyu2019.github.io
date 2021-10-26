@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/all.min.css" integrity="sha256-mUZM63G8m73Mcidfrv5E+Y61y7a12O5mW4ezU3bxqW4=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+<meta name="description" content="1169.查询无效交易题目描述如果出现下述两种情况，交易 可能无效：  交易金额超过 ¥1000 或者，它和另一个城市中同名的另一笔交易相隔不超过 60 分钟（包含 60 分钟整）  每个交易字符串 transactions[i] 由一些用逗号分隔的值组成，这些值分别表示交易的名称，时间（以分钟计），金额以及城市。 给你一份交易清单 transactions，返回可能无效的交易列表。你可以按任何顺">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Leetcode-第151场周赛">
+<meta property="og:url" content="http://example.com/2019/08/26/leetcode/zhou-sai/di-151-chang-zhou-sai/index.html">
+<meta property="og:site_name" content="前程似锦，一路繁华">
+<meta property="og:description" content="1169.查询无效交易题目描述如果出现下述两种情况，交易 可能无效：  交易金额超过 ¥1000 或者，它和另一个城市中同名的另一笔交易相隔不超过 60 分钟（包含 60 分钟整）  每个交易字符串 transactions[i] 由一些用逗号分隔的值组成，这些值分别表示交易的名称，时间（以分钟计），金额以及城市。 给你一份交易清单 transactions，返回可能无效的交易列表。你可以按任何顺">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2019-08-26T03:35:00.000Z">
+<meta property="article:modified_time" content="2021-10-26T04:09:13.663Z">
+<meta property="article:author" content="fanko">
+<meta property="article:tag" content="Leetcode">
+<meta property="article:tag" content="周赛">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://example.com/2019/08/26/leetcode/zhou-sai/di-151-chang-zhou-sai/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://example.com/2019/08/26/leetcode/zhou-sai/di-151-chang-zhou-sai/","path":"2019/08/26/leetcode/zhou-sai/di-151-chang-zhou-sai/","title":"Leetcode-第151场周赛"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>Leetcode-第151场周赛 | 前程似锦，一路繁华</title>
+  
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">前程似锦，一路繁华</h1>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">坚持,努力,认真</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li>
+        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li>
+        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#1169-%E6%9F%A5%E8%AF%A2%E6%97%A0%E6%95%88%E4%BA%A4%E6%98%93"><span class="nav-number">1.</span> <span class="nav-text">1169.查询无效交易</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E9%A2%98%E7%9B%AE%E6%8F%8F%E8%BF%B0"><span class="nav-number">1.1.</span> <span class="nav-text">题目描述</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E8%A7%A3%E6%B3%95"><span class="nav-number">1.2.</span> <span class="nav-text">解法</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1170-%E6%AF%94%E8%BE%83%E5%AD%97%E7%AC%A6%E4%B8%B2%E6%9C%80%E5%B0%8F%E5%AD%97%E6%AF%8D%E5%87%BA%E7%8E%B0%E9%A2%91%E6%AC%A1"><span class="nav-number">2.</span> <span class="nav-text">1170.比较字符串最小字母出现频次</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E8%A7%A3%E6%B3%95-1"><span class="nav-number">2.1.</span> <span class="nav-text">解法</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1171-%E4%BB%8E%E9%93%BE%E8%A1%A8%E4%B8%AD%E5%88%A0%E5%8E%BB%E6%80%BB%E5%92%8C%E4%B8%BA0%E7%9A%84%E8%BF%9E%E7%BB%AD%E8%8A%82%E7%82%B9"><span class="nav-number">3.</span> <span class="nav-text">1171.从链表中删去总和为0的连续节点</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E8%A7%A3%E6%B3%95-2"><span class="nav-number">3.1.</span> <span class="nav-text">解法</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1172-%E9%A4%90%E7%9B%98%E6%A0%88"><span class="nav-number">4.</span> <span class="nav-text">1172.餐盘栈</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E8%A7%A3%E6%B3%95-3"><span class="nav-number">4.1.</span> <span class="nav-text">解法</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="fanko"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">fanko</p>
+  <div class="site-description" itemprop="description">-------- 济南大学17级本科生 --------大连理工大学21级研究生</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">172</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">37</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/fankoyu2019" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;fankoyu2019" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+  </div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2019/08/26/leetcode/zhou-sai/di-151-chang-zhou-sai/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="fanko">
+      <meta itemprop="description" content="-------- 济南大学17级本科生 --------大连理工大学21级研究生">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="前程似锦，一路繁华">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Leetcode-第151场周赛
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2019-08-26 11:35:00" itemprop="dateCreated datePublished" datetime="2019-08-26T11:35:00+08:00">2019-08-26</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2021-10-26 12:09:13" itemprop="dateModified" datetime="2021-10-26T12:09:13+08:00">2021-10-26</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%91%A8%E8%B5%9B/" itemprop="url" rel="index"><span itemprop="name">周赛</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h4 id="1169-查询无效交易"><a href="#1169-查询无效交易" class="headerlink" title="1169.查询无效交易"></a>1169.查询无效交易</h4><h5 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h5><p>如果出现下述两种情况，交易 <strong>可能无效</strong>：</p>
+<ul>
+<li>交易金额超过 ¥1000</li>
+<li>或者，它和另一个城市中同名的另一笔交易相隔不超过 60 分钟（包含 60 分钟整）</li>
+</ul>
+<p>每个交易字符串 <code>transactions[i]</code> 由一些用逗号分隔的值组成，这些值分别表示交易的名称，时间（以分钟计），金额以及城市。</p>
+<p>给你一份交易清单 <code>transactions</code>，返回可能无效的交易列表。你可以按任何顺序返回答案。</p>
+<span id="more"></span>
+
+<p><strong>示例 1：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">输入：transactions = [&quot;alice,20,800,mtv&quot;,&quot;alice,50,100,beijing&quot;]</span><br><span class="line">输出：[&quot;alice,20,800,mtv&quot;,&quot;alice,50,100,beijing&quot;]</span><br><span class="line">解释：第一笔交易是无效的，因为第二笔交易和它间隔不超过 60 分钟、名称相同且发生在不同的城市。同样，第二笔交易也是无效的。</span><br></pre></td></tr></table></figure>
+
+<p><strong>示例 2：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：transactions = [&quot;alice,20,800,mtv&quot;,&quot;alice,50,1200,mtv&quot;]</span><br><span class="line">输出：[&quot;alice,50,1200,mtv&quot;]</span><br></pre></td></tr></table></figure>
+
+<p><strong>示例 3：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：transactions = [&quot;alice,20,800,mtv&quot;,&quot;bob,50,1200,mtv&quot;]</span><br><span class="line">输出：[&quot;bob,50,1200,mtv&quot;]</span><br></pre></td></tr></table></figure>
+
+<p><strong>提示：</strong></p>
+<ul>
+<li><code>transactions.length &lt;= 1000</code></li>
+<li>每笔交易 <code>transactions[i]</code> 按 <code>&quot;&#123;name&#125;,&#123;time&#125;,&#123;amount&#125;,&#123;city&#125;&quot;</code> 的格式进行记录</li>
+<li>每个交易名称 <code>&#123;name&#125;</code> 和城市 <code>&#123;city&#125;</code> 都由小写英文字母组成，长度在 <code>1</code> 到 <code>10</code> 之间</li>
+<li>每个交易时间 <code>&#123;time&#125;</code> 由一些数字组成，表示一个 <code>0</code> 到 <code>1000</code> 之间的整数</li>
+<li>每笔交易金额 <code>&#123;amount&#125;</code> 由一些数字组成，表示一个 <code>0</code> 到 <code>2000</code> 之间的整数</li>
+</ul>
+<h5 id="解法"><a href="#解法" class="headerlink" title="解法"></a>解法</h5><p>1.将每个字符串切割存入到结构体中，同时记录在原字符串数组中的位置index</p>
+<p>2.对结构体数组进行排序，先按名排序，名相同的按时间从小到大排序</p>
+<p>3.</p>
+<ul>
+<li>遍历结构体数组先判断下一位是否越界，没有越界<strong>找到后面第一个不在相同城市的交易</strong>，因为已经排好了序，我们可知，若这一位与当前位时间相差超过60min，则名称相同的必然后面都超过60min,若找到无效交易将当前位放入res结果数组，直接continue下一循环</li>
+<li>若下一位超过60min，判断上一位是否越界,若没有越界<strong>找到前面第一个不在相同城市的交易</strong>，其他与找下一位类似</li>
+</ul>
+<p>4.遍历完毕，返回结果数组</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    </span><br><span class="line">    <span class="function">vector&lt;string&gt; <span class="title">invalidTransactions</span><span class="params">(vector&lt;string&gt;&amp; transactions)</span> </span>&#123;</span><br><span class="line">        <span class="class"><span class="keyword">struct</span> <span class="title">trans</span> </span></span><br><span class="line"><span class="class">        &#123;</span></span><br><span class="line">            string na;</span><br><span class="line">            <span class="keyword">int</span> ta;</span><br><span class="line">            <span class="keyword">int</span> aa;</span><br><span class="line">            string ca;</span><br><span class="line">            <span class="keyword">int</span> index;</span><br><span class="line">        &#125;;</span><br><span class="line">        vector&lt;string&gt; res;</span><br><span class="line">        <span class="keyword">int</span> n=transactions.<span class="built_in">size</span>();</span><br><span class="line">        <span class="function">vector&lt;trans&gt; <span class="title">tr</span><span class="params">(n)</span></span>;</span><br><span class="line">        <span class="keyword">int</span> i,j;</span><br><span class="line">        <span class="keyword">for</span>(i=<span class="number">0</span>;i&lt;n;i++)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">int</span> li=<span class="number">0</span>,ln=transactions[i].<span class="built_in">size</span>();</span><br><span class="line">            tr[i].na=<span class="built_in">getStr</span>(transactions[i],li,ln);</span><br><span class="line">            tr[i].ta=<span class="built_in">getInt</span>(transactions[i],li,ln);</span><br><span class="line">            tr[i].aa=<span class="built_in">getInt</span>(transactions[i],li,ln);</span><br><span class="line">            tr[i].ca=<span class="built_in">getStr</span>(transactions[i],li,ln);</span><br><span class="line">            tr[i].index=i;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">sort</span>(tr.<span class="built_in">begin</span>(),tr.<span class="built_in">end</span>(),[](<span class="keyword">auto</span> &amp;l,<span class="keyword">auto</span> &amp;r)&#123;<span class="keyword">if</span>(l.na!=r.na)<span class="keyword">return</span> l.na&lt;r.na;<span class="keyword">return</span> l.ta&lt;r.ta;&#125;);</span><br><span class="line">        <span class="keyword">for</span>(i=<span class="number">0</span>;i&lt;n;i++)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span>(i+<span class="number">1</span>&lt;n)</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="keyword">int</span> j=i+<span class="number">1</span>;</span><br><span class="line">                <span class="keyword">while</span>(j&lt;n&amp;&amp;tr[i].ca==tr[j].ca)			<span class="comment">//这里极其重要，有可能两个相邻结构体的城市也是一样，要通过循环找到城市不一样的，这样才能找到所有的可能</span></span><br><span class="line">                    j++;</span><br><span class="line">                <span class="keyword">if</span>(j&lt;n&amp;&amp;tr[i].na==tr[j].na&amp;&amp;(tr[i].ca!=tr[j].ca)&amp;&amp;<span class="built_in">abs</span>(tr[i].ta-tr[j].ta)&lt;=<span class="number">60</span>)</span><br><span class="line">                &#123;</span><br><span class="line">                    res.<span class="built_in">push_back</span>(transactions[tr[i].index]);</span><br><span class="line">                    <span class="keyword">continue</span>;</span><br><span class="line">                &#125;               </span><br><span class="line">                <span class="keyword">if</span>(tr[i].aa&gt;<span class="number">1000</span>)</span><br><span class="line">                &#123;</span><br><span class="line">                    res.<span class="built_in">push_back</span>(transactions[tr[i].index]);</span><br><span class="line">                    <span class="keyword">continue</span>;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span>(i<span class="number">-1</span>&gt;=<span class="number">0</span>)</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="keyword">int</span> j=i<span class="number">-1</span>;</span><br><span class="line">                <span class="keyword">while</span>(j&gt;=<span class="number">0</span>&amp;&amp;tr[i].ca==tr[j].ca)</span><br><span class="line">                    j--;</span><br><span class="line">                <span class="keyword">if</span>(j&gt;=<span class="number">0</span>&amp;&amp;tr[i].na==tr[j].na&amp;&amp;tr[i].ca!=tr[j].ca&amp;&amp;<span class="built_in">abs</span>(tr[i].ta-tr[j].ta)&lt;=<span class="number">60</span>)</span><br><span class="line">                &#123;</span><br><span class="line">                    res.<span class="built_in">push_back</span>(transactions[tr[i].index]);</span><br><span class="line">                    <span class="keyword">continue</span>;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">if</span>(tr[i].aa&gt;<span class="number">1000</span>)</span><br><span class="line">                &#123;</span><br><span class="line">                    res.<span class="built_in">push_back</span>(transactions[tr[i].index]);</span><br><span class="line">                    <span class="keyword">continue</span>;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function">string <span class="title">getStr</span><span class="params">(string s,<span class="keyword">int</span> &amp;i,<span class="keyword">int</span> n)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        string temp=<span class="string">&quot;&quot;</span>;</span><br><span class="line">        <span class="keyword">while</span>(i&lt;n&amp;&amp;!(<span class="string">&#x27;a&#x27;</span>&lt;=s[i]&amp;&amp;s[i]&lt;=<span class="string">&#x27;z&#x27;</span>))</span><br><span class="line">            i++;</span><br><span class="line">        <span class="keyword">while</span>(i&lt;n&amp;&amp;(<span class="string">&#x27;a&#x27;</span>&lt;=s[i]&amp;&amp;s[i]&lt;=<span class="string">&#x27;z&#x27;</span>))</span><br><span class="line">        &#123;</span><br><span class="line">            temp+=s[i];</span><br><span class="line">            i++;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> temp;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">getInt</span><span class="params">(string s,<span class="keyword">int</span> &amp;i,<span class="keyword">int</span> n)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> temp=<span class="number">0</span>;</span><br><span class="line">        <span class="keyword">while</span>(i&lt;n&amp;&amp;!(<span class="string">&#x27;0&#x27;</span>&lt;=s[i]&amp;&amp;s[i]&lt;=<span class="string">&#x27;9&#x27;</span>))</span><br><span class="line">            i++;</span><br><span class="line">        <span class="keyword">while</span>(i&lt;n&amp;&amp;(<span class="string">&#x27;0&#x27;</span>&lt;=s[i]&amp;&amp;s[i]&lt;=<span class="string">&#x27;9&#x27;</span>))</span><br><span class="line">        &#123;</span><br><span class="line">            temp=temp*<span class="number">10</span>+s[i]-<span class="string">&#x27;0&#x27;</span>;</span><br><span class="line">            i++;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> temp;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<h4 id="1170-比较字符串最小字母出现频次"><a href="#1170-比较字符串最小字母出现频次" class="headerlink" title="1170.比较字符串最小字母出现频次"></a>1170.比较字符串最小字母出现频次</h4><p>我们来定义一个函数 <code>f(s)</code>，其中传入参数 <code>s</code> 是一个非空字符串；该函数的功能是统计 <code>s</code>  中（按字典序比较）最小字母的出现频次。</p>
+<p>例如，若 <code>s = &quot;dcce&quot;</code>，那么 <code>f(s) = 2</code>，因为最小的字母是 <code>&quot;c&quot;</code>，它出现了 2 次。</p>
+<p>现在，给你两个字符串数组待查表 <code>queries</code> 和词汇表 <code>words</code>，请你返回一个整数数组 <code>answer</code> 作为答案，其中每个 <code>answer[i]</code> 是满足 <code>f(queries[i])</code> &lt; <code>f(W)</code> 的词的数目，<code>W</code> 是词汇表 <code>words</code> 中的词。</p>
+<p><strong>示例 1：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">输入：queries = [&quot;cbd&quot;], words = [&quot;zaaaz&quot;]</span><br><span class="line">输出：[1]</span><br><span class="line">解释：查询 f(&quot;cbd&quot;) = 1，而 f(&quot;zaaaz&quot;) = 3 所以 f(&quot;cbd&quot;) &lt; f(&quot;zaaaz&quot;)。</span><br></pre></td></tr></table></figure>
+
+<p><strong>示例 2：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">输入：queries = [&quot;bbb&quot;,&quot;cc&quot;], words = [&quot;a&quot;,&quot;aa&quot;,&quot;aaa&quot;,&quot;aaaa&quot;]</span><br><span class="line">输出：[1,2]</span><br><span class="line">解释：第一个查询 f(&quot;bbb&quot;) &lt; f(&quot;aaaa&quot;)，第二个查询 f(&quot;aaa&quot;) 和 f(&quot;aaaa&quot;) 都 &gt; f(&quot;cc&quot;)。</span><br></pre></td></tr></table></figure>
+
+<p><strong>提示：</strong></p>
+<ul>
+<li><code>1 &lt;= queries.length &lt;= 2000</code></li>
+<li><code>1 &lt;= words.length &lt;= 2000</code></li>
+<li><code>1 &lt;= queries[i].length, words[i].length &lt;= 10</code></li>
+<li><code>queries[i][j]</code>, <code>words[i][j]</code> 都是小写英文字母</li>
+</ul>
+<h5 id="解法-1"><a href="#解法-1" class="headerlink" title="解法"></a>解法</h5><p>思路很简单</p>
+<p>1.定义两个数组q,w分别存放queries和words各个字符串对应的f函数的值</p>
+<p>2.将w从小到大排序，遍历q，当q[i]&lt;w[i]时，则w[i]后面的也大于q[i]，也就得到了q[i]对应的结果数组的值</p>
+<p>3.将q[i]的每项存起来，便得到了结果数组，返回</p>
+<p>f函数的实现：</p>
+<p>利用map，存字符串每个字母的出现次数</p>
+<p>找到最小字母的出现次数，返回该值</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function">vector&lt;<span class="keyword">int</span>&gt; <span class="title">numSmallerByFrequency</span><span class="params">(vector&lt;string&gt;&amp; queries, vector&lt;string&gt;&amp; words)</span> </span>&#123;</span><br><span class="line">        vector&lt;<span class="keyword">int</span>&gt; q;</span><br><span class="line">        vector&lt;<span class="keyword">int</span>&gt; w;</span><br><span class="line">        <span class="keyword">int</span> map[<span class="number">26</span>];</span><br><span class="line">        <span class="built_in">memset</span>(map,<span class="number">0</span>,<span class="built_in"><span class="keyword">sizeof</span></span>(map));</span><br><span class="line">        <span class="keyword">int</span> n=queries.<span class="built_in">size</span>(),m=words.<span class="built_in">size</span>();</span><br><span class="line">        <span class="keyword">int</span> i,j;</span><br><span class="line">        <span class="keyword">for</span>(i=<span class="number">0</span>;i&lt;n;i++)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">for</span>(j=<span class="number">0</span>;j&lt;queries[i].<span class="built_in">size</span>();j++)</span><br><span class="line">            &#123;</span><br><span class="line">                map[queries[i][j]-<span class="string">&#x27;a&#x27;</span>]++;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">for</span>(j=<span class="number">0</span>;j&lt;<span class="number">26</span>;j++)</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="keyword">if</span>(map[j]!=<span class="number">0</span>)</span><br><span class="line">                &#123; </span><br><span class="line">                    q.<span class="built_in">push_back</span>(map[j]);</span><br><span class="line">                    <span class="keyword">break</span>;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="built_in">memset</span>(map,<span class="number">0</span>,<span class="built_in"><span class="keyword">sizeof</span></span>(map));</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">memset</span>(map,<span class="number">0</span>,<span class="built_in"><span class="keyword">sizeof</span></span>(map));</span><br><span class="line">        <span class="keyword">for</span>(i=<span class="number">0</span>;i&lt;m;i++)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">for</span>(j=<span class="number">0</span>;j&lt;words[i].<span class="built_in">size</span>();j++)</span><br><span class="line">            &#123;</span><br><span class="line">                map[words[i][j]-<span class="string">&#x27;a&#x27;</span>]++;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">for</span>(j=<span class="number">0</span>;j&lt;<span class="number">26</span>;j++)</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="keyword">if</span>(map[j]!=<span class="number">0</span>)</span><br><span class="line">                &#123; </span><br><span class="line">                    w.<span class="built_in">push_back</span>(map[j]);</span><br><span class="line">                    <span class="keyword">break</span>;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="built_in">memset</span>(map,<span class="number">0</span>,<span class="built_in"><span class="keyword">sizeof</span></span>(map));</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">sort</span>(w.<span class="built_in">begin</span>(),w.<span class="built_in">end</span>());</span><br><span class="line">        j=<span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(j=<span class="number">0</span>;j&lt;n;j++)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">for</span>(i=<span class="number">0</span>;i&lt;m;i++)</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="keyword">if</span>(q[j]&lt;w[i])</span><br><span class="line">                &#123;</span><br><span class="line">                    q[j]=m-i;</span><br><span class="line">                    <span class="keyword">break</span>;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span>(i==m)</span><br><span class="line">                q[j]=<span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> q;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<h4 id="1171-从链表中删去总和为0的连续节点"><a href="#1171-从链表中删去总和为0的连续节点" class="headerlink" title="1171.从链表中删去总和为0的连续节点"></a>1171.从链表中删去总和为0的连续节点</h4><p>给你一个链表的头节点 <code>head</code>，请你编写代码，反复删去链表中由 <strong>总和</strong> 值为 <code>0</code> 的连续节点组成的序列，直到不存在这样的序列为止。</p>
+<p>删除完毕后，请你返回最终结果链表的头节点。</p>
+<p>你可以返回任何满足题目要求的答案。</p>
+<p>（注意，下面示例中的所有序列，都是对 <code>ListNode</code> 对象序列化的表示。）</p>
+<p><strong>示例 1：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">输入：head = [1,2,-3,3,1]</span><br><span class="line">输出：[3,1]</span><br><span class="line">提示：答案 [1,2,1] 也是正确的。</span><br></pre></td></tr></table></figure>
+
+<p><strong>示例 2：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：head = [1,2,3,-3,4]</span><br><span class="line">输出：[1,2,4]</span><br></pre></td></tr></table></figure>
+
+<p><strong>示例 3：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入：head = [1,2,3,-3,-2]</span><br><span class="line">输出：[1]</span><br></pre></td></tr></table></figure>
+
+<p><strong>提示：</strong></p>
+<ul>
+<li>给你的链表中可能有 <code>1</code> 到 <code>1000</code> 个节点。</li>
+<li>对于链表中的每个节点，节点的值：<code>-1000 &lt;= node.val &lt;= 1000</code>.</li>
+</ul>
+<h5 id="解法-2"><a href="#解法-2" class="headerlink" title="解法"></a>解法</h5><p>因为只有1000个节点，所以直接考虑暴力</p>
+<p>思路：</p>
+<p>1.将链表转换为数组，便于进行操作</p>
+<p>2.两层循环，i遍历每一个点，能否和后面形成总和为0的连续节点，若能，跳出循环，记录j位置，从开始位置i到结束位置j每个点赋值为INT_MAX,i跳转到j，进行下一次循环</p>
+<p>3.循环完毕，遍历数组，将不为INT_MAX的值依次放入新的链表中，返回新链表</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Definition for singly-linked list.</span></span><br><span class="line"><span class="comment"> * struct ListNode &#123;</span></span><br><span class="line"><span class="comment"> *     int val;</span></span><br><span class="line"><span class="comment"> *     ListNode *next;</span></span><br><span class="line"><span class="comment"> *     ListNode(int x) : val(x), next(NULL) &#123;&#125;</span></span><br><span class="line"><span class="comment"> * &#125;;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function">ListNode* <span class="title">removeZeroSumSublists</span><span class="params">(ListNode* head)</span> </span>&#123;</span><br><span class="line">        vector&lt;<span class="keyword">int</span>&gt; s;</span><br><span class="line">        ListNode *p=head;</span><br><span class="line">        <span class="keyword">int</span> sum=<span class="number">0</span>;</span><br><span class="line">        <span class="keyword">while</span>(p!=<span class="literal">NULL</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            s.<span class="built_in">push_back</span>(p-&gt;val);</span><br><span class="line">            p=p-&gt;next;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">int</span> n=s.<span class="built_in">size</span>();</span><br><span class="line">        <span class="keyword">int</span> i,j;</span><br><span class="line">        <span class="keyword">for</span>(i=<span class="number">0</span>;i&lt;n;i++)</span><br><span class="line">        &#123;</span><br><span class="line">            sum=<span class="number">0</span>;</span><br><span class="line">            <span class="keyword">for</span>(j=i;j&lt;n;j++)</span><br><span class="line">            &#123;</span><br><span class="line">                sum+=s[j];</span><br><span class="line">                <span class="keyword">if</span>(sum==<span class="number">0</span>)</span><br><span class="line">                &#123;</span><br><span class="line">                    <span class="keyword">break</span>;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span>(sum==<span class="number">0</span>)</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="keyword">for</span>(<span class="keyword">int</span> k=i;k&lt;=j;k++)</span><br><span class="line">                &#123;</span><br><span class="line">                    s[k]=INT_MAX;</span><br><span class="line">                &#125;</span><br><span class="line">                i=j;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        ListNode *newhead=<span class="keyword">new</span> <span class="built_in">ListNode</span>(<span class="number">-1</span>);</span><br><span class="line">        p=newhead;</span><br><span class="line">        <span class="keyword">for</span>(i=<span class="number">0</span>;i&lt;n;i++)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span>(s[i]==INT_MAX)</span><br><span class="line">                <span class="keyword">continue</span>;</span><br><span class="line">            ListNode *pn=<span class="keyword">new</span> <span class="built_in">ListNode</span>(s[i]);</span><br><span class="line">            p-&gt;next=pn;</span><br><span class="line">            p=p-&gt;next;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> newhead-&gt;next;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<h4 id="1172-餐盘栈"><a href="#1172-餐盘栈" class="headerlink" title="1172.餐盘栈"></a>1172.餐盘栈</h4><p>我们把无限数量 ∞ 的栈排成一行，按从左到右的次序从 0 开始编号。每个栈的的最大容量 <code>capacity</code> 都相同。</p>
+<p>实现一个叫「餐盘」的类 <code>DinnerPlates</code>：</p>
+<ul>
+<li><code>DinnerPlates(int capacity)</code> - 给出栈的最大容量 <code>capacity</code>。</li>
+<li><code>void push(int val)</code> - 将给出的正整数 <code>val</code> 推入 <strong>从左往右第一个</strong> 没有满的栈。</li>
+<li><code>int pop()</code> - 返回 <strong>从右往左第一个</strong> 非空栈顶部的值，并将其从栈中删除；如果所有的栈都是空的，请返回 <code>-1</code>。</li>
+<li><code>int popAtStack(int index)</code> - 返回编号 <code>index</code> 的栈顶部的值，并将其从栈中删除；如果编号 <code>index</code> 的栈是空的，请返回 <code>-1</code>。</li>
+</ul>
+<p><strong>示例：</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line">输入： </span><br><span class="line">[&quot;DinnerPlates&quot;,&quot;push&quot;,&quot;push&quot;,&quot;push&quot;,&quot;push&quot;,&quot;push&quot;,&quot;popAtStack&quot;,&quot;push&quot;,&quot;push&quot;,&quot;popAtStack&quot;,&quot;popAtStack&quot;,&quot;pop&quot;,&quot;pop&quot;,&quot;pop&quot;,&quot;pop&quot;,&quot;pop&quot;]</span><br><span class="line">[[2],[1],[2],[3],[4],[5],[0],[20],[21],[0],[2],[],[],[],[],[]]</span><br><span class="line">输出：</span><br><span class="line">[null,null,null,null,null,null,2,null,null,20,21,5,4,3,1,-1]</span><br><span class="line"></span><br><span class="line">解释：</span><br><span class="line">DinnerPlates D = DinnerPlates(2);  // 初始化，栈最大容量 capacity = 2</span><br><span class="line">D.push(1);</span><br><span class="line">D.push(2);</span><br><span class="line">D.push(3);</span><br><span class="line">D.push(4);</span><br><span class="line">D.push(5);         // 栈的现状为：    2  4</span><br><span class="line">                                    1  3  5</span><br><span class="line">                                    ﹈ ﹈ ﹈</span><br><span class="line">D.popAtStack(0);   // 返回 2。栈的现状为：      4</span><br><span class="line">                                          1  3  5</span><br><span class="line">                                          ﹈ ﹈ ﹈</span><br><span class="line">D.push(20);        // 栈的现状为：  20  4</span><br><span class="line">                                   1  3  5</span><br><span class="line">                                   ﹈ ﹈ ﹈</span><br><span class="line">D.push(21);        // 栈的现状为：  20  4 21</span><br><span class="line">                                   1  3  5</span><br><span class="line">                                   ﹈ ﹈ ﹈</span><br><span class="line">D.popAtStack(0);   // 返回 20。栈的现状为：       4 21</span><br><span class="line">                                            1  3  5</span><br><span class="line">                                            ﹈ ﹈ ﹈</span><br><span class="line">D.popAtStack(2);   // 返回 21。栈的现状为：       4</span><br><span class="line">                                            1  3  5</span><br><span class="line">                                            ﹈ ﹈ ﹈ </span><br><span class="line">D.pop()            // 返回 5。栈的现状为：        4</span><br><span class="line">                                            1  3 </span><br><span class="line">                                            ﹈ ﹈  </span><br><span class="line">D.pop()            // 返回 4。栈的现状为：    1  3 </span><br><span class="line">                                           ﹈ ﹈   </span><br><span class="line">D.pop()            // 返回 3。栈的现状为：    1 </span><br><span class="line">                                           ﹈   </span><br><span class="line">D.pop()            // 返回 1。现在没有栈。</span><br><span class="line">D.pop()            // 返回 -1。仍然没有栈。</span><br></pre></td></tr></table></figure>
+
+<p><strong>提示：</strong></p>
+<ul>
+<li><code>1 &lt;= capacity &lt;= 20000</code></li>
+<li><code>1 &lt;= val &lt;= 20000</code></li>
+<li><code>0 &lt;= index &lt;= 100000</code></li>
+<li>最多会对 <code>push</code>，<code>pop</code>，和 <code>popAtStack</code> 进行 <code>200000</code> 次调用。</li>
+</ul>
+<h5 id="解法-3"><a href="#解法-3" class="headerlink" title="解法"></a>解法</h5><p>模拟栈操作，注意数据量10W+</p>
+<p>要记录下那些位置可放入数，不然会超时</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">DinnerPlates</span> &#123;</span></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    <span class="keyword">int</span> n;</span><br><span class="line">    vector&lt;stack&lt;<span class="keyword">int</span>&gt;&gt; res;</span><br><span class="line">    stack&lt;<span class="keyword">int</span>&gt; temp;</span><br><span class="line">    <span class="keyword">int</span> l,r;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="built_in">DinnerPlates</span>(<span class="keyword">int</span> capacity) &#123;</span><br><span class="line">        n=capacity;</span><br><span class="line">        l=r=<span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">push</span><span class="params">(<span class="keyword">int</span> val)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> i;</span><br><span class="line">        <span class="keyword">for</span>(i=l;i&lt;res.<span class="built_in">size</span>();i++)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span>(res[i].<span class="built_in">size</span>()&lt;n)</span><br><span class="line">            &#123;</span><br><span class="line">                res[i].<span class="built_in">push</span>(val);</span><br><span class="line">                l=i;</span><br><span class="line">                r=<span class="built_in">max</span>(r,i);</span><br><span class="line">                <span class="keyword">return</span> ;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        res.<span class="built_in">push_back</span>(temp);</span><br><span class="line">        res[i].<span class="built_in">push</span>(val);</span><br><span class="line">        l=r=i;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">pop</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=r;i&gt;=<span class="number">0</span>;i--)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span>(res[i].<span class="built_in">size</span>())</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="keyword">int</span> x=res[i].<span class="built_in">top</span>();</span><br><span class="line">                res[i].<span class="built_in">pop</span>();</span><br><span class="line">                r=i;</span><br><span class="line">                l=<span class="built_in">min</span>(l,i);</span><br><span class="line">                <span class="keyword">return</span> x;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        r=<span class="number">0</span>;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">popAtStack</span><span class="params">(<span class="keyword">int</span> index)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(index&gt;=res.<span class="built_in">size</span>()||res[index].<span class="built_in">size</span>()==<span class="number">0</span>)</span><br><span class="line">            <span class="keyword">return</span> <span class="number">-1</span>;</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">int</span> x=res[index].<span class="built_in">top</span>();</span><br><span class="line">            res[index].<span class="built_in">pop</span>();</span><br><span class="line">            l=<span class="built_in">min</span>(l,index);</span><br><span class="line">            <span class="keyword">return</span> x;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Your DinnerPlates object will be instantiated and called as such:</span></span><br><span class="line"><span class="comment"> * DinnerPlates* obj = new DinnerPlates(capacity);</span></span><br><span class="line"><span class="comment"> * obj-&gt;push(val);</span></span><br><span class="line"><span class="comment"> * int param_2 = obj-&gt;pop();</span></span><br><span class="line"><span class="comment"> * int param_3 = obj-&gt;popAtStack(index);</span></span><br><span class="line"><span class="comment"> */</span></span><br></pre></td></tr></table></figure>
+
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Leetcode/" rel="tag"># Leetcode</a>
+              <a href="/tags/%E5%91%A8%E8%B5%9B/" rel="tag"># 周赛</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2019/08/25/leetcode/zhou-sai/di-7-chang-shuang-zhou-sai/" rel="prev" title="Leetcode-第7场双周赛">
+                  <i class="fa fa-chevron-left"></i> Leetcode-第7场双周赛
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2019/08/26/leetcode/1-100/25.k-ge-yi-zu-fan-zhuan-lian-biao/" rel="next" title="Leetcode-25.K个一组翻转链表">
+                  Leetcode-25.K个一组翻转链表 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">fanko</span>
+</div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+<script src="https://cdn.jsdelivr.net/npm/hexo-generator-searchdb@1.4.0/dist/search.js" integrity="sha256-vXZMYLEqsROAXkEw93GGIvaB2ab+QW6w3+1ahD9nXXA=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/all.min.css" integrity="sha256-mUZM63G8m73Mcidfrv5E+Y61y7a12O5mW4ezU3bxqW4=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Gemini","darkmode":false,"version":"8.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+<meta name="description" content="5112. 十六进制魔术数字你有一个十进制数字，请按照此规则将它变成「十六进制魔术数字」：首先将它变成字母大写的十六进制字符串，然后将所有的数字 0 变成字母 O ，将数字 1  变成字母 I 。 如果一个数字在转换后只包含 {“A”, “B”, “C”, “D”, “E”, “F”, “I”, “O”} ，那么我们就认为这个转换是有效的。 给你一个字符串 num ，它表示一个十进制数 N，如果它">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Leetcode-第14场双周赛">
+<meta property="og:url" content="http://example.com/2021/10/26/leetcode/zhou-sai/di-14-chang-shuang-zhou-sai/index.html">
+<meta property="og:site_name" content="前程似锦，一路繁华">
+<meta property="og:description" content="5112. 十六进制魔术数字你有一个十进制数字，请按照此规则将它变成「十六进制魔术数字」：首先将它变成字母大写的十六进制字符串，然后将所有的数字 0 变成字母 O ，将数字 1  变成字母 I 。 如果一个数字在转换后只包含 {“A”, “B”, “C”, “D”, “E”, “F”, “I”, “O”} ，那么我们就认为这个转换是有效的。 给你一个字符串 num ，它表示一个十进制数 N，如果它">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://assets.leetcode-cn.com/aliyun-lc-upload/uploads/2019/11/30/1421_sample_1.png">
+<meta property="og:image" content="https://assets.leetcode-cn.com/aliyun-lc-upload/uploads/2019/11/30/1445_example_1.png">
+<meta property="article:published_time" content="2021-10-26T04:09:13.663Z">
+<meta property="article:modified_time" content="2021-10-26T04:09:13.663Z">
+<meta property="article:author" content="fanko">
+<meta property="article:tag" content="Leetcode">
+<meta property="article:tag" content="周赛">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://assets.leetcode-cn.com/aliyun-lc-upload/uploads/2019/11/30/1421_sample_1.png">
+
+
+<link rel="canonical" href="http://example.com/2021/10/26/leetcode/zhou-sai/di-14-chang-shuang-zhou-sai/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://example.com/2021/10/26/leetcode/zhou-sai/di-14-chang-shuang-zhou-sai/","path":"2021/10/26/leetcode/zhou-sai/di-14-chang-shuang-zhou-sai/","title":"Leetcode-第14场双周赛"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>Leetcode-第14场双周赛 | 前程似锦，一路繁华</title>
+  
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">前程似锦，一路繁华</h1>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">坚持,努力,认真</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li>
+        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li>
+        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#5112-%E5%8D%81%E5%85%AD%E8%BF%9B%E5%88%B6%E9%AD%94%E6%9C%AF%E6%95%B0%E5%AD%97"><span class="nav-number">1.</span> <span class="nav-text">5112. 十六进制魔术数字</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E8%A7%A3%E6%B3%951%EF%BC%9A%E6%A8%A1%E6%8B%9F"><span class="nav-number">1.1.</span> <span class="nav-text">解法1：模拟</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5113-%E5%88%A0%E9%99%A4%E5%8C%BA%E9%97%B4"><span class="nav-number">2.</span> <span class="nav-text">5113. 删除区间</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E8%A7%A3%E6%B3%951%EF%BC%9A%E6%A8%A1%E6%8B%9F-1"><span class="nav-number">2.1.</span> <span class="nav-text">解法1：模拟</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5114-%E5%88%A0%E9%99%A4%E6%A0%91%E8%8A%82%E7%82%B9"><span class="nav-number">3.</span> <span class="nav-text">5114. 删除树节点</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E8%A7%A3%E6%B3%951%EF%BC%9A%E4%B8%A4%E6%AC%A1DFS"><span class="nav-number">3.1.</span> <span class="nav-text">解法1：两次DFS</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#5136-%E7%9F%A9%E5%BD%A2%E5%86%85%E8%88%B9%E5%8F%AA%E7%9A%84%E6%95%B0%E7%9B%AE"><span class="nav-number">4.</span> <span class="nav-text">5136. 矩形内船只的数目</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E8%A7%A3%E6%B3%951%EF%BC%9A%E4%BA%8C%E5%88%86"><span class="nav-number">4.1.</span> <span class="nav-text">解法1：二分</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="fanko"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">fanko</p>
+  <div class="site-description" itemprop="description">-------- 济南大学17级本科生 --------大连理工大学21级研究生</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">172</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">5</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">37</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/fankoyu2019" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;fankoyu2019" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+  </div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/10/26/leetcode/zhou-sai/di-14-chang-shuang-zhou-sai/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="fanko">
+      <meta itemprop="description" content="-------- 济南大学17级本科生 --------大连理工大学21级研究生">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="前程似锦，一路繁华">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Leetcode-第14场双周赛
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2021-10-26 12:09:13" itemprop="dateCreated datePublished" datetime="2021-10-26T12:09:13+08:00">2021-10-26</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E5%91%A8%E8%B5%9B/" itemprop="url" rel="index"><span itemprop="name">周赛</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h4 id="5112-十六进制魔术数字"><a href="#5112-十六进制魔术数字" class="headerlink" title="5112. 十六进制魔术数字"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/hexspeak/">5112. 十六进制魔术数字</a></h4><p>你有一个十进制数字，请按照此规则将它变成「十六进制魔术数字」：首先将它变成字母大写的十六进制字符串，然后将所有的数字 0 变成字母 O ，将数字 1  变成字母 I 。</p>
+<p>如果一个数字在转换后只包含 {“A”, “B”, “C”, “D”, “E”, “F”, “I”, “O”} ，那么我们就认为这个转换是有效的。</p>
+<p>给你一个字符串 num ，它表示一个十进制数 N，如果它的十六进制魔术数字转换是有效的，请返回转换后的结果，否则返回 “ERROR” 。</p>
+<p> <span id="more"></span></p>
+<p>示例 1：</p>
+<p>输入：num = “257”<br>输出：”IOI”<br>解释：257 的十六进制表示是 101 。<br>示例 2：</p>
+<p>输入：num = “3”<br>输出：”ERROR”</p>
+<p>提示：</p>
+<p>1 &lt;= N &lt;= 10^12<br>给定字符串不会有前导 0 。<br>结果中的所有字母都应该是大写字母。</p>
+<h5 id="解法1：模拟"><a href="#解法1：模拟" class="headerlink" title="解法1：模拟"></a>解法1：模拟</h5><p>将10进制转换成16进制</p>
+<p>注意：1.转化时用longlong 不然会溢出，2.最后要reverse字符串</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function">string <span class="title">toHexspeak</span><span class="params">(string num)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">long</span> <span class="keyword">long</span> s=<span class="built_in">stol</span>(num);</span><br><span class="line">        string str[<span class="number">6</span>]=&#123;<span class="string">&quot;A&quot;</span>,<span class="string">&quot;B&quot;</span>,<span class="string">&quot;C&quot;</span>,<span class="string">&quot;D&quot;</span>,<span class="string">&quot;E&quot;</span>,<span class="string">&quot;F&quot;</span>&#125;;</span><br><span class="line">        string res=<span class="string">&quot;&quot;</span>;</span><br><span class="line">        <span class="keyword">while</span>(s)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">int</span> temp=s%<span class="number">16</span>;</span><br><span class="line">            <span class="keyword">if</span>(temp&gt;=<span class="number">10</span>)</span><br><span class="line">            &#123;</span><br><span class="line">                res+=str[temp<span class="number">-10</span>];</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">if</span>(temp==<span class="number">0</span>)</span><br><span class="line">            &#123;</span><br><span class="line">                res+=<span class="string">&#x27;O&#x27;</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">if</span>(temp==<span class="number">1</span>)</span><br><span class="line">            &#123;</span><br><span class="line">                res+=<span class="string">&#x27;I&#x27;</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">if</span>(temp&gt;=<span class="number">2</span>&amp;&amp;temp&lt;=<span class="number">9</span>)</span><br><span class="line">                <span class="keyword">return</span>  <span class="string">&quot;ERROR&quot;</span>;</span><br><span class="line">            s=s/<span class="number">16</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">reverse</span>(res.<span class="built_in">begin</span>(),res.<span class="built_in">end</span>());</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<h4 id="5113-删除区间"><a href="#5113-删除区间" class="headerlink" title="5113. 删除区间"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/remove-interval/">5113. 删除区间</a></h4><p>给你一个 有序的 不相交区间列表 intervals 和一个要删除的区间 toBeRemoved， intervals 中的每一个区间 intervals[i] = [a, b] 都表示满足 a &lt;= x &lt; b 的所有实数  x 的集合。</p>
+<p>我们将 intervals 中任意区间与 toBeRemoved 有交集的部分都删除。</p>
+<p>返回删除所有交集区间后， intervals 剩余部分的 有序 列表。</p>
+<p> </p>
+<p>示例 1：</p>
+<p>输入：intervals = [[0,2],[3,4],[5,7]], toBeRemoved = [1,6]<br>输出：[[0,1],[6,7]]<br>示例 2：</p>
+<p>输入：intervals = [[0,5]], toBeRemoved = [2,3]<br>输出：[[0,2],[3,5]]</p>
+<p>提示：</p>
+<p>1 &lt;= intervals.length &lt;= 10^4<br>-10^9 &lt;= intervals[i][0] &lt; intervals[i][1] &lt;= 10^9</p>
+<h5 id="解法1：模拟-1"><a href="#解法1：模拟-1" class="headerlink" title="解法1：模拟"></a>解法1：模拟</h5><p>思路：模拟查找重叠区间，要想好思路，不然会很乱</p>
+<p>1.若interval[1]&lt;=toBeRemoved[0]，则不在删除区间内，添加进结果数组</p>
+<p>2.若interval[0]&gt;=toBeRemoved[1]，则不在删除区间内，添加进结果数组</p>
+<p>3.在前面的情况不满足下，若interval[0]&lt;toBeRemoved[0],前面已经讨论interval[1]在删除区间右边的情况,现在还有两种情况</p>
+<ul>
+<li>​    interval[1]&lt;=toBeRemoved[1],添加{interval[0],toBeRemoved[0]}</li>
+<li>​        interval[1]&gt;toBeRemoved[1],<strong>再</strong>添加{toBeRemoved[1],interval[1]}</li>
+</ul>
+<p>4.在前面的情况不满足下，若interval[0]&lt;toBeRemoved[1]</p>
+<ul>
+<li>interval[1]&lt;=toBeRemoved[1],直接将跳过这一段应删除的区间</li>
+<li>nterval[1]&gt;toBeRemoved[1]，添加{toBeRemoved[1],interval[1]}</li>
+</ul>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    vector&lt;vector&lt;<span class="keyword">int</span>&gt;&gt; <span class="built_in">removeInterval</span>(vector&lt;vector&lt;<span class="keyword">int</span>&gt;&gt;&amp; intervals, vector&lt;<span class="keyword">int</span>&gt;&amp; toBeRemoved) &#123;</span><br><span class="line">        vector&lt;vector&lt;<span class="keyword">int</span>&gt;&gt; res;</span><br><span class="line">        <span class="keyword">int</span> n=intervals.<span class="built_in">size</span>();</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;n;i++)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span>(intervals[i][<span class="number">1</span>]&lt;=toBeRemoved[<span class="number">0</span>]||intervals[i][<span class="number">0</span>]&gt;=toBeRemoved[<span class="number">1</span>])</span><br><span class="line">            &#123;</span><br><span class="line">                res.<span class="built_in">push_back</span>(intervals[i]);</span><br><span class="line">                <span class="keyword">continue</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">if</span>(intervals[i][<span class="number">0</span>]&lt;toBeRemoved[<span class="number">0</span>])</span><br><span class="line">            &#123;</span><br><span class="line">                res.<span class="built_in">push_back</span>(&#123;intervals[i][<span class="number">0</span>],toBeRemoved[<span class="number">0</span>]&#125;);</span><br><span class="line">                <span class="keyword">if</span>(intervals[i][<span class="number">1</span>]&gt;toBeRemoved[<span class="number">1</span>])</span><br><span class="line">                &#123;</span><br><span class="line">                    res.<span class="built_in">push_back</span>(&#123;toBeRemoved[<span class="number">1</span>],intervals[i][<span class="number">1</span>]&#125;);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">if</span>(intervals[i][<span class="number">0</span>]&lt;toBeRemoved[<span class="number">1</span>])</span><br><span class="line">            &#123;</span><br><span class="line">                <span class="keyword">if</span>(intervals[i][<span class="number">1</span>]&lt;=toBeRemoved[<span class="number">1</span>])</span><br><span class="line">                    <span class="keyword">continue</span>;</span><br><span class="line">                <span class="keyword">else</span></span><br><span class="line">                &#123;</span><br><span class="line">                    res.<span class="built_in">push_back</span>(&#123;toBeRemoved[<span class="number">1</span>],intervals[i][<span class="number">1</span>]&#125;);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<h4 id="5114-删除树节点"><a href="#5114-删除树节点" class="headerlink" title="5114. 删除树节点"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/delete-tree-nodes/">5114. 删除树节点</a></h4><p>给你一棵以节点 0 为根节点的树，定义如下：</p>
+<p>节点的总数为 nodes 个；<br>第 i 个节点的值为 value[i] ；<br>第 i 个节点的父节点是 parent[i] 。<br>请你删除节点值之和为 0 的每一棵子树。</p>
+<p>在完成所有删除之后，返回树中剩余节点的数目。</p>
+<p> </p>
+<p>示例：</p>
+<p><img src="https://assets.leetcode-cn.com/aliyun-lc-upload/uploads/2019/11/30/1421_sample_1.png" alt="img"> </p>
+<p>输入：nodes = 7, parent = [-1,0,0,1,2,2,2], value = [1,-2,4,0,-2,-1,-1]<br>输出：2</p>
+<p>提示：</p>
+<p>1 &lt;= nodes &lt;= 10^4<br>-10^5 &lt;= value[i] &lt;= 10^5<br>parent.length == nodes<br>parent[0] == -1 表示节点 0 是树的根。</p>
+<h5 id="解法1：两次DFS"><a href="#解法1：两次DFS" class="headerlink" title="解法1：两次DFS"></a>解法1：两次DFS</h5><p>第一次dfs将和为0的子树标记</p>
+<p>第二次dfs求剩余的节点数目</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line">    <span class="keyword">int</span> n;</span><br><span class="line">    map&lt;<span class="keyword">int</span>,vector&lt;<span class="keyword">int</span>&gt;&gt; pindex;</span><br><span class="line">    vector&lt;<span class="keyword">bool</span>&gt; used;</span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">deleteTreeNodes</span><span class="params">(<span class="keyword">int</span> nodes, vector&lt;<span class="keyword">int</span>&gt;&amp; parent, vector&lt;<span class="keyword">int</span>&gt;&amp; value)</span> </span>&#123;</span><br><span class="line">        n=nodes;</span><br><span class="line">        used=vector&lt;<span class="keyword">bool</span>&gt;(n,<span class="literal">false</span>);</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;n;i++)</span><br><span class="line">        &#123;</span><br><span class="line">            pindex[parent[i]].<span class="built_in">push_back</span>(i);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">dfs1</span>(parent,value,<span class="number">0</span>);</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">dfs2</span>(<span class="number">0</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">dfs1</span><span class="params">(vector&lt;<span class="keyword">int</span>&gt;&amp; parent, vector&lt;<span class="keyword">int</span>&gt;&amp; value,<span class="keyword">int</span> i)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> sum=value[i];</span><br><span class="line">        <span class="keyword">if</span>(!pindex.<span class="built_in">count</span>(i))</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span>(sum==<span class="number">0</span>)</span><br><span class="line">            &#123;</span><br><span class="line">                used[i]=<span class="literal">true</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">return</span> sum;</span><br><span class="line">        &#125;</span><br><span class="line">        vector&lt;<span class="keyword">int</span>&gt; temp=pindex[i];</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>;j&lt;temp.<span class="built_in">size</span>();j++)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">int</span> index=temp[j];</span><br><span class="line">            sum+=<span class="built_in">dfs1</span>(parent,value,index);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(sum==<span class="number">0</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            used[i]=<span class="literal">true</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> sum;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">dfs2</span><span class="params">(<span class="keyword">int</span> i)</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> sum=<span class="number">1</span>;</span><br><span class="line">        <span class="keyword">if</span>(!pindex.<span class="built_in">count</span>(i))</span><br><span class="line">            <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">        vector&lt;<span class="keyword">int</span>&gt; temp=pindex[i];</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>;j&lt;temp.<span class="built_in">size</span>();j++)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">int</span> index=temp[j];</span><br><span class="line">            <span class="keyword">if</span>(used[index])</span><br><span class="line">                <span class="keyword">continue</span>;</span><br><span class="line">            sum+=<span class="built_in">dfs2</span>(index);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> sum;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h4 id="5136-矩形内船只的数目"><a href="#5136-矩形内船只的数目" class="headerlink" title="5136. 矩形内船只的数目"></a><a target="_blank" rel="noopener" href="https://leetcode-cn.com/problems/number-of-ships-in-a-rectangle/">5136. 矩形内船只的数目</a></h4><p>(此题是 交互式问题 )</p>
+<p>在用笛卡尔坐标系表示的二维海平面上，有一些船。每一艘船都在一个整数点上，且每一个整数点最多只有 1 艘船。</p>
+<p>有一个函数 Sea.hasShips(topRight, bottomLeft) ，输入参数为右上角和左下角两个点的坐标，当且仅当这两个点所表示的矩形区域（包含边界）内至少有一艘船时，这个函数才返回 true ，否则返回 false 。</p>
+<p>给你矩形的右上角 topRight 和左下角 bottomLeft 的坐标，请你返回此矩形内船只的数目。题目保证矩形内 至多只有 10 艘船。</p>
+<p>调用函数 hasShips 超过400次 的提交将被判为 错误答案（Wrong Answer） 。同时，任何尝试绕过评测系统的行为都将被取消比赛资格。</p>
+<p> </p>
+<p>示例：</p>
+<p><img src="https://assets.leetcode-cn.com/aliyun-lc-upload/uploads/2019/11/30/1445_example_1.png" alt="img"> </p>
+<p>输入：<br>ships = [[1,1],[2,2],[3,3],[5,5]], topRight = [4,4], bottomLeft = [0,0]<br>输出：3<br>解释：在 [0,0] 到 [4,4] 的范围内总共有 3 艘船。</p>
+<p>提示：</p>
+<p>ships 数组只用于评测系统内部初始化。你无法得知 ships 的信息，所以只能通过调用 hasShips 接口来求解。<br>0 &lt;= bottomLeft[0] &lt;= topRight[0] &lt;= 1000<br>0 &lt;= bottomLeft[1] &lt;= topRight[1] &lt;= 1000</p>
+<h5 id="解法1：二分"><a href="#解法1：二分" class="headerlink" title="解法1：二分"></a>解法1：二分</h5><p>分成四部分，左上，左下，右上，</p>
+<p>二分，矩阵的二分，划成了4个小矩阵，分别对这4个小矩阵进行探测，如果没有船，就不继续探测了，如果有船，那么递归探测</p>
+<p>递归的终止条件是：矩阵只剩下一个点，那么这个点就有一艘船</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * // This is Sea&#x27;s API interface.</span></span><br><span class="line"><span class="comment"> * // You should not implement it, or speculate about its implementation</span></span><br><span class="line"><span class="comment"> * class Sea &#123;</span></span><br><span class="line"><span class="comment"> *   public:</span></span><br><span class="line"><span class="comment"> *     bool hasShips(vector&lt;int&gt; topRight, vector&lt;int&gt; bottomLeft);</span></span><br><span class="line"><span class="comment"> * &#125;;</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">countShips</span><span class="params">(Sea sea, vector&lt;<span class="keyword">int</span>&gt; topRight, vector&lt;<span class="keyword">int</span>&gt; bottomLeft)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(bottomLeft[<span class="number">0</span>]&gt;topRight[<span class="number">0</span>]||bottomLeft[<span class="number">1</span>]&gt;topRight[<span class="number">1</span>])</span><br><span class="line">            <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">if</span>(!sea.<span class="built_in">hasShips</span>(topRight,bottomLeft)) <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">if</span>(topRight[<span class="number">0</span>]==bottomLeft[<span class="number">0</span>]&amp;&amp;topRight[<span class="number">1</span>]==bottomLeft[<span class="number">1</span>])</span><br><span class="line">            <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">int</span> lowx=bottomLeft[<span class="number">0</span>],lowy=bottomLeft[<span class="number">1</span>],highx=topRight[<span class="number">0</span>],highy=topRight[<span class="number">1</span>];</span><br><span class="line">        <span class="keyword">int</span> midx=(lowx+highx)/<span class="number">2</span>,midy=(lowy+highy)/<span class="number">2</span>;</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">countShips</span>(sea,&#123;highx,highy&#125;,&#123;midx+<span class="number">1</span>,midy+<span class="number">1</span>&#125;)+<span class="built_in">countShips</span>(sea,&#123;midx,midy&#125;,&#123;lowx,lowy&#125;)+<span class="built_in">countShips</span>(sea,&#123;midx,highy&#125;,&#123;lowx,midy+<span class="number">1</span>&#125;)+<span class="built_in">countShips</span>(sea,&#123;highx,midy&#125;,&#123;midx+<span class="number">1</span>,lowy&#125;);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Leetcode/" rel="tag"># Leetcode</a>
+              <a href="/tags/%E5%91%A8%E8%B5%9B/" rel="tag"># 周赛</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2021/10/26/leetcode/zhou-sai/di-12-chang-shuang-zhou-sai/" rel="prev" title="Leetcode-第12场双周赛">
+                  <i class="fa fa-chevron-left"></i> Leetcode-第12场双周赛
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2021/10/26/leetcode/zhou-sai/di-161-chang-zhou-sai/" rel="next" title="Leetcode-第161场周赛">
+                  Leetcode-第161场周赛 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">fanko</span>
+</div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+<script src="https://cdn.jsdelivr.net/npm/hexo-generator-searchdb@1.4.0/dist/search.js" integrity="sha256-vXZMYLEqsROAXkEw93GGIvaB2ab+QW6w3+1ahD9nXXA=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+</body>
+</html>
