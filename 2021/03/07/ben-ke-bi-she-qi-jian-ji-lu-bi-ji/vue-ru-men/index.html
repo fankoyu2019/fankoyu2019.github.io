@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)">
+<meta name="generator" content="Hexo 5.4.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/all.min.css" integrity="sha256-mUZM63G8m73Mcidfrv5E+Y61y7a12O5mW4ezU3bxqW4=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Gemini","darkmode":true,"version":"8.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+<meta name="description" content="1.Vue概述目标：MVVM模式应用特点，Vue概念 小结: MVVM通过视图与模型的双向绑定，简化前端操作。Vue是一款前端渐进式框架，可以提高前端开发效率。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="前端|Vue入门">
+<meta property="og:url" content="http://example.com/2021/03/07/ben-ke-bi-she-qi-jian-ji-lu-bi-ji/vue-ru-men/index.html">
+<meta property="og:site_name" content="前程似锦，一路繁华">
+<meta property="og:description" content="1.Vue概述目标：MVVM模式应用特点，Vue概念 小结: MVVM通过视图与模型的双向绑定，简化前端操作。Vue是一款前端渐进式框架，可以提高前端开发效率。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="c:/Users/ADMINI~1/AppData/Local/Temp/1615190862233.png">
+<meta property="article:published_time" content="2021-03-07T03:38:00.000Z">
+<meta property="article:modified_time" content="2021-10-26T04:09:13.678Z">
+<meta property="article:author" content="fanko">
+<meta property="article:tag" content="前端">
+<meta property="article:tag" content="Vue">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="c:/Users/ADMINI~1/AppData/Local/Temp/1615190862233.png">
+
+
+<link rel="canonical" href="http://example.com/2021/03/07/ben-ke-bi-she-qi-jian-ji-lu-bi-ji/vue-ru-men/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://example.com/2021/03/07/ben-ke-bi-she-qi-jian-ji-lu-bi-ji/vue-ru-men/","path":"2021/03/07/ben-ke-bi-she-qi-jian-ji-lu-bi-ji/vue-ru-men/","title":"前端|Vue入门"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>前端|Vue入门 | 前程似锦，一路繁华</title>
+  
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">前程似锦，一路繁华</h1>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">坚持,努力,认真</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li>
+        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li>
+        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-Vue%E6%A6%82%E8%BF%B0"><span class="nav-number">1.</span> <span class="nav-text">1.Vue概述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-%E6%90%AD%E5%BB%BA%E7%A4%BA%E4%BE%8B%E5%B7%A5%E7%A8%8B"><span class="nav-number">2.</span> <span class="nav-text">2.搭建示例工程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-%E6%BC%94%E7%A4%BA%E5%8F%8C%E5%90%91%E7%BB%91%E5%AE%9A%E4%B8%8E%E4%BA%8B%E4%BB%B6%E5%A4%84%E7%90%86"><span class="nav-number">3.</span> <span class="nav-text">3.演示双向绑定与事件处理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-Vue%E5%AE%9E%E4%BE%8B%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%E5%8F%8A%E9%92%A9%E5%AD%90%E5%87%BD%E6%95%B0"><span class="nav-number">4.</span> <span class="nav-text">4.Vue实例生命周期及钩子函数</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-%E6%8F%92%E5%80%BC%E3%80%81v-text%E5%92%8Cv-html"><span class="nav-number">5.</span> <span class="nav-text">5.插值、v-text和v-html</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-%E6%8C%87%E4%BB%A4-v-model%E4%BD%BF%E7%94%A8"><span class="nav-number">6.</span> <span class="nav-text">6.指令-v-model使用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7-%E6%8C%87%E4%BB%A4-v-on%E4%BD%BF%E7%94%A8"><span class="nav-number">7.</span> <span class="nav-text">7.指令-v-on使用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#8-%E6%8C%87%E4%BB%A4v-for%E4%BD%BF%E7%94%A8"><span class="nav-number">8.</span> <span class="nav-text">8.指令v-for使用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#9-%E6%8C%87%E4%BB%A4-v-if%E5%92%8Cv-show%E4%BD%BF%E7%94%A8"><span class="nav-number">9.</span> <span class="nav-text">9.指令-v-if和v-show使用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#10-%E6%8C%87%E4%BB%A4-v-bind%E4%BD%BF%E7%94%A8"><span class="nav-number">10.</span> <span class="nav-text">10.指令-v-bind使用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#11-%E8%AE%A1%E7%AE%97%E5%B1%9E%E6%80%A7%E7%9A%84%E4%BD%BF%E7%94%A8"><span class="nav-number">11.</span> <span class="nav-text">11.计算属性的使用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#12-watch%E5%9F%BA%E6%9C%AC%E5%92%8C%E6%B7%B1%E5%BA%A6%E7%9B%91%E6%8E%A7"><span class="nav-number">12.</span> <span class="nav-text">12.watch基本和深度监控</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#13-%E7%BB%84%E4%BB%B6%E4%BD%BF%E7%94%A8"><span class="nav-number">13.</span> <span class="nav-text">13.组件使用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#14-%E7%88%B6%E7%BB%84%E4%BB%B6%E5%90%91%E5%AD%90%E7%BB%84%E4%BB%B6%E9%80%9A%E4%BF%A1"><span class="nav-number">14.</span> <span class="nav-text">14.父组件向子组件通信</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#15-%E5%AD%90%E7%BB%84%E4%BB%B6%E5%90%91%E7%88%B6%E7%BB%84%E4%BB%B6%E9%80%9A%E4%BF%A1"><span class="nav-number">15.</span> <span class="nav-text">15.子组件向父组件通信</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#16-axios"><span class="nav-number">16.</span> <span class="nav-text">16.axios</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#17-axios%E6%96%B9%E6%B3%95%E5%8F%8Aget%E3%80%81post%E6%96%B9%E6%B3%95%E4%BD%BF%E7%94%A8"><span class="nav-number">17.</span> <span class="nav-text">17.axios方法及get、post方法使用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#18-store"><span class="nav-number">18.</span> <span class="nav-text">18.store</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="fanko"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">fanko</p>
+  <div class="site-description" itemprop="description">-------- 济南大学17级本科生 --------大连理工大学21级研究生</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">171</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">39</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/fankoyu2019" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;fankoyu2019" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+  </div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/03/07/ben-ke-bi-she-qi-jian-ji-lu-bi-ji/vue-ru-men/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="fanko">
+      <meta itemprop="description" content="-------- 济南大学17级本科生 --------大连理工大学21级研究生">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="前程似锦，一路繁华">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          前端|Vue入门
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2021-03-07 11:38:00" itemprop="dateCreated datePublished" datetime="2021-03-07T11:38:00+08:00">2021-03-07</time>
+    </span>
+
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h2 id="1-Vue概述"><a href="#1-Vue概述" class="headerlink" title="1.Vue概述"></a>1.Vue概述</h2><p>目标：MVVM模式应用特点，Vue概念</p>
+<p>小结:</p>
+<p>MVVM通过视图与模型的双向绑定，简化前端操作。Vue是一款前端渐进式框架，可以提高前端开发效率。</p>
+<span id="more"></span>
+
+<h2 id="2-搭建示例工程"><a href="#2-搭建示例工程" class="headerlink" title="2.搭建示例工程"></a>2.搭建示例工程</h2><p>目标：使用IDEA创建示例工程并在工程中通过npm安装下载vue.js</p>
+<p>分析：</p>
+<p>vue是一款前端框架，也是其实是一个js文件；下载vue.js文件并在页面中引用该js文件。</p>
+<p>vue.js的下载方式：</p>
+<ul>
+<li>可以引用在线的vue.js</li>
+<li>可以离线下载vue.js</li>
+<li>npm包资源管理器，可以下载vue.js</li>
+</ul>
+<p>小结:</p>
+<p>使用npm方式安装vue模块：</p>
+<figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#初始化</span></span><br><span class="line">npm init -y</span><br><span class="line"></span><br><span class="line"><span class="comment">#下载vue 模块</span></span><br><span class="line">npm install vue --save</span><br></pre></td></tr></table></figure>
+
+<h2 id="3-演示双向绑定与事件处理"><a href="#3-演示双向绑定与事件处理" class="headerlink" title="3.演示双向绑定与事件处理"></a>3.演示双向绑定与事件处理</h2><p>目标：创建01-demo.html页面并初始化Vue实例，通过console修改Vue数据实现双向绑定效果和创建按钮实现点击即自增</p>
+<p>分析:</p>
+<blockquote>
+<p>1.创建页面，初始化Vue；</p>
+<ol start="2">
+<li>  {  { } } 获取显示数据；</li>
+</ol>
+<p>3.v-model实现双向绑定；</p>
+<p>4.v-on演示事件处理</p>
+</blockquote>
+<p>小结:</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">&quot;en&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">&quot;UTF-8&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>Vuejs 测试<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">&quot;node_modules/vue/dist/vue.js&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">&quot;app&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;text&quot;</span> <span class="attr">v-model</span>=<span class="string">&quot;num&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">button</span> <span class="attr">v-on:click</span>=<span class="string">&quot;num++&quot;</span>&gt;</span>点我<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">h2</span>&gt;</span>&#123;&#123;name&#125;&#125; 非常酷！有&#123;&#123;num&#125;&#125;个学科.<span class="tag">&lt;/<span class="name">h2</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">&quot;text/javascript&quot;</span>&gt;</span><span class="javascript"></span></span><br><span class="line"><span class="javascript">    <span class="keyword">var</span> app = <span class="keyword">new</span> Vue(&#123;</span></span><br><span class="line"><span class="javascript">        <span class="attr">el</span>:<span class="string">&quot;#app&quot;</span>,</span></span><br><span class="line"><span class="javascript">        <span class="attr">data</span>:&#123;</span></span><br><span class="line"><span class="javascript">            <span class="attr">name</span>:<span class="string">&quot;黑马&quot;</span>,</span></span><br><span class="line"><span class="javascript">            <span class="attr">num</span>:<span class="number">1</span></span></span><br><span class="line"><span class="javascript">        &#125;</span></span><br><span class="line"><span class="javascript">    &#125;);</span></span><br><span class="line"><span class="javascript"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="4-Vue实例生命周期及钩子函数"><a href="#4-Vue实例生命周期及钩子函数" class="headerlink" title="4.Vue实例生命周期及钩子函数"></a>4.Vue实例生命周期及钩子函数</h2><p>目标：了解Vue实例生命周期，生命周期的钩子函数及created函数常用场景</p>
+<p>分析:</p>
+<p>在创建vue实例的时候可以指定模板id、数据和方法；而如果要在实例化、模板渲染的过程中需要执行一些其他操作的话，那么可以使用钩子函数。</p>
+<p>小结:</p>
+<p>钩子函数会在Vue实例的各个生命周期阶段自动调用；具体可以有beforeCreate,created,beforeMount,mounted,updated,beforeUpdate,destroyed,beforeDestroy</p>
+<p>created钩子函数常用场景：用于初始化数据</p>
+<blockquote>
+<p>钩子函数不要使用    箭头函数的方式编写</p>
+</blockquote>
+<h2 id="5-插值、v-text和v-html"><a href="#5-插值、v-text和v-html" class="headerlink" title="5.插值、v-text和v-html"></a>5.插值、v-text和v-html</h2><p>目标：插值使用场景和要求；v-text和v-html的作用</p>
+<p>小结:</p>
+<p>插值可以使用在有需要显示vue实例数据的地方，可以在插值表达式中调用实例的数据属性和函数。</p>
+<p>v-text和v-html的作用：可以将数据在模板中进行显示；区别：v-html对内容中出现的html标签进行渲染，而v-text会将内容当作普通文本输出到元素里面。</p>
+<h2 id="6-指令-v-model使用"><a href="#6-指令-v-model使用" class="headerlink" title="6.指令-v-model使用"></a>6.指令-v-model使用</h2><p>目标：使用v-model指令实现复选框的双向绑定</p>
+<p>小结:</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE <span class="meta-keyword">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">&quot;en&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">&quot;UTF-8&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>Vuejs 测试<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">&quot;node_modules/vue/dist/vue.js&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">&quot;app&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;checkbox&quot;</span> <span class="attr">value</span>=<span class="string">&quot;Java&quot;</span> <span class="attr">v-model</span>=<span class="string">&quot;language&quot;</span>&gt;</span>Java<span class="tag">&lt;<span class="name">br</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;checkbox&quot;</span> <span class="attr">value</span>=<span class="string">&quot;Python&quot;</span> <span class="attr">v-model</span>=<span class="string">&quot;language&quot;</span>&gt;</span>Python<span class="tag">&lt;<span class="name">br</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;checkbox&quot;</span> <span class="attr">value</span>=<span class="string">&quot;Swift&quot;</span> <span class="attr">v-model</span>=<span class="string">&quot;language&quot;</span>&gt;</span>Swift<span class="tag">&lt;<span class="name">br</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">h2</span>&gt;</span></span><br><span class="line">        你选择了:&#123;&#123;language.join(&quot;,&quot;)&#125;&#125;</span><br><span class="line">    <span class="tag">&lt;/<span class="name">h2</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">&quot;text/javascript&quot;</span>&gt;</span><span class="javascript"></span></span><br><span class="line"><span class="javascript">    <span class="keyword">var</span> app = <span class="keyword">new</span> Vue(&#123;</span></span><br><span class="line"><span class="javascript">        <span class="attr">el</span>:<span class="string">&quot;#app&quot;</span>,</span></span><br><span class="line"><span class="javascript">        <span class="attr">data</span>:&#123;</span></span><br><span class="line"><span class="javascript">            <span class="attr">language</span>:[]</span></span><br><span class="line"><span class="javascript">        &#125;</span></span><br><span class="line"><span class="javascript">    &#125;);</span></span><br><span class="line"><span class="javascript"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>多个checkbox对应一个model时，model的类型是一个数组，单个checkbox值是boolean类型</p>
+<p>radio对应的值是input的value值</p>
+<p>input和textarea默认对应的model是字符串</p>
+<p>select单选对应字符串，多选对应也是数组</p>
+</blockquote>
+<h2 id="7-指令-v-on使用"><a href="#7-指令-v-on使用" class="headerlink" title="7.指令-v-on使用"></a>7.指令-v-on使用</h2><p>目标：了解v-on指令的语法实现按钮点击后的递增和递减</p>
+<p>分析:</p>
+<p>在没有使用vue之前；页面标签可以通过设置onXXX响应事件；在vue中可以通过v-on指令响应事件。</p>
+<p>小结:</p>
+<p>v-on的使用</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">&quot;app&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">button</span> <span class="attr">v-on:click</span>=<span class="string">&quot;num++&quot;</span>&gt;</span>增加<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">button</span> @<span class="attr">click</span>=<span class="string">&quot;decrement&quot;</span>&gt;</span>减少<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">h2</span>&gt;</span></span><br><span class="line">        num = &#123;&#123;num&#125;&#125;</span><br><span class="line">    <span class="tag">&lt;/<span class="name">h2</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">hr</span>&gt;</span></span><br><span class="line">    事件冒泡测试<span class="tag">&lt;<span class="name">br</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">style</span>=<span class="string">&quot;background-color: lightblue; width:100px;height: 100px&quot;</span> @<span class="attr">click</span>=<span class="string">&quot;print(&#x27;点击了div&#x27;)&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">button</span> @<span class="attr">click.stop</span>=<span class="string">&quot;print(&#x27;点击了button&#x27;)&quot;</span>&gt;</span>点我试试<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">br</span>&gt;</span>阻止默认事件<span class="tag">&lt;<span class="name">br</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">a</span> <span class="attr">href</span>=<span class="string">&quot;http://www.itcast.cn&quot;</span> @<span class="attr">click.prevent</span>=<span class="string">&quot;print(&#x27;点击了超链接&#x27;)&quot;</span>&gt;</span>传智播客<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">&quot;text/javascript&quot;</span>&gt;</span><span class="javascript"></span></span><br><span class="line"><span class="javascript">    <span class="keyword">var</span> app = <span class="keyword">new</span> Vue(&#123;</span></span><br><span class="line"><span class="javascript">        <span class="attr">el</span>:<span class="string">&quot;#app&quot;</span>,</span></span><br><span class="line"><span class="javascript">        <span class="attr">data</span>:&#123;</span></span><br><span class="line"><span class="javascript">            <span class="attr">num</span>:<span class="number">1</span></span></span><br><span class="line"><span class="javascript">        &#125;,</span></span><br><span class="line"><span class="javascript">        <span class="attr">methods</span>:&#123;</span></span><br><span class="line"><span class="javascript">            <span class="function"><span class="title">decrement</span>(<span class="params"></span>)</span>&#123;</span></span><br><span class="line"><span class="javascript">                <span class="built_in">this</span>.num--;</span></span><br><span class="line"><span class="javascript">            &#125;,</span></span><br><span class="line"><span class="javascript">            <span class="comment">//打印</span></span></span><br><span class="line"><span class="javascript">            <span class="function"><span class="title">print</span>(<span class="params">str</span>)</span>&#123;</span></span><br><span class="line"><span class="javascript">                <span class="built_in">console</span>.log(str);</span></span><br><span class="line"><span class="javascript">            &#125;</span></span><br><span class="line"><span class="javascript">        &#125;</span></span><br><span class="line"><span class="javascript">    &#125;);</span></span><br><span class="line"><span class="javascript"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>事件修饰符：语法v-on:xxxx.修饰符，常用的修饰符有：</p>
+<p>.stop:阻止事件冒泡</p>
+<p>.prevent:阻止默认事件发生</p>
+<p>.capture:使用事件捕获模式</p>
+<p>.self:只有元素自身触发事件才执行。(冒泡或捕获的都不执行)</p>
+<p>.once:只执行一次</p>
+<h2 id="8-指令v-for使用"><a href="#8-指令v-for使用" class="headerlink" title="8.指令v-for使用"></a>8.指令v-for使用</h2><p>目标：了解v-for指令语法实现对数组、对象的遍历</p>
+<p>分析:</p>
+<p>实现：可以在vue实例化的时候指定要遍历的数据，然后通过v-for指令在模板中遍历显示数据。一般情况下，要遍历的数据可以通过钩子函数created发送异步请求获取数据。</p>
+<p>小结:</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">&quot;app&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">ul</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">li</span> <span class="attr">v-for</span>=<span class="string">&quot;(user,index) in users&quot;</span> <span class="attr">:key</span>=<span class="string">&quot;index&quot;</span>&gt;</span></span><br><span class="line">           &#123;&#123;index&#125;&#125;--&#123;&#123;user.name&#125;&#125;--&#123;&#123;user.age&#125;&#125;--&#123;&#123;user.gender&#125;&#125;</span><br><span class="line">        <span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">hr</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">ul</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">li</span> <span class="attr">v-for</span>=<span class="string">&quot;(value,key,index) in person&quot;</span>&gt;</span></span><br><span class="line">            &#123;&#123;index&#125;&#125; -- &#123;&#123;key&#125;&#125; -- &#123;&#123;value&#125;&#125;</span><br><span class="line">        <span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">&quot;text/javascript&quot;</span>&gt;</span><span class="javascript"></span></span><br><span class="line"><span class="javascript">    <span class="keyword">var</span> app = <span class="keyword">new</span> Vue(&#123;</span></span><br><span class="line"><span class="javascript">        <span class="attr">el</span>:<span class="string">&quot;#app&quot;</span>,</span></span><br><span class="line"><span class="javascript">        <span class="attr">data</span>:&#123;</span></span><br><span class="line"><span class="javascript">            <span class="attr">users</span>:[</span></span><br><span class="line"><span class="javascript">                &#123;<span class="string">&quot;name&quot;</span>:<span class="string">&quot;黑马1&quot;</span>,<span class="string">&quot;age&quot;</span>:<span class="number">13</span>,<span class="string">&quot;gender&quot;</span>:<span class="string">&quot;男&quot;</span>&#125;,</span></span><br><span class="line"><span class="javascript">                &#123;<span class="string">&quot;name&quot;</span>:<span class="string">&quot;黑马2&quot;</span>,<span class="string">&quot;age&quot;</span>:<span class="number">15</span>,<span class="string">&quot;gender&quot;</span>:<span class="string">&quot;男&quot;</span>&#125;,</span></span><br><span class="line"><span class="javascript">                &#123;<span class="string">&quot;name&quot;</span>:<span class="string">&quot;黑马3&quot;</span>,<span class="string">&quot;age&quot;</span>:<span class="number">18</span>,<span class="string">&quot;gender&quot;</span>:<span class="string">&quot;女&quot;</span>&#125;,</span></span><br><span class="line"><span class="javascript">            ],</span></span><br><span class="line"><span class="javascript">            <span class="attr">person</span>:&#123;<span class="string">&quot;name&quot;</span>:<span class="string">&quot;对象&quot;</span>,<span class="string">&quot;age&quot;</span>:<span class="number">13</span>,<span class="string">&quot;gender&quot;</span>:<span class="string">&quot;男&quot;</span>,<span class="string">&quot;address&quot;</span>:<span class="string">&quot;中国&quot;</span>&#125;</span></span><br><span class="line"><span class="javascript">        &#125;</span></span><br><span class="line"><span class="javascript">    &#125;);</span></span><br><span class="line"><span class="javascript"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>如果遍历的时候需要使用到索引号，可以在循环变量的位置，添加一个参数；该索引号是从0开始的</p>
+</blockquote>
+<h2 id="9-指令-v-if和v-show使用"><a href="#9-指令-v-if和v-show使用" class="headerlink" title="9.指令-v-if和v-show使用"></a>9.指令-v-if和v-show使用</h2><p>目标：说出v-if与v-show的区别；通过一个按钮的点击，实现遍历数组结果的显示存在与否并在遍历过程中使用v-if对数据进行判断处理；实现文本内容的隐藏</p>
+<p>分析:</p>
+<ul>
+<li>v-if：通过一个按钮的点击，实现遍历数组结果的显示存在与否并在遍历过程中使用v-if对数据进行判断处理</li>
+<li>v-show：实现文本内容的隐藏</li>
+</ul>
+<p>小结:</p>
+<p>v-if 在条件不满足时，元素不会存在；</p>
+<p>v-show条件不满足时，只是对元素进行隐藏。</p>
+<h2 id="10-指令-v-bind使用"><a href="#10-指令-v-bind使用" class="headerlink" title="10.指令-v-bind使用"></a>10.指令-v-bind使用</h2><p>目标：了解v-bind语法和作用；实现点击不同按钮切换不同的属性值；使用class属性中的特殊用法实现一个按钮切换背景色</p>
+<p>分析:</p>
+<p><img src="" height=" "/> 其中src 和 height 的值如果不想写死，而是项获取vue实例中的数据属性值的话；那可以通过使用v-bind实现：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">img</span> <span class="attr">v-bind:</span> <span class="attr">src</span>=<span class="string">&quot;vue实例中的数据属性名&quot;</span> <span class="attr">:height</span>=<span class="string">&quot;vue实例中的数据属性名&quot;</span>/&gt;</span> </span><br></pre></td></tr></table></figure>
+
+<p>小结:</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">&quot;app&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">button</span> @<span class="attr">click</span>=<span class="string">&quot;color=&#x27;red&#x27;&quot;</span>&gt;</span>红色<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">button</span> @<span class="attr">click</span>=<span class="string">&quot;color=&#x27;blue&#x27;&quot;</span>&gt;</span>蓝色<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">v-bind:class</span>=<span class="string">&quot;color&quot;</span>&gt;</span></span><br><span class="line">        点击按钮改变背景颜色</span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">hr</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">button</span> @<span class="attr">click</span>=<span class="string">&quot;bool=!bool&quot;</span>&gt;</span>点我改变下面色块 yans<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span> <span class="attr">:class</span>=<span class="string">&quot;&#123;red:bool, blue:!bool&#125;&quot;</span>&gt;</span></span><br><span class="line">        点击按钮改变背景颜色</span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">&quot;text/javascript&quot;</span>&gt;</span><span class="javascript"></span></span><br><span class="line"><span class="javascript">    <span class="keyword">var</span> app = <span class="keyword">new</span> Vue(&#123;</span></span><br><span class="line"><span class="javascript">        <span class="attr">el</span>:<span class="string">&quot;#app&quot;</span>,</span></span><br><span class="line"><span class="javascript">        <span class="attr">data</span>:&#123;</span></span><br><span class="line"><span class="javascript">            <span class="attr">color</span>: <span class="string">&quot;red&quot;</span>,</span></span><br><span class="line"><span class="javascript">            <span class="attr">bool</span>: <span class="literal">true</span></span></span><br><span class="line"><span class="javascript">        &#125;</span></span><br><span class="line"><span class="javascript">    &#125;);</span></span><br><span class="line"><span class="javascript"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>v-bind的作用：可以对所有元素的属性设置vue实例的数据。</p>
+</blockquote>
+<h2 id="11-计算属性的使用"><a href="#11-计算属性的使用" class="headerlink" title="11.计算属性的使用"></a>11.计算属性的使用</h2><p>目标：计算属性的应用场景，实现将一个日期时间值转换为yyyy-MM-dd格式字符串</p>
+<p>分析:</p>
+<p>一个日期的毫秒值要显示为格式化（yyyy-MM-dd）的日期字符串的话；可以使用computed计算属性里面的方法进行处理。</p>
+<p>小结:</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">&quot;app&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">h2</span>&gt;</span></span><br><span class="line">        你的生日是：</span><br><span class="line">        &#123;&#123;new Date(birthday).getFullYear()&#125;&#125;-&#123;&#123;new Date(birthday).getMonth()+1&#125;&#125;-&#123;&#123;new Date(birthday).getDay()&#125;&#125;</span><br><span class="line">    <span class="tag">&lt;/<span class="name">h2</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">hr</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">h2</span>&gt;</span></span><br><span class="line">        你的生日是：</span><br><span class="line">        &#123;&#123;birth&#125;&#125;</span><br><span class="line">    <span class="tag">&lt;/<span class="name">h2</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">&quot;text/javascript&quot;</span>&gt;</span><span class="javascript"></span></span><br><span class="line"><span class="javascript">    <span class="keyword">var</span> app = <span class="keyword">new</span> Vue(&#123;</span></span><br><span class="line"><span class="javascript">        <span class="attr">el</span>:<span class="string">&quot;#app&quot;</span>,</span></span><br><span class="line"><span class="javascript">        <span class="attr">data</span>:&#123;</span></span><br><span class="line"><span class="javascript">            <span class="attr">birthday</span>:<span class="number">1429032123201</span></span></span><br><span class="line"><span class="javascript">        &#125;,</span></span><br><span class="line"><span class="javascript">        <span class="attr">computed</span>:&#123;</span></span><br><span class="line"><span class="javascript">            <span class="function"><span class="title">birth</span>(<span class="params"></span>)</span>&#123;</span></span><br><span class="line"><span class="javascript">                <span class="keyword">const</span> date = <span class="keyword">new</span> <span class="built_in">Date</span>(<span class="built_in">this</span>.birthday);</span></span><br><span class="line"><span class="javascript">                <span class="keyword">return</span> date.getFullYear()+<span class="string">&quot;-&quot;</span>+(date.getMonth()+<span class="number">1</span>)+<span class="string">&quot;-&quot;</span>+date.getDay();</span></span><br><span class="line"><span class="javascript">            &#125;</span></span><br><span class="line"><span class="javascript">        &#125;</span></span><br><span class="line"><span class="javascript">    &#125;);</span></span><br><span class="line"><span class="javascript"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>computed计算属性的应用场景：可以应用在插值或者指令表达式复杂的时候。可以将一些属性数据 经过方法处理之后返回。</p>
+<h2 id="12-watch基本和深度监控"><a href="#12-watch基本和深度监控" class="headerlink" title="12.watch基本和深度监控"></a>12.watch基本和深度监控</h2><p>目标：watch的使用场景；并使用其监听简单属性值及其对象中属性值的变化</p>
+<p>分析:</p>
+<p>在vue实例中数据属性；因为在页面中修改而产生了变化；可以通过watch监控其改变前后的值。</p>
+<p>如果是修改的对象数据属性，可以开启深度监控获取修改后最新的对象数据。如：person.name</p>
+<p>小结：</p>
+<p>可以如下使用watch进行数据属性的监控：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">&quot;app&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;text&quot;</span> <span class="attr">v-model</span>=<span class="string">&quot;message&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">hr</span>&gt;</span><span class="tag">&lt;<span class="name">br</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;text&quot;</span> <span class="attr">v-model</span>=<span class="string">&quot;person.name&quot;</span>&gt;</span><span class="tag">&lt;<span class="name">br</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;text&quot;</span> <span class="attr">v-model</span>=<span class="string">&quot;person.age&quot;</span>&gt;</span><span class="tag">&lt;<span class="name">button</span> @<span class="attr">click</span>=<span class="string">&quot;person.age++&quot;</span>&gt;</span>+<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">h2</span>&gt;</span>姓名为：&#123;&#123;person.name&#125;&#125;;年龄为:&#123;&#123;person.age&#125;&#125;<span class="tag">&lt;/<span class="name">h2</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">&quot;text/javascript&quot;</span>&gt;</span><span class="javascript"></span></span><br><span class="line"><span class="javascript">    <span class="keyword">var</span> app = <span class="keyword">new</span> Vue(&#123;</span></span><br><span class="line"><span class="javascript">        <span class="attr">el</span>:<span class="string">&quot;#app&quot;</span>,</span></span><br><span class="line"><span class="javascript">        <span class="attr">data</span>:&#123;</span></span><br><span class="line"><span class="javascript">            <span class="attr">message</span>:<span class="string">&quot;黑马&quot;</span>,</span></span><br><span class="line"><span class="javascript">            <span class="attr">person</span>:&#123;<span class="string">&quot;name&quot;</span>:<span class="string">&quot;heima&quot;</span>,<span class="string">&quot;age&quot;</span>:<span class="number">18</span>&#125;</span></span><br><span class="line"><span class="javascript">        &#125;,</span></span><br><span class="line"><span class="javascript">        <span class="attr">watch</span>:&#123;</span></span><br><span class="line"><span class="javascript">          <span class="function"><span class="title">message</span>(<span class="params">newValue,oldValue</span>)</span>&#123;</span></span><br><span class="line"><span class="javascript">              <span class="built_in">console</span>.log(<span class="string">&quot;新值:&quot;</span>+newValue+<span class="string">&quot;;旧值:&quot;</span>+oldValue);</span></span><br><span class="line"><span class="javascript">          &#125;,</span></span><br><span class="line"><span class="javascript">          <span class="attr">person</span>:&#123;</span></span><br><span class="line"><span class="javascript">              <span class="comment">//开启深度监控；监控对象中的属性值变化</span></span></span><br><span class="line"><span class="javascript">              <span class="attr">deep</span>:<span class="literal">true</span>,</span></span><br><span class="line"><span class="javascript">              <span class="comment">//可以获取最新的对象属性数据</span></span></span><br><span class="line"><span class="javascript">              <span class="function"><span class="title">handler</span>(<span class="params">obj</span>)</span>&#123;</span></span><br><span class="line"><span class="javascript">                  <span class="built_in">console</span>.log(<span class="string">&quot;name = &quot;</span>+obj.name + <span class="string">&quot; ;age = &quot;</span>+obj.age);</span></span><br><span class="line"><span class="javascript">              &#125;</span></span><br><span class="line"><span class="javascript">          &#125;</span></span><br><span class="line"><span class="javascript">        &#125;</span></span><br><span class="line"><span class="javascript">    &#125;);</span></span><br><span class="line"><span class="javascript"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>watch使用场景：可以监控视图中数据的变化而做出响应；如：下拉框列表中，当选择了对应的下拉框之后，要根据最新的值去加载一些其他数据的话。</p>
+<h2 id="13-组件使用"><a href="#13-组件使用" class="headerlink" title="13.组件使用"></a>13.组件使用</h2><p>目标：了解组件的使用场景；定义点击则计数的组件并使用全局注册和局部注册的方式</p>
+<p>分析:</p>
+<p>可以将通用或者公用的页面模块抽取成vue模块，在vue实例中引用。 </p>
+<p>小结：在页面中可以如下使用组件：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">&quot;app&quot;</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!--    使用组件--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">counter</span>&gt;</span><span class="tag">&lt;/<span class="name">counter</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">counter</span>&gt;</span><span class="tag">&lt;/<span class="name">counter</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">counter</span>&gt;</span><span class="tag">&lt;/<span class="name">counter</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">&quot;text/javascript&quot;</span>&gt;</span><span class="javascript"></span></span><br><span class="line"><span class="javascript">    <span class="comment">//定义组件</span></span></span><br><span class="line"><span class="javascript">    <span class="keyword">const</span> counter = &#123;</span></span><br><span class="line"><span class="javascript">        <span class="attr">template</span>:<span class="string">&quot;&lt;button @click=&#x27;num++&#x27;&gt;你点击了&#123;&#123;num&#125;&#125;次&lt;/button&gt;&quot;</span>,</span></span><br><span class="line"><span class="javascript">        <span class="function"><span class="title">data</span>(<span class="params"></span>)</span>&#123;</span></span><br><span class="line"><span class="javascript">            <span class="keyword">return</span> &#123;<span class="attr">num</span>:<span class="number">0</span>&#125;</span></span><br><span class="line"><span class="javascript">        &#125;</span></span><br><span class="line"><span class="javascript">    &#125;;</span></span><br><span class="line"><span class="javascript">    <span class="comment">//全局注册组件：在所有的vue实例中都可以使用组件</span></span></span><br><span class="line"><span class="javascript">    <span class="comment">//参数1：组件名称，参数2：具体的组件</span></span></span><br><span class="line"><span class="javascript">   <span class="comment">// Vue.component(&quot;counter&quot;,counter);</span></span></span><br><span class="line"><span class="javascript"></span></span><br><span class="line"><span class="javascript">    <span class="keyword">var</span> app = <span class="keyword">new</span> Vue(&#123;</span></span><br><span class="line"><span class="javascript">        <span class="attr">el</span>:<span class="string">&quot;#app&quot;</span>,</span></span><br><span class="line"><span class="javascript">        <span class="attr">components</span>:&#123;</span></span><br><span class="line"><span class="javascript">            <span class="attr">counter</span>:counter</span></span><br><span class="line"><span class="javascript">        &#125;</span></span><br><span class="line"><span class="javascript">    &#125;);</span></span><br><span class="line"><span class="javascript"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>组件使用场景：在项目中需要重用某个模块（头部、尾部、新闻。。。）的时候，可以将模块抽取成组件，其他页面中注册组件并引用。</p>
+<ul>
+<li>全局注册：在任何vue实例中都可以引用，如：一般网站的头部导航菜单</li>
+<li>局部注册：可以在有需要的页面引入组件，如：商城网站首页页面中各种活动模块</li>
+</ul>
+<h2 id="14-父组件向子组件通信"><a href="#14-父组件向子组件通信" class="headerlink" title="14.父组件向子组件通信"></a>14.父组件向子组件通信</h2><p>目标：父组件与子组件通信的意义；实现父组件将简单字符串和对象更新到子组件</p>
+<p>小结：</p>
+<p>组件通信的意义：父子组件之间数据的交换，能够及时更新组件内容。</p>
+<ul>
+<li>父组件将简单字符串更新传递到子组件</li>
+</ul>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">&quot;app&quot;</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!--    使用组件--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">introduce</span> <span class="attr">:title</span>=<span class="string">&quot;msg&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">introduce</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">&quot;text/javascript&quot;</span>&gt;</span><span class="javascript"></span></span><br><span class="line"><span class="javascript">    <span class="comment">//定义组件</span></span></span><br><span class="line"><span class="javascript">    <span class="keyword">const</span> introduce = &#123;</span></span><br><span class="line"><span class="javascript">        <span class="attr">template</span>:<span class="string">&quot;&lt;h2&gt;&#123;&#123;title&#125;&#125;&lt;/h2&gt;&quot;</span>,</span></span><br><span class="line"><span class="javascript">        <span class="comment">//定义接受父组件的属性</span></span></span><br><span class="line"><span class="javascript">        <span class="attr">props</span>:[<span class="string">&quot;title&quot;</span>]</span></span><br><span class="line"><span class="javascript">    &#125;;</span></span><br><span class="line"><span class="javascript">    <span class="comment">//全局注册组件：在所有的vue实例中都可以使用组件</span></span></span><br><span class="line"><span class="javascript">    <span class="comment">//参数1：组件名称，参数2：具体的组件</span></span></span><br><span class="line"><span class="javascript">   Vue.component(<span class="string">&quot;introduce&quot;</span>,introduce);</span></span><br><span class="line"><span class="javascript"></span></span><br><span class="line"><span class="javascript">    <span class="keyword">var</span> app = <span class="keyword">new</span> Vue(&#123;</span></span><br><span class="line"><span class="javascript">        <span class="attr">el</span>:<span class="string">&quot;#app&quot;</span>,</span></span><br><span class="line"><span class="javascript">        <span class="attr">data</span>:&#123;</span></span><br><span class="line"><span class="javascript">            <span class="attr">msg</span>:<span class="string">&quot;父组件的 msg属性数据内容&quot;</span></span></span><br><span class="line"><span class="javascript">        &#125;</span></span><br><span class="line"><span class="javascript">    &#125;);</span></span><br><span class="line"><span class="javascript"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>父组件将数组更新传递到子组件</li>
+</ul>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">&quot;app&quot;</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!--    使用组件--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">my-list</span> <span class="attr">:items</span>=<span class="string">&quot;lessons&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">my-list</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">&quot;text/javascript&quot;</span>&gt;</span><span class="javascript"></span></span><br><span class="line"><span class="javascript">    <span class="comment">//定义组件</span></span></span><br><span class="line"><span class="javascript">    <span class="keyword">const</span> myList = &#123;</span></span><br><span class="line"><span class="javascript">        <span class="attr">template</span>:<span class="string">&#x27;&lt;ul&gt;&#x27;</span> +</span></span><br><span class="line"><span class="javascript">            <span class="string">&#x27;&lt;li v-for=&quot;item in items&quot; :key=&quot;item.id&quot;&gt;&#123;&#123;item.id&#125;&#125;--&#123;&#123;item.name&#125;&#125;&lt;/li&gt; &#x27;</span> +</span></span><br><span class="line"><span class="javascript">            <span class="string">&#x27;&lt;/ul&gt;&#x27;</span>,</span></span><br><span class="line"><span class="javascript">        <span class="comment">//定义接受父组件的属性</span></span></span><br><span class="line"><span class="javascript">        <span class="attr">props</span>:&#123;</span></span><br><span class="line"><span class="javascript">            <span class="attr">items</span>:&#123;</span></span><br><span class="line"><span class="javascript">                <span class="comment">//数据类型，如果是数组则是Array,如果是对象则是Object</span></span></span><br><span class="line"><span class="javascript">                <span class="built_in">Array</span>,</span></span><br><span class="line"><span class="javascript">                <span class="comment">//默认值</span></span></span><br><span class="line"><span class="javascript">                <span class="attr">default</span>:[]</span></span><br><span class="line"><span class="javascript">            &#125;</span></span><br><span class="line"><span class="javascript">        &#125;</span></span><br><span class="line"><span class="javascript">    &#125;;</span></span><br><span class="line"><span class="javascript"></span></span><br><span class="line"><span class="javascript"></span></span><br><span class="line"><span class="javascript">    <span class="keyword">var</span> app = <span class="keyword">new</span> Vue(&#123;</span></span><br><span class="line"><span class="javascript">        <span class="attr">el</span>:<span class="string">&quot;#app&quot;</span>,</span></span><br><span class="line"><span class="javascript">        <span class="attr">data</span>:&#123;</span></span><br><span class="line"><span class="javascript">            <span class="attr">msg</span>:<span class="string">&quot;父组件的 msg属性数据内容&quot;</span>,</span></span><br><span class="line"><span class="javascript">            <span class="attr">lessons</span>:[</span></span><br><span class="line"><span class="javascript">                &#123;<span class="string">&quot;id&quot;</span>:<span class="number">1</span>,<span class="string">&quot;name&quot;</span>:<span class="string">&quot;Java&quot;</span>&#125;,</span></span><br><span class="line"><span class="javascript">                &#123;<span class="string">&quot;id&quot;</span>:<span class="number">2</span>,<span class="string">&quot;name&quot;</span>:<span class="string">&quot;Php&quot;</span>&#125;,</span></span><br><span class="line"><span class="javascript">                &#123;<span class="string">&quot;id&quot;</span>:<span class="number">3</span>,<span class="string">&quot;name&quot;</span>:<span class="string">&quot;C#&quot;</span>&#125;</span></span><br><span class="line"><span class="javascript">            ]</span></span><br><span class="line"><span class="javascript">        &#125;,</span></span><br><span class="line"><span class="javascript">        <span class="attr">components</span>:&#123;</span></span><br><span class="line"><span class="javascript">            myList</span></span><br><span class="line"><span class="javascript">        &#125;</span></span><br><span class="line"><span class="javascript">    &#125;);</span></span><br><span class="line"><span class="javascript"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="15-子组件向父组件通信"><a href="#15-子组件向父组件通信" class="headerlink" title="15.子组件向父组件通信"></a>15.子组件向父组件通信</h2><p>目标：在子组件中点击对应按钮实现父组件中属性输出的改变</p>
+<p>小结：</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">&quot;app&quot;</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!--    使用组件--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">h2</span>&gt;</span>num == &#123;&#123;num&#125;&#125;<span class="tag">&lt;/<span class="name">h2</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">counter</span> @<span class="attr">plus</span>=<span class="string">&quot;numPlus()&quot;</span> @<span class="attr">reduce</span>=<span class="string">&quot;numReduce&quot;</span>  <span class="attr">:snum</span> = <span class="string">&quot;num&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">counter</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">&quot;text/javascript&quot;</span>&gt;</span><span class="javascript"></span></span><br><span class="line"><span class="javascript">    <span class="comment">//定义组件</span></span></span><br><span class="line"><span class="javascript">    <span class="keyword">const</span> counter = &#123;</span></span><br><span class="line"><span class="javascript">        <span class="attr">template</span>:<span class="string">&#x27;&lt;div&gt;&#x27;</span> +</span></span><br><span class="line"><span class="javascript">            <span class="string">&#x27;&lt;button @click=\&#x27;incrNum\&#x27;&gt;+&lt;/button&gt;&#x27;</span> +</span></span><br><span class="line"><span class="javascript">            <span class="string">&#x27;&lt;button @click=\&#x27;decrNum\&#x27;&gt;-&lt;/button&gt;&#x27;</span> +</span></span><br><span class="line"><span class="javascript">            <span class="string">&#x27;&lt;/div&gt;&#x27;</span>,</span></span><br><span class="line"><span class="javascript">        <span class="attr">props</span>:[<span class="string">&quot;snum&quot;</span>],</span></span><br><span class="line"><span class="javascript">        <span class="attr">methods</span>:&#123;</span></span><br><span class="line"><span class="javascript">            <span class="comment">//递增</span></span></span><br><span class="line"><span class="javascript">            <span class="function"><span class="title">incrNum</span>(<span class="params"></span>)</span>&#123;</span></span><br><span class="line"><span class="javascript">                <span class="comment">//调用父组件中的方法</span></span></span><br><span class="line"><span class="javascript">                <span class="keyword">return</span> <span class="built_in">this</span>.$emit(<span class="string">&quot;plus&quot;</span>);</span></span><br><span class="line"><span class="javascript">            &#125;,</span></span><br><span class="line"><span class="javascript">            <span class="comment">//递减</span></span></span><br><span class="line"><span class="javascript">            <span class="function"><span class="title">decrNum</span>(<span class="params"></span>)</span>&#123;</span></span><br><span class="line"><span class="javascript">                <span class="comment">//调用父组件中的方法</span></span></span><br><span class="line"><span class="javascript">                <span class="keyword">return</span> <span class="built_in">this</span>.$emit(<span class="string">&quot;reduce&quot;</span>);</span></span><br><span class="line"><span class="javascript">            &#125;</span></span><br><span class="line"><span class="javascript">        &#125;</span></span><br><span class="line"><span class="javascript">    &#125;;</span></span><br><span class="line"><span class="javascript">    <span class="comment">//全局注册组件：在所有的vue实例中都可以使用组件</span></span></span><br><span class="line"><span class="javascript">    <span class="comment">//参数1：组件名称，参数2：具体的组件</span></span></span><br><span class="line"><span class="javascript">   <span class="comment">// Vue.component(&quot;counter&quot;,counter);</span></span></span><br><span class="line"><span class="javascript"></span></span><br><span class="line"><span class="javascript">    <span class="keyword">var</span> app = <span class="keyword">new</span> Vue(&#123;</span></span><br><span class="line"><span class="javascript">        <span class="attr">el</span>:<span class="string">&quot;#app&quot;</span>,</span></span><br><span class="line"><span class="javascript">        <span class="attr">components</span>:&#123;</span></span><br><span class="line"><span class="javascript">            <span class="attr">counter</span>:counter</span></span><br><span class="line"><span class="javascript">        &#125;,</span></span><br><span class="line"><span class="javascript">        <span class="attr">data</span>:&#123;</span></span><br><span class="line"><span class="javascript">            <span class="attr">num</span>:<span class="number">0</span></span></span><br><span class="line"><span class="javascript">        &#125;,</span></span><br><span class="line"><span class="javascript">        <span class="attr">methods</span>:&#123;</span></span><br><span class="line"><span class="javascript">            <span class="function"><span class="title">numPlus</span>(<span class="params"></span>)</span>&#123;</span></span><br><span class="line"><span class="javascript">                <span class="built_in">this</span>.num++;</span></span><br><span class="line"><span class="javascript">            &#125;,</span></span><br><span class="line"><span class="javascript">            <span class="function"><span class="title">numReduce</span>(<span class="params"></span>)</span>&#123;</span></span><br><span class="line"><span class="javascript">              <span class="built_in">this</span>.num--;</span></span><br><span class="line"><span class="javascript">            &#125;</span></span><br><span class="line"><span class="javascript">        &#125;</span></span><br><span class="line"><span class="javascript">    &#125;);</span></span><br><span class="line"><span class="javascript"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="16-axios"><a href="#16-axios" class="headerlink" title="16.axios"></a>16.axios</h2><p>目标：axios的用途及了解常见方法</p>
+<p>cnpm install axios –save</p>
+<p>然后在main.js中全局引入axios</p>
+<p>import axios from ‘axios’</p>
+<p>Vue.prototype.$axios = axios //</p>
+<p>小结：</p>
+<p>axios的作用：发送异步请求获取数据。常见的方法：<strong>get、post</strong>；在发送的时候可以指定参数（地址、请求方式和请求头部信息）；返回数据结构（<strong>data</strong>/status/statusText/headers/config）</p>
+<h2 id="17-axios方法及get、post方法使用"><a href="#17-axios方法及get、post方法使用" class="headerlink" title="17.axios方法及get、post方法使用"></a>17.axios方法及get、post方法使用</h2><p>目标：使用axios方法获取数据并在页面中将数据遍历显示；切换改为get/post方法实现数据加载</p>
+<p>小结：</p>
+<p>可以使用axios获取对应服务器数据；如果不是同一个服务器的数据则可能出现跨域请求；需要在响应的服务器上配置跨域。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">&quot;app&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">ul</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">li</span> <span class="attr">v-for</span>=<span class="string">&quot;(user,index) in users&quot;</span> <span class="attr">:key</span>=<span class="string">&quot;index&quot;</span>&gt;</span></span><br><span class="line">           &#123;&#123;index&#125;&#125;--&#123;&#123;user.name&#125;&#125;--&#123;&#123;user.age&#125;&#125;--&#123;&#123;user.gender&#125;&#125;</span><br><span class="line">        <span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">&quot;text/javascript&quot;</span>&gt;</span><span class="javascript"></span></span><br><span class="line"><span class="javascript">    <span class="keyword">var</span> app = <span class="keyword">new</span> Vue(&#123;</span></span><br><span class="line"><span class="javascript">        <span class="attr">el</span>:<span class="string">&quot;#app&quot;</span>,</span></span><br><span class="line"><span class="javascript">        <span class="attr">data</span>:&#123;</span></span><br><span class="line"><span class="javascript">            <span class="attr">users</span>:[],</span></span><br><span class="line"><span class="javascript">        &#125;,</span></span><br><span class="line"><span class="javascript">        <span class="function"><span class="title">created</span>(<span class="params"></span>)</span> &#123;</span></span><br><span class="line"><span class="javascript">            <span class="comment">//初始化加载数据</span></span></span><br><span class="line"><span class="javascript"></span></span><br><span class="line"><span class="javascript">            axios.post(<span class="string">&quot;data.json&quot;</span>).then(<span class="function"><span class="params">res</span>=&gt;</span>&#123;</span></span><br><span class="line"><span class="javascript">                <span class="built_in">console</span>.log(res);</span></span><br><span class="line"><span class="javascript">                <span class="comment">//将数据赋值到vue实例中的数据属性users;</span></span></span><br><span class="line"><span class="javascript">                <span class="comment">//不能使用this,在axios回调函数中表示窗口，不是vue实例</span></span></span><br><span class="line"><span class="javascript">                app.users=res.data;</span></span><br><span class="line"><span class="javascript">            &#125;).catch(<span class="function"><span class="params">err</span>=&gt;</span>alert(err));</span></span><br><span class="line"><span class="javascript"></span></span><br><span class="line"><span class="javascript">            axios.get(<span class="string">&quot;http://localhost:8009/user/2&quot;</span>).then(<span class="function"><span class="params">res</span>=&gt;</span>&#123;</span></span><br><span class="line"><span class="javascript">                <span class="built_in">console</span>.log(res.data);</span></span><br><span class="line"><span class="javascript"></span></span><br><span class="line"><span class="javascript">                app.users=res.data;</span></span><br><span class="line"><span class="javascript">            &#125;).catch(<span class="function"><span class="params">err</span>=&gt;</span>alert(err));</span></span><br><span class="line"><span class="javascript"></span></span><br><span class="line"><span class="javascript"><span class="comment">/*</span></span></span><br><span class="line"><span class="comment"><span class="javascript">            axios.get(&quot;data.json&quot;).then(res=&gt;&#123;</span></span></span><br><span class="line"><span class="comment"><span class="javascript">                console.log(res);</span></span></span><br><span class="line"><span class="comment"><span class="javascript">                //将数据赋值到vue实例中的数据属性users;</span></span></span><br><span class="line"><span class="comment"><span class="javascript">                //不能使用this,在axios回调函数中表示窗口，不是vue实例</span></span></span><br><span class="line"><span class="comment"><span class="javascript">                app.users=res.data;</span></span></span><br><span class="line"><span class="comment"><span class="javascript">            &#125;).catch(err=&gt;alert(err));</span></span></span><br><span class="line"><span class="comment"><span class="javascript">*/</span></span></span><br><span class="line"><span class="javascript"></span></span><br><span class="line"><span class="javascript"><span class="comment">/*</span></span></span><br><span class="line"><span class="comment"><span class="javascript">            axios(&#123;</span></span></span><br><span class="line"><span class="comment"><span class="javascript">                url:&quot;data.json&quot;,</span></span></span><br><span class="line"><span class="comment"><span class="javascript">                method:&quot;get&quot;</span></span></span><br><span class="line"><span class="comment"><span class="javascript">            &#125;).then(res=&gt;&#123;</span></span></span><br><span class="line"><span class="comment"><span class="javascript">                console.log(res);</span></span></span><br><span class="line"><span class="comment"><span class="javascript">                //将数据赋值到vue实例中的数据属性users;</span></span></span><br><span class="line"><span class="comment"><span class="javascript">                //不能使用this,在axios回调函数中表示窗口，不是vue实例</span></span></span><br><span class="line"><span class="comment"><span class="javascript">                app.users=res.data;</span></span></span><br><span class="line"><span class="comment"><span class="javascript">            &#125;).catch(err=&gt;alert(err));</span></span></span><br><span class="line"><span class="comment"><span class="javascript">*/</span></span></span><br><span class="line"><span class="javascript">        &#125;</span></span><br><span class="line"><span class="javascript">    &#125;);</span></span><br><span class="line"><span class="javascript"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>跨域：在前端js中如果发送异步请求的话，请求的地址与当前服务器的ip或者端口号不同都是跨域请求，可以使用如下方式在服务器端进行配置：</p>
+<p><img src="C:\Users\ADMINI~1\AppData\Local\Temp\1615190862233.png" alt="1615190862233"></p>
+</blockquote>
+<h2 id="18-store"><a href="#18-store" class="headerlink" title="18.store"></a>18.store</h2>
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E5%89%8D%E7%AB%AF/" rel="tag"># 前端</a>
+              <a href="/tags/Vue/" rel="tag"># Vue</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2021/03/06/ben-ke-bi-she-qi-jian-ji-lu-bi-ji/springboot-ru-men/" rel="prev" title="后端|Spring Boot|Spring Boot入门">
+                  <i class="fa fa-chevron-left"></i> 后端|Spring Boot|Spring Boot入门
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2021/04/11/ben-ke-bi-she-qi-jian-ji-lu-bi-ji/idea-ji-qiao/" rel="next" title="工具|IDEA技巧">
+                  工具|IDEA技巧 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">fanko</span>
+</div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/next-boot.js"></script>
+
+  
+<script src="https://cdn.jsdelivr.net/npm/hexo-generator-searchdb@1.4.0/dist/search.js" integrity="sha256-vXZMYLEqsROAXkEw93GGIvaB2ab+QW6w3+1ahD9nXXA=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+</body>
+</html>
