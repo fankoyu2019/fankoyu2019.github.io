@@ -20,15 +20,15 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/all.min.css" integrity="sha256-mUZM63G8m73Mcidfrv5E+Y61y7a12O5mW4ezU3bxqW4=" crossorigin="anonymous">
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Gemini","darkmode":true,"version":"8.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
-<meta name="description" content="图解深度学习作者：山下隆义 深度学习的起源包括感知器和玻尔兹曼机， 起源于感知器的深度学习属实有监督学习， 起源于受限玻尔兹曼机的深度学习属于无监督学习  神经网络M-P模型需要人为设定参数， 感知器通过误差修正确定参数 多层感知器误差修正只能3层网络，修正中间层到输出层，不能修正输入层到中间层 误差反向传播算法梯度下降法梯度消失导致无法调整连接权重问题，需要在训练过程中调整学习率n，以防止梯度消">
+<meta name="description" content="图解深度学习作者：山下隆义 深度学习的起源包括感知器和玻尔兹曼机， 起源于感知器的深度学习属实有监督学习， 起源于受限玻尔兹曼机的深度学习属于无监督学习">
 <meta property="og:type" content="article">
 <meta property="og:title" content="读书笔记|图解深度学习">
 <meta property="og:url" content="http://example.com/2021/11/01/dian-zi-shu-yi-ji-bi-ji/tu-jie-shen-du-xue-xi/index.html">
 <meta property="og:site_name" content="前程似锦，一路繁华">
-<meta property="og:description" content="图解深度学习作者：山下隆义 深度学习的起源包括感知器和玻尔兹曼机， 起源于感知器的深度学习属实有监督学习， 起源于受限玻尔兹曼机的深度学习属于无监督学习  神经网络M-P模型需要人为设定参数， 感知器通过误差修正确定参数 多层感知器误差修正只能3层网络，修正中间层到输出层，不能修正输入层到中间层 误差反向传播算法梯度下降法梯度消失导致无法调整连接权重问题，需要在训练过程中调整学习率n，以防止梯度消">
+<meta property="og:description" content="图解深度学习作者：山下隆义 深度学习的起源包括感知器和玻尔兹曼机， 起源于感知器的深度学习属实有监督学习， 起源于受限玻尔兹曼机的深度学习属于无监督学习">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2021-11-01T08:31:01.000Z">
-<meta property="article:modified_time" content="2021-11-01T08:32:13.125Z">
+<meta property="article:modified_time" content="2021-11-01T08:42:24.517Z">
 <meta property="article:author" content="fanko">
 <meta property="article:tag" content="读书笔记">
 <meta property="article:tag" content="ML">
@@ -275,6 +275,8 @@
 <p>深度学习的起源包括感知器和玻尔兹曼机，</p>
 <p>起源于感知器的深度学习属实有监督学习，</p>
 <p>起源于受限玻尔兹曼机的深度学习属于无监督学习 </p>
+<span id="more"></span>
+
 <h2 id="神经网络"><a href="#神经网络" class="headerlink" title="神经网络"></a>神经网络</h2><h3 id="M-P模型"><a href="#M-P模型" class="headerlink" title="M-P模型"></a>M-P模型</h3><p>需要人为设定参数，</p>
 <h3 id="感知器"><a href="#感知器" class="headerlink" title="感知器"></a>感知器</h3><p>通过误差修正确定参数</p>
 <h3 id="多层感知器"><a href="#多层感知器" class="headerlink" title="多层感知器"></a>多层感知器</h3><p>误差修正只能3层网络，修正中间层到输出层，不能修正输入层到中间层</p>
