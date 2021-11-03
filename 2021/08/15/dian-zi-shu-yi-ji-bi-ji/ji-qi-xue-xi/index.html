@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)">
+<meta name="generator" content="Hexo 5.4.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/all.min.css" integrity="sha256-mUZM63G8m73Mcidfrv5E+Y61y7a12O5mW4ezU3bxqW4=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Gemini","darkmode":true,"version":"8.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+<meta name="description" content="概述机器学习使计算机能够从研究数据和统计信息中学习。 机器学习是迈向人工智能（AI）方向的其中一步。 机器学习是一种程序，可以分析数据并学习预测结果。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="基础学习|机器学习初认识">
+<meta property="og:url" content="http://example.com/2021/08/15/dian-zi-shu-yi-ji-bi-ji/ji-qi-xue-xi/index.html">
+<meta property="og:site_name" content="前程似锦，一路繁华">
+<meta property="og:description" content="概述机器学习使计算机能够从研究数据和统计信息中学习。 机器学习是迈向人工智能（AI）方向的其中一步。 机器学习是一种程序，可以分析数据并学习预测结果。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://www.w3school.com.cn/i/python/img_decisiontree_1.png">
+<meta property="og:image" content="http://example.com/2021/08/15/dian-zi-shu-yi-ji-bi-ji/ji-qi-xue-xi/img/1625816856759.png">
+<meta property="og:image" content="http://example.com/2021/08/15/dian-zi-shu-yi-ji-bi-ji/ji-qi-xue-xi/img/1625816974579.png">
+<meta property="og:image" content="http://example.com/2021/08/15/dian-zi-shu-yi-ji-bi-ji/ji-qi-xue-xi/img/1625817048910.png">
+<meta property="article:published_time" content="2021-08-15T10:31:01.000Z">
+<meta property="article:modified_time" content="2021-11-03T13:56:37.455Z">
+<meta property="article:author" content="fanko">
+<meta property="article:tag" content="读书笔记">
+<meta property="article:tag" content="ML">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://www.w3school.com.cn/i/python/img_decisiontree_1.png">
+
+
+<link rel="canonical" href="http://example.com/2021/08/15/dian-zi-shu-yi-ji-bi-ji/ji-qi-xue-xi/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://example.com/2021/08/15/dian-zi-shu-yi-ji-bi-ji/ji-qi-xue-xi/","path":"2021/08/15/dian-zi-shu-yi-ji-bi-ji/ji-qi-xue-xi/","title":"基础学习|机器学习初认识"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>基础学习|机器学习初认识 | 前程似锦，一路繁华</title>
+  
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">前程似锦，一路繁华</h1>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">坚持,努力,认真</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li>
+        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li>
+        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A6%82%E8%BF%B0"><span class="nav-number">1.</span> <span class="nav-text">概述</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B"><span class="nav-number">1.0.1.</span> <span class="nav-text">数据类型</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%B9%B3%E5%9D%87%E6%95%B0-mean%E6%96%B9%E6%B3%95"><span class="nav-number">1.0.2.</span> <span class="nav-text">平均数 mean方法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%AD%E4%BD%8D%E6%95%B0-median%E6%96%B9%E6%B3%95"><span class="nav-number">1.0.3.</span> <span class="nav-text">中位数 median方法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BC%97%E6%95%B0-mode%E6%96%B9%E6%B3%95"><span class="nav-number">1.0.4.</span> <span class="nav-text">众数 mode方法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%A0%87%E5%87%86%E5%B7%AE-std%E6%96%B9%E6%B3%95"><span class="nav-number">1.0.5.</span> <span class="nav-text">标准差 std方法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%96%B9%E5%B7%AE-var%E6%96%B9%E6%B3%95"><span class="nav-number">1.0.6.</span> <span class="nav-text">方差 var方法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%99%BE%E5%88%86%E4%BD%8D%E6%95%B0-percentile%E6%96%B9%E6%B3%95"><span class="nav-number">1.0.7.</span> <span class="nav-text">百分位数 percentile方法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%88%9B%E5%BB%BA%E9%9A%8F%E6%9C%BA%E6%B5%AE%E7%82%B9%E6%95%B0%E6%95%B0%E7%BB%84-random-uniform"><span class="nav-number">1.0.8.</span> <span class="nav-text">创建随机浮点数数组 random.uniform</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%9B%B4%E6%96%B9%E5%9B%BE"><span class="nav-number">1.0.9.</span> <span class="nav-text">直方图</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%AD%A3%E6%80%81%E6%95%B0%E6%8D%AE%E5%88%86%E5%B8%83"><span class="nav-number">1.0.10.</span> <span class="nav-text">正态数据分布</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%95%A3%E7%82%B9%E5%9B%BE"><span class="nav-number">2.</span> <span class="nav-text">散点图</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#scatter%E6%96%B9%E6%B3%95"><span class="nav-number">2.0.1.</span> <span class="nav-text">scatter方法</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BA%BF%E6%80%A7%E5%9B%9E%E5%BD%92"><span class="nav-number">3.</span> <span class="nav-text">线性回归</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#R-Squared"><span class="nav-number">3.0.1.</span> <span class="nav-text">R-Squared</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A4%9A%E9%A1%B9%E5%BC%8F%E5%9B%9E%E5%BD%92"><span class="nav-number">4.</span> <span class="nav-text">多项式回归</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#R-squared"><span class="nav-number">4.0.1.</span> <span class="nav-text">R-squared</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%A2%84%E6%B5%8B%E6%9C%AA%E6%9D%A5%E5%80%BC"><span class="nav-number">4.0.2.</span> <span class="nav-text">预测未来值</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A4%9A%E5%85%83%E5%9B%9E%E5%BD%92"><span class="nav-number">5.</span> <span class="nav-text">多元回归</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%B3%BB%E6%95%B0"><span class="nav-number">5.0.1.</span> <span class="nav-text">系数</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BC%A9%E6%94%BE"><span class="nav-number">6.</span> <span class="nav-text">缩放</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%A2%84%E6%B5%8B"><span class="nav-number">6.0.1.</span> <span class="nav-text">预测</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AE%AD%E7%BB%83-%E6%B5%8B%E8%AF%95"><span class="nav-number">7.</span> <span class="nav-text">训练&#x2F;测试</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#R2-R-squared"><span class="nav-number">7.0.1.</span> <span class="nav-text">R2 (R-squared)</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%86%B3%E7%AD%96%E6%A0%91"><span class="nav-number">8.</span> <span class="nav-text">决策树</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9D%8E%E5%AE%8F%E6%AF%85%E2%80%93%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0"><span class="nav-number">9.</span> <span class="nav-text">李宏毅–机器学习</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%9F%BA%E6%9C%AC%E5%88%86%E7%B1%BB"><span class="nav-number">9.0.1.</span> <span class="nav-text">基本分类</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%B8%89%E6%AD%A5%E8%B5%B0"><span class="nav-number">9.0.2.</span> <span class="nav-text">三步走</span></a></li></ol></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="fanko"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">fanko</p>
+  <div class="site-description" itemprop="description">-------- 济南大学17级本科生 --------大连理工大学21级研究生</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">176</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">43</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/fankoyu2019" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;fankoyu2019" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+  </div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/08/15/dian-zi-shu-yi-ji-bi-ji/ji-qi-xue-xi/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="fanko">
+      <meta itemprop="description" content="-------- 济南大学17级本科生 --------大连理工大学21级研究生">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="前程似锦，一路繁华">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          基础学习|机器学习初认识
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2021-08-15 18:31:01" itemprop="dateCreated datePublished" datetime="2021-08-15T18:31:01+08:00">2021-08-15</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">读书笔记</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><p>机器学习使计算机能够从研究数据和统计信息中学习。</p>
+<p>机器学习是迈向人工智能（AI）方向的其中一步。</p>
+<p>机器学习是一种程序，可以分析数据并学习预测结果。</p>
+<span id="more"></span>
+
+<h4 id="数据类型"><a href="#数据类型" class="headerlink" title="数据类型"></a>数据类型</h4><p>我们可以将数据类型分为三种主要类别：</p>
+<ul>
+<li><em>数值（Numerical）</em></li>
+<li><em>分类（Categorical）</em></li>
+<li><em>序数（Ordinal）</em></li>
+</ul>
+<p><em>数值数据</em>是数字，可以分为两种数值类别：</p>
+<ul>
+<li><p>离散数据（Discrete Data）</p>
+<ul>
+<li>限制为整数的数字。例如：经过的汽车数量。</li>
+</ul>
+</li>
+<li><p>连续数据（Continuous Data）</p>
+<ul>
+<li>具有无限值的数字。例如：一件商品的价格或一件商品的大小。</li>
+</ul>
+</li>
+</ul>
+<p><em>分类数据</em>是无法相互度量的值。例如：颜色值或任何 yes/no 值。</p>
+<p><em>序数数据</em>类似于分类数据，但可以相互度量。示例：A 优于 B 的学校成绩，依此类推。</p>
+<h4 id="平均数-mean方法"><a href="#平均数-mean方法" class="headerlink" title="平均数 mean方法"></a>平均数 mean方法</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">import numpy</span><br><span class="line"></span><br><span class="line">speed = [99,86,87,88,111,86,103,87,94,78,77,85,86]</span><br><span class="line"></span><br><span class="line">x = numpy.mean(speed)</span><br><span class="line"></span><br><span class="line">print(x)</span><br></pre></td></tr></table></figure>
+
+<h4 id="中位数-median方法"><a href="#中位数-median方法" class="headerlink" title="中位数 median方法"></a>中位数 median方法</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">x = numpy.median(speed)</span><br></pre></td></tr></table></figure>
+
+<h4 id="众数-mode方法"><a href="#众数-mode方法" class="headerlink" title="众数 mode方法"></a>众数 mode方法</h4><p>请使用 SciPy mode() 方法查找出现次数最多的数字：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">from scipy import stats</span><br><span class="line"></span><br><span class="line">speed = [99,86,87,88,111,86,103,87,94,78,77,85,86]</span><br><span class="line"></span><br><span class="line">x = stats.mode(speed)</span><br><span class="line"></span><br><span class="line">print(x)</span><br></pre></td></tr></table></figure>
+
+<h4 id="标准差-std方法"><a href="#标准差-std方法" class="headerlink" title="标准差 std方法"></a>标准差 std方法</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">x = numpy.std(speed)</span><br></pre></td></tr></table></figure>
+
+<h4 id="方差-var方法"><a href="#方差-var方法" class="headerlink" title="方差 var方法"></a>方差 var方法</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">x = numpy.var(speed)</span><br></pre></td></tr></table></figure>
+
+<h4 id="百分位数-percentile方法"><a href="#百分位数-percentile方法" class="headerlink" title="百分位数 percentile方法"></a>百分位数 percentile方法</h4><p>统计学中使用百分位数（Percentiles）为您提供一个数字，该数字描述了给定百分比值小于的值。 </p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">x = numpy.percentile(ages, 75)</span><br></pre></td></tr></table></figure>
+
+<h4 id="创建随机浮点数数组-random-uniform"><a href="#创建随机浮点数数组-random-uniform" class="headerlink" title="创建随机浮点数数组 random.uniform"></a>创建随机浮点数数组 random.uniform</h4><p>创建一个包含 250 个介于 0 到 5 之间的随机浮点数的数组： </p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">import numpy</span><br><span class="line"></span><br><span class="line">x = numpy.random.uniform(0.0, 5.0, 250)</span><br><span class="line"></span><br><span class="line">print(x)</span><br></pre></td></tr></table></figure>
+
+<h4 id="直方图"><a href="#直方图" class="headerlink" title="直方图"></a>直方图</h4><p>我们将使用 Python 模块 Matplotlib 绘制直方图： </p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">import numpy</span><br><span class="line">import matplotlib.pyplot as plt</span><br><span class="line"></span><br><span class="line">x = numpy.random.uniform(0.0, 5.0, 250)</span><br><span class="line"></span><br><span class="line">plt.hist(x, 5)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+
+<h4 id="正态数据分布"><a href="#正态数据分布" class="headerlink" title="正态数据分布"></a>正态数据分布</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">import numpy</span><br><span class="line">import matplotlib.pyplot as plt</span><br><span class="line"></span><br><span class="line">x = numpy.random.normal(5.0, 1.0, 100000)</span><br><span class="line"></span><br><span class="line">plt.hist(x, 100)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+
+
+
+<p>我们使用 numpy.random.normal() 方法创建的数组（具有 100000 个值）绘制具有 100 栏的直方图。</p>
+<p>我们指定<strong>平均值为 5.0，标准差为 1.0。</strong></p>
+<p>这意味着这些值应集中在 5.0 左右，并且很少与平均值偏离 1.0。</p>
+<p>从直方图中可以看到，大多数值都在 4.0 到 6.0 之间，最高值大约是 5.0。</p>
+<h2 id="散点图"><a href="#散点图" class="headerlink" title="散点图"></a>散点图</h2><p>Matplotlib 模块有一种绘制散点图的方法，它需要两个长度相同的数组，一个数组用于 x 轴的值，另一个数组用于 y 轴的值： </p>
+<h4 id="scatter方法"><a href="#scatter方法" class="headerlink" title="scatter方法"></a>scatter方法</h4><p>请使用 scatter() 方法绘制散点图： </p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">import matplotlib.pyplot as plt</span><br><span class="line"></span><br><span class="line">x = [5,7,8,7,2,17,2,9,4,11,12,9,6]</span><br><span class="line">y = [99,86,87,88,111,86,103,87,94,78,77,85,86]</span><br><span class="line"></span><br><span class="line">plt.scatter(x, y)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+
+<h2 id="线性回归"><a href="#线性回归" class="headerlink" title="线性回归"></a>线性回归</h2><p>x 轴表示车龄，y 轴表示速度。我们已经记录了 13 辆汽车通过收费站时的车龄和速度 </p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#导入所需模块：</span></span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"><span class="keyword">from</span> scipy <span class="keyword">import</span> stats</span><br><span class="line"></span><br><span class="line"><span class="comment">#创建表示 x 和 y 轴值的数组：</span></span><br><span class="line">x = [<span class="number">5</span>,<span class="number">7</span>,<span class="number">8</span>,<span class="number">7</span>,<span class="number">2</span>,<span class="number">17</span>,<span class="number">2</span>,<span class="number">9</span>,<span class="number">4</span>,<span class="number">11</span>,<span class="number">12</span>,<span class="number">9</span>,<span class="number">6</span>]</span><br><span class="line">y = [<span class="number">99</span>,<span class="number">86</span>,<span class="number">87</span>,<span class="number">88</span>,<span class="number">111</span>,<span class="number">86</span>,<span class="number">103</span>,<span class="number">87</span>,<span class="number">94</span>,<span class="number">78</span>,<span class="number">77</span>,<span class="number">85</span>,<span class="number">86</span>]</span><br><span class="line"></span><br><span class="line"><span class="comment">#执行一个方法，该方法返回线性回归的一些重要键值：</span></span><br><span class="line">slope, intercept, r, p, std_err = stats.linregress(x, y)</span><br><span class="line"></span><br><span class="line"><span class="comment">#创建一个使用 slope 和 intercept 值的函数返回新值。这个新值表示相应的 x 值将在 y 轴上放置的位置：</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">myfunc</span>(<span class="params">x</span>):</span></span><br><span class="line">  <span class="keyword">return</span> slope * x + intercept</span><br><span class="line">  </span><br><span class="line"><span class="comment">#通过函数运行 x 数组的每个值。这将产生一个新的数组，其中的 y 轴具有新值：</span></span><br><span class="line">mymodel = <span class="built_in">list</span>(<span class="built_in">map</span>(myfunc, x))</span><br><span class="line"></span><br><span class="line"><span class="comment">#绘制原始散点图：</span></span><br><span class="line">plt.scatter(x, y)</span><br><span class="line"></span><br><span class="line"><span class="comment">#绘制线性回归线：</span></span><br><span class="line">plt.plot(x, mymodel)</span><br><span class="line"></span><br><span class="line"><span class="comment">#显示图：</span></span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+
+<h4 id="R-Squared"><a href="#R-Squared" class="headerlink" title="R-Squared"></a>R-Squared</h4><p>重要的是要知道 x 轴的值和 y 轴的值之间的关系有多好，如果没有关系，则线性回归不能用于预测任何东西。</p>
+<p>该关系用一个称为 r 平方（r-squared）的值来度量。</p>
+<p>r 平方值的范围是 0 到 1，其中 0 表示不相关，而 1 表示 100％ 相关。</p>
+<p>Python 和 Scipy 模块将为您计算该值，您所要做的就是将 x 和 y 值提供给它：</p>
+<p>注释：结果 -0.76 表明存在某种关系，但不是完美的关系，但它表明我们可以在将来的预测中使用线性</p>
+<p>回归。 </p>
+<p>0.013 表示关系很差，并告诉我们该数据集不适合线性回归。 </p>
+<h2 id="多项式回归"><a href="#多项式回归" class="headerlink" title="多项式回归"></a>多项式回归</h2><p>如果您的数据点显然不适合线性回归（穿过数据点之间的直线），那么多项式回归可能是理想的选择。 </p>
+<p>像线性回归一样，多项式回归使用变量 x 和 y 之间的关系来找到绘制数据点线的最佳方法。 </p>
+<p>在下面的例子中，我们注册了 18 辆经过特定收费站的汽车。</p>
+<p>我们已经记录了汽车的速度和通过时间（小时）。</p>
+<p>x 轴表示一天中的小时，y 轴表示速度：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#导入所需模块：</span></span><br><span class="line"><span class="keyword">import</span> numpy</span><br><span class="line"><span class="keyword">import</span> matplotlib.pyplot <span class="keyword">as</span> plt</span><br><span class="line"></span><br><span class="line"><span class="comment">#创建表示 x 和 y 轴值的数组：</span></span><br><span class="line">x = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">5</span>,<span class="number">6</span>,<span class="number">7</span>,<span class="number">8</span>,<span class="number">9</span>,<span class="number">10</span>,<span class="number">12</span>,<span class="number">13</span>,<span class="number">14</span>,<span class="number">15</span>,<span class="number">16</span>,<span class="number">18</span>,<span class="number">19</span>,<span class="number">21</span>,<span class="number">22</span>]</span><br><span class="line">y = [<span class="number">100</span>,<span class="number">90</span>,<span class="number">80</span>,<span class="number">60</span>,<span class="number">60</span>,<span class="number">55</span>,<span class="number">60</span>,<span class="number">65</span>,<span class="number">70</span>,<span class="number">70</span>,<span class="number">75</span>,<span class="number">76</span>,<span class="number">78</span>,<span class="number">79</span>,<span class="number">90</span>,<span class="number">99</span>,<span class="number">99</span>,<span class="number">100</span>]</span><br><span class="line"></span><br><span class="line"><span class="comment">#NumPy 有一种方法可以让我们建立多项式模型：</span></span><br><span class="line">mymodel = numpy.poly1d(numpy.polyfit(x, y, <span class="number">3</span>))</span><br><span class="line"></span><br><span class="line"><span class="comment">#然后指定行的显示方式，我们从位置 1 开始，到位置 22 结束：</span></span><br><span class="line">myline = numpy.linspace(<span class="number">1</span>, <span class="number">22</span>, <span class="number">100</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">#绘制原始散点图：</span></span><br><span class="line">plt.scatter(x, y)</span><br><span class="line"></span><br><span class="line"><span class="comment">#画出多项式回归线：</span></span><br><span class="line">plt.plot(myline, mymodel(myline))</span><br><span class="line"></span><br><span class="line"><span class="comment">#显示图表：</span></span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+
+<h4 id="R-squared"><a href="#R-squared" class="headerlink" title="R-squared"></a>R-squared</h4><p>r 平方值的范围是 0 到 1，其中 0 表示不相关，而 1 表示 100％ 相关。</p>
+<p>Python 和 Sklearn 模块将为您计算该值，您所要做的就是将 x 和 y 数组输入：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">import numpy</span><br><span class="line">from sklearn.metrics import r2_score</span><br><span class="line"></span><br><span class="line">x = [1,2,3,5,6,7,8,9,10,12,13,14,15,16,18,19,21,22]</span><br><span class="line">y = [100,90,80,60,60,55,60,65,70,70,75,76,78,79,90,99,99,100]</span><br><span class="line"></span><br><span class="line">mymodel = numpy.poly1d(numpy.polyfit(x, y, 3))</span><br><span class="line"></span><br><span class="line">print(r2_score(y, mymodel(x)))</span><br></pre></td></tr></table></figure>
+
+
+
+<p>结果 0.94 表明存在很好的关系，我们可以在将来的预测中使用多项式回归。 </p>
+<p>0.00995 表示关系很差，并告诉我们该数据集不适合多项式回归。 </p>
+<h4 id="预测未来值"><a href="#预测未来值" class="headerlink" title="预测未来值"></a>预测未来值</h4><p>预测下午 17 点过车的速度： </p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">import numpy</span><br><span class="line">from sklearn.metrics import r2_score</span><br><span class="line"></span><br><span class="line">x = [1,2,3,5,6,7,8,9,10,12,13,14,15,16,18,19,21,22]</span><br><span class="line">y = [100,90,80,60,60,55,60,65,70,70,75,76,78,79,90,99,99,100]</span><br><span class="line"></span><br><span class="line">mymodel = numpy.poly1d(numpy.polyfit(x, y, 3))</span><br><span class="line"></span><br><span class="line">speed = mymodel(17)</span><br><span class="line">print(speed)</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="多元回归"><a href="#多元回归" class="headerlink" title="多元回归"></a>多元回归</h2><p>多元回归就像线性回归一样，但是具有多个独立值，这意味着我们试图基于两个或多个变量来预测一个值。 </p>
+<p>在 Python 中，我们拥有可以完成这项工作的模块。首先导入 Pandas 模块： </p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">import pandas</span><br></pre></td></tr></table></figure>
+
+<p>Pandas 模块允许我们读取 csv 文件并返回一个 DataFrame 对象。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">df = pandas.read_csv(&quot;cars.csv&quot;)</span><br></pre></td></tr></table></figure>
+
+<p>然后列出独立值，并将这个变量命名为 X。</p>
+<p>将相关值放入名为 y 的变量中。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">X = df[[&#x27;Weight&#x27;, &#x27;Volume&#x27;]]</span><br><span class="line">y = df[&#x27;CO2&#x27;]</span><br></pre></td></tr></table></figure>
+
+<p><strong>提示：通常，将独立值列表命名为大写 X，将相关值列表命名为小写 y。</strong></p>
+<p>我们将使用 sklearn 模块中的一些方法，因此我们也必须导入该模块：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">from sklearn import linear_model</span><br></pre></td></tr></table></figure>
+
+<p>在 sklearn 模块中，我们将使用 LinearRegression() 方法创建一个线性回归对象。</p>
+<p>该对象有一个名为 fit() 的方法，该方法将独立值和从属值作为参数，并用描述这种关系的数据填充回归对象：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">regr = linear_model.LinearRegression()</span><br><span class="line">regr.fit(X, y)</span><br></pre></td></tr></table></figure>
+
+<p>现在，我们有了一个回归对象，可以根据汽车的重量和排量预测 CO2 值：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"># 预测重量为 2300kg、排量为 1300ccm 的汽车的二氧化碳排放量：</span><br><span class="line"></span><br><span class="line">predictedCO2 = regr.predict([[2300, 1300]])</span><br><span class="line"></span><br><span class="line">print(predictedCO2)</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="系数"><a href="#系数" class="headerlink" title="系数"></a>系数</h4><p>系数是描述与未知变量的关系的因子。 </p>
+<p>在这种情况下，我们可以要求重量相对于 CO2 的系数值，以及体积相对于 CO2 的系数值。我们得到的答案告诉我们，如果我们增加或减少其中一个独立值，将会发生什么。 </p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">import pandas</span><br><span class="line">from sklearn import linear_model</span><br><span class="line"></span><br><span class="line">df = pandas.read_csv(&quot;cars.csv&quot;)</span><br><span class="line"></span><br><span class="line">X = df[[&#x27;Weight&#x27;, &#x27;Volume&#x27;]]</span><br><span class="line">y = df[&#x27;CO2&#x27;]</span><br><span class="line"></span><br><span class="line">regr = linear_model.LinearRegression()</span><br><span class="line">regr.fit(X, y)</span><br><span class="line"></span><br><span class="line">print(regr.coef_)</span><br></pre></td></tr></table></figure>
+
+<p>结果数组表示重量和排量的系数值。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Weight: 0.00755095</span><br><span class="line">Volume: 0.00780526</span><br></pre></td></tr></table></figure>
+
+<p>这些值告诉我们，如果重量增加 1g，则 CO2 排放量将增加 0.00755095g。</p>
+<p>如果发动机尺寸（容积）增加 1 ccm，则 CO2 排放量将增加 0.00780526g。</p>
+<h2 id="缩放"><a href="#缩放" class="headerlink" title="缩放"></a>缩放</h2><p>当您的数据拥有不同的值，甚至使用不同的度量单位时，可能很难比较它们。 </p>
+<p>缩放数据有多种方法，在本教程中，我们将使用一种称为标准化（standardization）的方法。 </p>
+<p>标准化方法使用以下公式：</p>
+<p>z = (x - u) / s</p>
+<p>其中 z 是新值，x 是原始值，u 是平均值，s 是标准差。</p>
+<p>如果从上述数据集中获取 <em>weight</em> 列，则第一个值为 790，缩放后的值为：</p>
+<p>(790 - 1292.23) / 238.74 = -2.1</p>
+<p>如果从上面的数据集中获取 <em>volume</em> 列，则第一个值为 1.0，缩放后的值为：</p>
+<p>(1.0 - 1.61) / 0.38 = -1.59</p>
+<p>现在，您可以将 -2.1 与 -1.59 相比较，而不是比较 790 与 1.0。</p>
+<p>您不必手动执行此操作，Python sklearn 模块有一个名为 StandardScaler() 的方法，该方法返回带有转换数据集方法的 Scaler 对象。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> pandas</span><br><span class="line"><span class="keyword">from</span> sklearn <span class="keyword">import</span> linear_model</span><br><span class="line"><span class="keyword">from</span> sklearn.preprocessing <span class="keyword">import</span> StandardScaler</span><br><span class="line">scale = StandardScaler()</span><br><span class="line"></span><br><span class="line">df = pandas.read_csv(<span class="string">&quot;cars2.csv&quot;</span>)</span><br><span class="line"></span><br><span class="line">X = df[[<span class="string">&#x27;Weight&#x27;</span>, <span class="string">&#x27;Volume&#x27;</span>]]</span><br><span class="line"></span><br><span class="line">scaledX = scale.fit_transform(X)</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(scaledX)</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="预测"><a href="#预测" class="headerlink" title="预测"></a>预测</h4><p>缩放数据集后，在预测值时必须使用缩放比例： </p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">import pandas</span><br><span class="line">from sklearn import linear_model</span><br><span class="line">from sklearn.preprocessing import StandardScaler</span><br><span class="line">scale = StandardScaler()</span><br><span class="line"></span><br><span class="line">df = pandas.read_csv(&quot;cars2.csv&quot;)</span><br><span class="line"></span><br><span class="line">X = df[[&#x27;Weight&#x27;, &#x27;Volume&#x27;]]</span><br><span class="line">y = df[&#x27;CO2&#x27;]</span><br><span class="line"></span><br><span class="line">scaledX = scale.fit_transform(X)</span><br><span class="line"></span><br><span class="line">regr = linear_model.LinearRegression()</span><br><span class="line">regr.fit(scaledX, y)</span><br><span class="line"></span><br><span class="line">scaled = scale.transform([[2300, 1.3]])</span><br><span class="line"></span><br><span class="line">predictedCO2 = regr.predict([scaled[0]])</span><br><span class="line">print(predictedCO2)</span><br></pre></td></tr></table></figure>
+
+<h2 id="训练-测试"><a href="#训练-测试" class="headerlink" title="训练/测试"></a>训练/测试</h2><p>80％ 用于训练，20％ 用于测试。 </p>
+<p>训练模型意味着创建模型。</p>
+<p>测试模型意味着测试模型的准确性。</p>
+<p>训练集应该是原始数据的 80％ 的随机选择。</p>
+<p>测试集应该是剩余的 20％。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">train_x = x[:80]</span><br><span class="line">train_y = y[:80]</span><br><span class="line"></span><br><span class="line">test_x = x[80:]</span><br><span class="line">test_y = y[80:]</span><br></pre></td></tr></table></figure>
+
+<p>要通过数据点画一条线，我们使用 matplotlib 模块的 plot() 方法：</p>
+<p>绘制穿过数据点的多项式回归线：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">import numpy</span><br><span class="line">import matplotlib.pyplot as plt</span><br><span class="line">numpy.random.seed(2)</span><br><span class="line"></span><br><span class="line">x = numpy.random.normal(3, 1, 100)</span><br><span class="line">y = numpy.random.normal(150, 40, 100) / x</span><br><span class="line"></span><br><span class="line">train_x = x[:80]</span><br><span class="line">train_y = y[:80]</span><br><span class="line"></span><br><span class="line">test_x = x[80:]</span><br><span class="line">test_y = y[80:]</span><br><span class="line"></span><br><span class="line">mymodel = numpy.poly1d(numpy.polyfit(train_x, train_y, 4))</span><br><span class="line"></span><br><span class="line">myline = numpy.linspace(0, 6, 100)</span><br><span class="line"></span><br><span class="line">plt.scatter(train_x, train_y)</span><br><span class="line">plt.plot(myline, mymodel(myline))</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+
+<h4 id="R2-R-squared"><a href="#R2-R-squared" class="headerlink" title="R2 (R-squared)"></a>R2 (R-squared)</h4><p>它测量 x 轴和 y 轴之间的关系，取值范围从 0 到 1，其中 0 表示没有关系，而 1 表示完全相关。</p>
+<p>sklearn 模块有一个名为 rs_score() 的方法，该方法将帮助我们找到这种关系。</p>
+<p>在这里，我们要衡量顾客在商店停留的时间与他们花费多少钱之间的关系。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">r2 = r2_score(train_y, mymodel(train_x))</span><br><span class="line"></span><br><span class="line">print(r2)</span><br></pre></td></tr></table></figure>
+
+<p>注释：结果 0.799 显示关系不错。 </p>
+<p>让我们在使用测试数据时确定 R2 分数： </p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">r2 = r2_score(test_y, mymodel(test_x))</span><br><span class="line"></span><br><span class="line">print(r2)</span><br></pre></td></tr></table></figure>
+
+<p>注释：结果 0.809 表明该模型也适合<strong>测试集</strong>，我们确信可以使用该模型预测未来值。 </p>
+<p>现在我们已经确定我们的模型是不错的，可以开始预测新值了。 </p>
+<p>如果购买客户在商店中停留 5 分钟，他/她将花费多少钱？</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">print(mymodel(5))	</span><br></pre></td></tr></table></figure>
+
+<h2 id="决策树"><a href="#决策树" class="headerlink" title="决策树"></a>决策树</h2><p>读取并打印数据集：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">import pandas</span><br><span class="line">from sklearn import tree</span><br><span class="line">import pydotplus</span><br><span class="line">from sklearn.tree import DecisionTreeClassifier</span><br><span class="line">import matplotlib.pyplot as plt</span><br><span class="line">import matplotlib.image as pltimg</span><br><span class="line"></span><br><span class="line">df = pandas.read_csv(&quot;shows.csv&quot;)</span><br><span class="line"></span><br><span class="line">print(df)</span><br></pre></td></tr></table></figure>
+
+<p>如需制作决策树，所有数据都必须是数字。 </p>
+<p>Pandas 有一个 map() 方法，该方法接受字典，其中包含有关如何转换值的信息。</p>
+<p>{‘UK’: 0, ‘USA’: 1, ‘N’: 2}</p>
+<p>表示将值 ‘UK’ 转换为 0，将 ‘USA’ 转换为 1，将 ‘N’ 转换为 2。</p>
+<p>将字符串值更改为数值：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">d = &#123;&#x27;UK&#x27;: 0, &#x27;USA&#x27;: 1, &#x27;N&#x27;: 2&#125;</span><br><span class="line">df[&#x27;Nationality&#x27;] = df[&#x27;Nationality&#x27;].map(d)</span><br><span class="line">d = &#123;&#x27;YES&#x27;: 1, &#x27;NO&#x27;: 0&#125;</span><br><span class="line">df[&#x27;Go&#x27;] = df[&#x27;Go&#x27;].map(d)</span><br><span class="line"></span><br><span class="line">print(df)</span><br></pre></td></tr></table></figure>
+
+<p>然后，我们必须将特征列与目标列分开。</p>
+<p>特征列是我们尝试从中预测的列，目标列是具有我们尝试预测的值的列。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">features = [&#x27;Age&#x27;, &#x27;Experience&#x27;, &#x27;Rank&#x27;, &#x27;Nationality&#x27;]</span><br><span class="line"></span><br><span class="line">X = df[features]</span><br><span class="line">y = df[&#x27;Go&#x27;]</span><br><span class="line"></span><br><span class="line">print(X)</span><br><span class="line">print(y)</span><br></pre></td></tr></table></figure>
+
+<p>创建一个决策树，将其另存为图像，然后显示该图像：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">dtree = DecisionTreeClassifier()</span><br><span class="line">dtree = dtree.fit(X, y)</span><br><span class="line">data = tree.export_graphviz(dtree, out_file=None, feature_names=features)</span><br><span class="line">graph = pydotplus.graph_from_dot_data(data)</span><br><span class="line">graph.write_png(&#x27;mydecisiontree.png&#x27;)</span><br><span class="line"></span><br><span class="line">img=pltimg.imread(&#x27;mydecisiontree.png&#x27;)</span><br><span class="line">imgplot = plt.imshow(img)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://www.w3school.com.cn/i/python/img_decisiontree_1.png" alt="img"> </p>
+<p>Rank &lt;= 6.5 表示排名在 6.5 以下的喜剧演员将遵循 True 箭头（向左），其余的则遵循 False 箭头（向右）。</p>
+<p>gini = 0.497 表示分割的质量，并且始终是 0.0 到 0.5 之间的数字，其中 0.0 表示所有样本均得到相同的结果，而 0.5 表示分割完全在中间进行。</p>
+<p>samples = 13 表示在决策的这一点上还剩下 13 位喜剧演员，因为这是第一步，所以他们全部都是喜剧演员。</p>
+<p>value = [6, 7] 表示在这 13 位喜剧演员中，有 6 位将获得 “NO”，而 7 位将获得 “GO”。</p>
+<p>使用 predict() 方法来预测新值：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">print(dtree.predict([[40, 10, 7, 1]]))</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="李宏毅–机器学习"><a href="#李宏毅–机器学习" class="headerlink" title="李宏毅–机器学习"></a>李宏毅–机器学习</h2><h4 id="基本分类"><a href="#基本分类" class="headerlink" title="基本分类"></a>基本分类</h4><p>Regression :The function outputs a scalar<br>Classification: Given options(classes),the function outputs the correct one<br>Structured Learning</p>
+<h4 id="三步走"><a href="#三步走" class="headerlink" title="三步走"></a>三步走</h4><p>1.Function ： y= b + w x1</p>
+<p>2.Define Loss from Training Data: Loss is a function of parameters L(b,w)</p>
+<p>$$<br>e_i =| y’_i - y_i |<br>$$<br>:L is mean absolute error (MAE)<br>$$<br>e_i = (y_i-y)^2<br>$$<br>L is mean square error(MSE)<br>$$<br>Loss : L = \frac{1}{N}  \sum_n e_n<br>$$<br>3.Optimization:<br>$$<br>w^*,b^* = arg   min_w,_b L<br>$$<br><img src="img/1625816856759.png" alt="1625816856759"></p>
+<p><img src="img/1625816974579.png" alt="1625816974579"><img src="img/1625817048910.png" alt="1625817048910"></p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/" rel="tag"># 读书笔记</a>
+              <a href="/tags/ML/" rel="tag"># ML</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2021/08/15/dian-zi-shu-yi-ji-bi-ji/numpy/" rel="prev" title="基础学习|Numpy初认识">
+                  <i class="fa fa-chevron-left"></i> 基础学习|Numpy初认识
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2021/08/16/dian-zi-shu-yi-ji-bi-ji/pytroch/" rel="next" title="视频学习|Pytorch初学习">
+                  视频学习|Pytorch初学习 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">fanko</span>
+</div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/next-boot.js"></script>
+
+  
+<script src="https://cdn.jsdelivr.net/npm/hexo-generator-searchdb@1.4.0/dist/search.js" integrity="sha256-vXZMYLEqsROAXkEw93GGIvaB2ab+QW6w3+1ahD9nXXA=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+</body>
+</html>

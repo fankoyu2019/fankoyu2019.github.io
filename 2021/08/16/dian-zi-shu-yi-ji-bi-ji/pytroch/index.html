@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)">
+<meta name="generator" content="Hexo 5.4.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/all.min.css" integrity="sha256-mUZM63G8m73Mcidfrv5E+Y61y7a12O5mW4ezU3bxqW4=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Gemini","darkmode":true,"version":"8.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+<meta name="description" content="注意:维度灾难 新的挑战 Limit of hand-designed feature. SVM can not handle big data set well. More and more application need to handle unstructured data.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="视频学习|Pytorch初学习">
+<meta property="og:url" content="http://example.com/2021/08/16/dian-zi-shu-yi-ji-bi-ji/pytroch/index.html">
+<meta property="og:site_name" content="前程似锦，一路繁华">
+<meta property="og:description" content="注意:维度灾难 新的挑战 Limit of hand-designed feature. SVM can not handle big data set well. More and more application need to handle unstructured data.">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/2021/08/16/dian-zi-shu-yi-ji-bi-ji/pytroch/img/1625734104819.png">
+<meta property="og:image" content="http://example.com/2021/08/16/dian-zi-shu-yi-ji-bi-ji/pytroch/img/1625993694363.png">
+<meta property="og:image" content="http://example.com/2021/08/16/dian-zi-shu-yi-ji-bi-ji/pytroch/img/1625997767831.png">
+<meta property="og:image" content="http://example.com/2021/08/16/dian-zi-shu-yi-ji-bi-ji/pytroch/img/1625998757958.png">
+<meta property="og:image" content="http://example.com/2021/08/16/dian-zi-shu-yi-ji-bi-ji/pytroch/img/1626099787237.png">
+<meta property="og:image" content="http://example.com/2021/08/16/dian-zi-shu-yi-ji-bi-ji/pytroch/img/1626103020470.png">
+<meta property="og:image" content="http://example.com/2021/08/16/dian-zi-shu-yi-ji-bi-ji/pytroch/img/1626342564062.png">
+<meta property="og:image" content="http://example.com/2021/08/16/dian-zi-shu-yi-ji-bi-ji/pytroch/img/1626342599211.png">
+<meta property="og:image" content="http://example.com/2021/08/16/dian-zi-shu-yi-ji-bi-ji/pytroch/img/1626342812242.png">
+<meta property="og:image" content="http://example.com/2021/08/16/dian-zi-shu-yi-ji-bi-ji/pytroch/img/1626343638573.png">
+<meta property="og:image" content="http://example.com/2021/08/16/dian-zi-shu-yi-ji-bi-ji/pytroch/img/1626343638574.png">
+<meta property="og:image" content="http://example.com/2021/08/16/dian-zi-shu-yi-ji-bi-ji/pytroch/img/1626344543894.png">
+<meta property="og:image" content="http://example.com/2021/08/16/dian-zi-shu-yi-ji-bi-ji/pytroch/img/1626444328817.png">
+<meta property="og:image" content="http://example.com/2021/08/16/dian-zi-shu-yi-ji-bi-ji/pytroch/img/1626444685998.png">
+<meta property="og:image" content="http://example.com/2021/08/16/dian-zi-shu-yi-ji-bi-ji/pytroch/img/1626447169024.png">
+<meta property="og:image" content="http://example.com/2021/08/16/dian-zi-shu-yi-ji-bi-ji/pytroch/img/1626524794714.png">
+<meta property="og:image" content="http://example.com/2021/08/16/dian-zi-shu-yi-ji-bi-ji/pytroch/img/NLLLoss.png">
+<meta property="og:image" content="http://example.com/2021/08/16/dian-zi-shu-yi-ji-bi-ji/pytroch/img/CrossEntropyLoss.png">
+<meta property="og:image" content="http://example.com/2021/08/16/dian-zi-shu-yi-ji-bi-ji/pytroch/img/1626526229710.png">
+<meta property="og:image" content="http://example.com/2021/08/16/dian-zi-shu-yi-ji-bi-ji/pytroch/img/1626595032703.png">
+<meta property="og:image" content="http://example.com/2021/08/16/dian-zi-shu-yi-ji-bi-ji/pytroch/img/CNN1.png">
+<meta property="og:image" content="http://example.com/2021/08/16/dian-zi-shu-yi-ji-bi-ji/pytroch/img/CNN2.png">
+<meta property="og:image" content="http://example.com/2021/08/16/dian-zi-shu-yi-ji-bi-ji/pytroch/img/ConvolutionalLayer.png">
+<meta property="og:image" content="http://example.com/2021/08/16/dian-zi-shu-yi-ji-bi-ji/pytroch/img/SimpleNeuralNetwork.png">
+<meta property="og:image" content="http://example.com/2021/08/16/dian-zi-shu-yi-ji-bi-ji/pytroch/img/GoogleNet_Inception.png">
+<meta property="og:image" content="http://example.com/2021/08/16/dian-zi-shu-yi-ji-bi-ji/pytroch/img/1mult1.png">
+<meta property="og:image" content="http://example.com/2021/08/16/dian-zi-shu-yi-ji-bi-ji/pytroch/img/1626865022809.png">
+<meta property="og:image" content="http://example.com/2021/08/16/dian-zi-shu-yi-ji-bi-ji/pytroch/img/1626873734166.png">
+<meta property="og:image" content="http://example.com/2021/08/16/dian-zi-shu-yi-ji-bi-ji/pytroch/img/1626778627989.png">
+<meta property="og:image" content="http://example.com/2021/08/16/dian-zi-shu-yi-ji-bi-ji/pytroch/img/1626877656952.png">
+<meta property="og:image" content="http://example.com/2021/08/16/dian-zi-shu-yi-ji-bi-ji/pytroch/img/1626877976836.png">
+<meta property="og:image" content="http://example.com/2021/08/16/dian-zi-shu-yi-ji-bi-ji/pytroch/img/%E6%80%BB%E7%BB%931.png">
+<meta property="og:image" content="http://example.com/2021/08/16/dian-zi-shu-yi-ji-bi-ji/pytroch/img/1626963851425.png">
+<meta property="og:image" content="http://example.com/2021/08/16/dian-zi-shu-yi-ji-bi-ji/pytroch/img/1626964486204.png">
+<meta property="og:image" content="http://example.com/2021/08/16/dian-zi-shu-yi-ji-bi-ji/pytroch/img/1626964924150.png">
+<meta property="og:image" content="http://example.com/2021/08/16/dian-zi-shu-yi-ji-bi-ji/pytroch/img/1626965020891.png">
+<meta property="og:image" content="http://example.com/2021/08/16/dian-zi-shu-yi-ji-bi-ji/pytroch/img/1626965260820.png">
+<meta property="og:image" content="http://example.com/2021/08/16/dian-zi-shu-yi-ji-bi-ji/pytroch/img/1627034844671.png">
+<meta property="og:image" content="http://example.com/2021/08/16/dian-zi-shu-yi-ji-bi-ji/pytroch/img/1627035087401.png">
+<meta property="og:image" content="http://example.com/2021/08/16/dian-zi-shu-yi-ji-bi-ji/pytroch/img/1626966404366.png">
+<meta property="og:image" content="http://example.com/2021/08/16/dian-zi-shu-yi-ji-bi-ji/pytroch/img/1627035551488.png">
+<meta property="og:image" content="http://example.com/2021/08/16/dian-zi-shu-yi-ji-bi-ji/pytroch/img/1627134197073.png">
+<meta property="og:image" content="http://example.com/2021/08/16/dian-zi-shu-yi-ji-bi-ji/pytroch/img/1627142397742.png">
+<meta property="og:image" content="http://example.com/2021/08/16/dian-zi-shu-yi-ji-bi-ji/pytroch/img/1627310420849.png">
+<meta property="og:image" content="http://example.com/2021/08/16/dian-zi-shu-yi-ji-bi-ji/pytroch/img/1627223105297.png">
+<meta property="og:image" content="http://example.com/2021/08/16/dian-zi-shu-yi-ji-bi-ji/pytroch/img/%E5%8F%8C%E5%90%91%E5%BE%AA%E7%8E%AF%E7%BD%91%E7%BB%9C.png">
+<meta property="og:image" content="http://example.com/2021/08/16/dian-zi-shu-yi-ji-bi-ji/pytroch/img/GRU.png">
+<meta property="og:image" content="http://example.com/2021/08/16/dian-zi-shu-yi-ji-bi-ji/pytroch/img/1627313493124.png">
+<meta property="og:image" content="http://example.com/2021/08/16/dian-zi-shu-yi-ji-bi-ji/pytroch/img/1627387920164.png">
+<meta property="og:image" content="http://example.com/2021/08/16/dian-zi-shu-yi-ji-bi-ji/pytroch/img/1627388269060.png">
+<meta property="article:published_time" content="2021-08-16T08:31:01.000Z">
+<meta property="article:modified_time" content="2021-11-03T13:55:54.987Z">
+<meta property="article:author" content="fanko">
+<meta property="article:tag" content="读书笔记">
+<meta property="article:tag" content="pytorch">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/2021/08/16/dian-zi-shu-yi-ji-bi-ji/pytroch/img/1625734104819.png">
+
+
+<link rel="canonical" href="http://example.com/2021/08/16/dian-zi-shu-yi-ji-bi-ji/pytroch/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://example.com/2021/08/16/dian-zi-shu-yi-ji-bi-ji/pytroch/","path":"2021/08/16/dian-zi-shu-yi-ji-bi-ji/pytroch/","title":"视频学习|Pytorch初学习"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>视频学习|Pytorch初学习 | 前程似锦，一路繁华</title>
+  
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">前程似锦，一路繁华</h1>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">坚持,努力,认真</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li>
+        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li>
+        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BA%BF%E6%80%A7%E6%A8%A1%E5%9E%8B-Linear-Regression"><span class="nav-number">1.</span> <span class="nav-text">线性模型 Linear Regression</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D%E7%AE%97%E6%B3%95-Gradient-Descent"><span class="nav-number">2.</span> <span class="nav-text">梯度下降算法 Gradient Descent</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E9%9A%8F%E6%9C%BA%E6%A2%AF%E5%BA%A6%E4%B8%8B%E9%99%8D-Stochastic-Gradient-Descent"><span class="nav-number">2.0.1.</span> <span class="nav-text">随机梯度下降 Stochastic Gradient Descent</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Back-Propagation"><span class="nav-number">3.</span> <span class="nav-text">Back Propagation</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%94%A8Pytorch%E5%AE%9E%E7%8E%B0%E7%BA%BF%E6%80%A7%E5%9B%9E%E5%BD%92"><span class="nav-number">4.</span> <span class="nav-text">用Pytorch实现线性回归</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%80%BB%E8%BE%91%E5%9B%9E%E5%BD%92-Logistic-Regression-%EF%BC%88%E5%88%86%E7%B1%BB%E4%BB%BB%E5%8A%A1%EF%BC%89"><span class="nav-number">5.</span> <span class="nav-text">逻辑回归 Logistic Regression （分类任务）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#cross-entropy-%E4%BA%A4%E5%8F%89%E7%86%B5"><span class="nav-number">5.0.1.</span> <span class="nav-text">cross - entropy 交叉熵</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E6%A8%A1%E5%9E%8B%E6%AD%A5%E9%AA%A4"><span class="nav-number">5.0.2.</span> <span class="nav-text">模型步骤</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A4%84%E7%90%86%E5%A4%9A%E7%BB%B4%E6%95%B0%E6%8D%AE%E7%9A%84%E8%BE%93%E5%85%A5"><span class="nav-number">6.</span> <span class="nav-text">处理多维数据的输入</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#DataSet-and-DataLoader"><span class="nav-number">7.</span> <span class="nav-text">DataSet and DataLoader</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A4%9A%E5%88%86%E7%B1%BB%E9%97%AE%E9%A2%98-Softmax-Classifier"><span class="nav-number">8.</span> <span class="nav-text">多分类问题  Softmax Classifier</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%A4%84%E7%90%86%E5%9B%BE%E5%83%8F%E5%A4%9A%E5%88%86%E7%B1%BB%E4%BB%BB%E5%8A%A1"><span class="nav-number">8.0.1.</span> <span class="nav-text">处理图像多分类任务</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8D%B7%E7%A7%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C-CNN"><span class="nav-number">9.</span> <span class="nav-text">卷积神经网络 CNN</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Convolutional-Layer"><span class="nav-number">9.1.</span> <span class="nav-text">Convolutional Layer</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#padding"><span class="nav-number">9.1.1.</span> <span class="nav-text">padding</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#stride"><span class="nav-number">9.1.2.</span> <span class="nav-text">stride</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Max-Pooling-Layer"><span class="nav-number">9.2.</span> <span class="nav-text">Max Pooling  Layer</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Advanced-CNN"><span class="nav-number">10.</span> <span class="nav-text">Advanced CNN</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#GoogleNet"><span class="nav-number">10.0.1.</span> <span class="nav-text">GoogleNet</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Residual-Learning"><span class="nav-number">10.0.2.</span> <span class="nav-text">Residual Learning</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BE%AA%E7%8E%AF%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9CRNN"><span class="nav-number">11.</span> <span class="nav-text">循环神经网络RNN</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#RNNs"><span class="nav-number">11.0.1.</span> <span class="nav-text">RNNs</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#RNNCell"><span class="nav-number">11.0.2.</span> <span class="nav-text">RNNCell</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#RNN"><span class="nav-number">11.0.3.</span> <span class="nav-text">RNN</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#batch-first"><span class="nav-number">11.0.3.1.</span> <span class="nav-text">batch_first</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#example"><span class="nav-number">11.1.</span> <span class="nav-text">example</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#1-RNNCell"><span class="nav-number">11.1.0.1.</span> <span class="nav-text">1.RNNCell</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#2-RNN"><span class="nav-number">11.1.0.2.</span> <span class="nav-text">2.RNN</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E8%A1%A5%E5%85%85"><span class="nav-number">11.2.</span> <span class="nav-text">补充</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#one-hot-encoding%E7%9A%84%E6%94%B9%E8%BF%9B-%E2%80%93EMBEDDING"><span class="nav-number">11.2.1.</span> <span class="nav-text">one_hot encoding的改进 –EMBEDDING</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#RNN%E5%BA%94%E7%94%A8"><span class="nav-number">12.</span> <span class="nav-text">RNN应用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-%E6%A8%A1%E5%9E%8B"><span class="nav-number">12.1.</span> <span class="nav-text">1.模型</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%8F%8C%E5%90%91%E5%BE%AA%E7%8E%AF%E7%BD%91%E7%BB%9Cbidirectional"><span class="nav-number">12.1.1.</span> <span class="nav-text">双向循环网络bidirectional</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#GRU"><span class="nav-number">12.1.2.</span> <span class="nav-text">GRU</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Torch"><span class="nav-number">13.</span> <span class="nav-text">Torch</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Tenser-size"><span class="nav-number">13.0.1.</span> <span class="nav-text">Tenser.size()</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#call"><span class="nav-number">13.0.2.</span> <span class="nav-text">_call_()</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#enumerate"><span class="nav-number">13.0.3.</span> <span class="nav-text">enumerate</span></a></li></ol></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="fanko"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">fanko</p>
+  <div class="site-description" itemprop="description">-------- 济南大学17级本科生 --------大连理工大学21级研究生</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">176</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">43</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/fankoyu2019" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;fankoyu2019" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+  </div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/08/16/dian-zi-shu-yi-ji-bi-ji/pytroch/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="fanko">
+      <meta itemprop="description" content="-------- 济南大学17级本科生 --------大连理工大学21级研究生">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="前程似锦，一路繁华">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          视频学习|Pytorch初学习
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2021-08-16 16:31:01" itemprop="dateCreated datePublished" datetime="2021-08-16T16:31:01+08:00">2021-08-16</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">读书笔记</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <p> <img src="img/1625734104819.png" alt="1625734104819"></p>
+<p>注意:<strong>维度灾难</strong></p>
+<p>新的挑战</p>
+<p>Limit of hand-designed feature.</p>
+<p>SVM can not handle big data set well.</p>
+<p>More and more application need to handle unstructured data.</p>
+<span id="more"></span>
+
+<h2 id="线性模型-Linear-Regression"><a href="#线性模型-Linear-Regression" class="headerlink" title="线性模型 Linear Regression"></a>线性模型 Linear Regression</h2><p><strong>过拟合       |       泛化</strong></p>
+<p>1.Function ： y= b + w x1</p>
+<p>2.Define Loss from Training Data: Loss is a function of parameters L(b,w)<br>$$<br>e_i =| y’_i - y_i |<br>$$</p>
+<p>$$<br>Loss : L = \frac{1}{N}  \sum_n e_n<br>$$</p>
+<p>:L is mean absolute error (MAE)<br>$$<br>e_i = (y’_i-y_i)^2<br>$$<br>：L is mean square error(MSE)</p>
+<p>3.Optimization:<br>$$<br>w^*,b^* = arg   min_w,_b L<br>$$</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#下两行解决坐标轴不能显示中文问题</span></span><br><span class="line"><span class="keyword">from</span> pylab <span class="keyword">import</span> *</span><br><span class="line">mpl.rcParams[<span class="string">&#x27;font.sans-serif&#x27;</span>] = [<span class="string">&#x27;SimHei&#x27;</span>]</span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> mpl_toolkits.mplot3d <span class="keyword">import</span> Axes3D  <span class="comment"># mpl_toolkits.mplot3d是Matplotlib里面专门用来画三维图的工具包。</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#设函数为 y = 2.5x + 0.8</span></span><br><span class="line">x_data = [<span class="number">1.0</span>,<span class="number">2.0</span>,<span class="number">3.0</span>]</span><br><span class="line">y_data = [<span class="number">2.0</span>,<span class="number">4.</span>,<span class="number">6.</span>]</span><br><span class="line"></span><br><span class="line"><span class="comment">#前向传播</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">forward</span>(<span class="params">x</span>):</span></span><br><span class="line">    <span class="keyword">return</span> x * w + b</span><br><span class="line"></span><br><span class="line"><span class="comment">#损失函数</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">loss</span>(<span class="params">x,y</span>):</span></span><br><span class="line">    y_pred = forward(x)</span><br><span class="line">    <span class="keyword">return</span> (y_pred-y)*(y_pred-y)</span><br><span class="line"></span><br><span class="line">mse_list = [] <span class="comment">#记录权重（W）平均损失值</span></span><br><span class="line">W=np.arange(<span class="number">0.0</span>,<span class="number">4.1</span>,<span class="number">0.1</span>) <span class="comment"># 权重 W 从0.0到4.0 间隔0.1取数</span></span><br><span class="line">B=np.arange(<span class="number">0.0</span>,<span class="number">4.1</span>,<span class="number">0.1</span>) <span class="comment"># 偏置 B 从0.0到4.0 间隔0.1取数</span></span><br><span class="line">[w,b]=np.meshgrid(W,B)  <span class="comment"># [X,Y]=np.meshgrid(x,y) 函数用两个坐标轴上的点在平面上画网格。</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">用法：</span></span><br><span class="line"><span class="string">　　[X,Y]=meshgrid(x,y)</span></span><br><span class="line"><span class="string">　　[X,Y]=meshgrid(x)与[X,Y]=meshgrid(x,x)是等同的</span></span><br><span class="line"><span class="string">　　[X,Y,Z]=meshgrid(x,y,z)生成三维数组，可用来计算三变量的函数和绘制三维立体图</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"></span><br><span class="line">l_sum = <span class="number">0</span> <span class="comment">#累加损失值的变量</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> x_val, y_val <span class="keyword">in</span> <span class="built_in">zip</span>(x_data, y_data):</span><br><span class="line">    y_pred_val = forward(x_val)</span><br><span class="line">    <span class="built_in">print</span>(y_pred_val)</span><br><span class="line">    loss_val = loss(x_val, y_val)</span><br><span class="line">    l_sum += loss_val <span class="comment">#累加损失值</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(w.shape)</span><br><span class="line"><span class="built_in">print</span>(l_sum)</span><br><span class="line"><span class="built_in">print</span>(l_sum.shape)</span><br><span class="line">fig = plt.figure()</span><br><span class="line">ax = Axes3D(fig) <span class="comment">#Axes3D是mpl_toolkits.mplot3d中的一个绘图函数</span></span><br><span class="line">ax.plot_surface(w, b, l_sum/<span class="number">3</span>, cmap=<span class="string">&#x27;rainbow&#x27;</span>) <span class="comment">#画曲面图---Axes3D.plot_surface(X, Y, Z)</span></span><br><span class="line">ax.set_xlabel(<span class="string">&quot;权重 W&quot;</span>)</span><br><span class="line">ax.set_ylabel(<span class="string">&quot;偏置项 B&quot;</span>)</span><br><span class="line">ax.set_zlabel(<span class="string">&quot;损失值&quot;</span>)</span><br><span class="line">plt.show()</span><br></pre></td></tr></table></figure>
+
+<h2 id="梯度下降算法-Gradient-Descent"><a href="#梯度下降算法-Gradient-Descent" class="headerlink" title="梯度下降算法 Gradient Descent"></a>梯度下降算法 Gradient Descent</h2><p>3.Optimization:<br>$$<br>w^*,b^* = arg   min_w,_b L<br>$$</p>
+<p>非凸函数—-   局部最优</p>
+<p>鞍点 <strong>(最大问题)</strong></p>
+<p>指数加权均值<br>$$<br>C’_0 = C_0,<br>C’<em>i = βC_i + (1-β) C’</em>{i-1}<br>$$<br><strong>训练失败</strong>:1.学习率太大</p>
+<h4 id="随机梯度下降-Stochastic-Gradient-Descent"><a href="#随机梯度下降-Stochastic-Gradient-Descent" class="headerlink" title="随机梯度下降 Stochastic Gradient Descent"></a>随机梯度下降 Stochastic Gradient Descent</h4><p><img src="img/1625993694363.png" alt="1625993694363"></p>
+<p>注意：梯度下降 比  随机梯度下降 效率高 （并行计算） </p>
+<p>所以采用：Mini-Batch (Batch)</p>
+<h2 id="Back-Propagation"><a href="#Back-Propagation" class="headerlink" title="Back Propagation"></a>Back Propagation</h2><p><img src="img/1625997767831.png" alt="1625997767831"></p>
+<p><img src="img/1625998757958.png" alt="1625998757958"></p>
+<h2 id="用Pytorch实现线性回归"><a href="#用Pytorch实现线性回归" class="headerlink" title="用Pytorch实现线性回归"></a>用Pytorch实现线性回归</h2><p>1.Prepare dataset</p>
+<p>2.Design model using Class :y_    pred</p>
+<p>3.Construct loss and optimizer</p>
+<p>4.Training cycle:forward backward update</p>
+<p><img src="img/1626099787237.png" alt="1626099787237"></p>
+<p>线性单元Linear Unit：z=w*x+b </p>
+<p><img src="img/1626103020470.png" alt="1626103020470"></p>
+<h2 id="逻辑回归-Logistic-Regression-（分类任务）"><a href="#逻辑回归-Logistic-Regression-（分类任务）" class="headerlink" title="逻辑回归 Logistic Regression （分类任务）"></a>逻辑回归 Logistic Regression （分类任务）</h2><p>R-&gt;[0,1]</p>
+<p>Logistic Function:<br>$$<br>F（x)=\frac{1}{1+e^{-x}}<br>$$<br><img src="img/1626342564062.png" alt="1626342564062"></p>
+<p><img src="img/1626342599211.png" alt="1626342599211"></p>
+<p><img src="img/1626342812242.png" alt="1626342812242"></p>
+<h4 id="cross-entropy-交叉熵"><a href="#cross-entropy-交叉熵" class="headerlink" title="cross - entropy 交叉熵"></a>cross - entropy 交叉熵</h4><p><img src="img/1626343638573.png" alt="1626343415877"></p>
+<p>越大越好(对数都小于1 结果都是负数 ， 总之 越接近0越好)</p>
+<p><img src="img/1626343638574.png" alt="1626343638574"></p>
+<h4 id="模型步骤"><a href="#模型步骤" class="headerlink" title="模型步骤"></a>模型步骤</h4><p><img src="img/1626344543894.png" alt="1626344543894"></p>
+<h2 id="处理多维数据的输入"><a href="#处理多维数据的输入" class="headerlink" title="处理多维数据的输入"></a>处理多维数据的输入</h2><p><img src="img/1626444328817.png" alt="1626444328817"></p>
+<p>为何向量化？：利用CPU/GPU并行能力提高运算效率 </p>
+<p><img src="img/1626444685998.png" alt="1626444685998"></p>
+<p><img src="img/1626447169024.png" alt="1626447169024"></p>
+<h2 id="DataSet-and-DataLoader"><a href="#DataSet-and-DataLoader" class="headerlink" title="DataSet and DataLoader"></a>DataSet and DataLoader</h2><p>DataSet 抽象类</p>
+<p>DataLoader:batch_size = 2 , shuffle = True </p>
+<h2 id="多分类问题-Softmax-Classifier"><a href="#多分类问题-Softmax-Classifier" class="headerlink" title="多分类问题  Softmax Classifier"></a>多分类问题  Softmax Classifier</h2><p><img src="img/1626524794714.png" alt="1626524794714"></p>
+<p>NLL LOSS</p>
+<p><img src="img/NLLLoss.png" alt="NLLLoss"></p>
+<p>CrossEntropyLoss</p>
+<p><img src="img/CrossEntropyLoss.png" alt="1626525431879"></p>
+<h4 id="处理图像多分类任务"><a href="#处理图像多分类任务" class="headerlink" title="处理图像多分类任务"></a>处理图像多分类任务</h4><p><img src="img/1626526229710.png" alt="1626526229710"></p>
+<p><img src="img/1626595032703.png" alt="1626595032703"></p>
+<p><strong>为什么要激活？</strong></p>
+<p>​       简单的堆叠网络层，而不经过非线性激活函数激活，并不能学习到新的特征学到的仍然是线性关系。</p>
+<h2 id="卷积神经网络-CNN"><a href="#卷积神经网络-CNN" class="headerlink" title="卷积神经网络 CNN"></a>卷积神经网络 CNN</h2><p>1.能保留空间信息 </p>
+<p><img src="img/CNN1.png" alt="1626622853583"></p>
+<p><img src="img/CNN2.png" alt="1626624709731"></p>
+<p>卷积核通道数量 是 输入通道数  N</p>
+<p>卷积核的个数 是 输出通道数   M</p>
+<h3 id="Convolutional-Layer"><a href="#Convolutional-Layer" class="headerlink" title="Convolutional Layer"></a>Convolutional Layer</h3><p><img src="img/ConvolutionalLayer.png" alt="1626691213183"></p>
+<h4 id="padding"><a href="#padding" class="headerlink" title="padding"></a>padding</h4><p> 外围填充0</p>
+<p>kernel_size / 2 </p>
+<h4 id="stride"><a href="#stride" class="headerlink" title="stride"></a>stride</h4><p>步长 默认为 1</p>
+<h3 id="Max-Pooling-Layer"><a href="#Max-Pooling-Layer" class="headerlink" title="Max Pooling  Layer"></a>Max Pooling  Layer</h3><p>默认 stride = 2</p>
+<p><img src="img/SimpleNeuralNetwork.png" alt="1626690552740"></p>
+<h2 id="Advanced-CNN"><a href="#Advanced-CNN" class="headerlink" title="Advanced CNN"></a>Advanced CNN</h2><h4 id="GoogleNet"><a href="#GoogleNet" class="headerlink" title="GoogleNet"></a>GoogleNet</h4><p><img src="img/GoogleNet_Inception.png" alt="1626788847241"></p>
+<p><img src="img/1mult1.png" alt="1626774644914"></p>
+<p><img src="img/1626865022809.png" alt="1626865022809"></p>
+<p><img src="img/1626873734166.png" alt="1626873734166"></p>
+<h4 id="Residual-Learning"><a href="#Residual-Learning" class="headerlink" title="Residual Learning"></a>Residual Learning</h4><p><img src="img/1626778627989.png" alt="1626778627989"></p>
+<p><img src="img/1626877656952.png" alt="1626877656952"></p>
+<p><img src="img/1626877976836.png" alt="1626877976836"></p>
+<p><img src="img/%E6%80%BB%E7%BB%931.png" alt="1626788538968"></p>
+<h2 id="循环神经网络RNN"><a href="#循环神经网络RNN" class="headerlink" title="循环神经网络RNN"></a>循环神经网络RNN</h2><p><strong>处理具有序列关系的数据</strong></p>
+<p>例如：时间，天气，<strong>自然语言</strong></p>
+<h4 id="RNNs"><a href="#RNNs" class="headerlink" title="RNNs"></a>RNNs</h4><p><img src="img/1626963851425.png" alt="1626963851425"></p>
+<p><img src="img/1626964486204.png" alt="1626964486204"></p>
+<p><strong>两种构建RNN的方式</strong></p>
+<h4 id="RNNCell"><a href="#RNNCell" class="headerlink" title="RNNCell"></a>RNNCell</h4><p>cell = torch.nn.RNNCell(input_size=input_size, hidden_size=hidden_size)</p>
+<p>hidden = cell(input, hidden)</p>
+<p><img src="img/1626964924150.png" alt="1626964924150"></p>
+<p>example:</p>
+<p><img src="img/1626965020891.png" alt="1626965020891"></p>
+<h4 id="RNN"><a href="#RNN" class="headerlink" title="RNN"></a>RNN</h4><p><img src="img/1626965260820.png" alt="1626965260820"></p>
+<p><img src="img/1627034844671.png" alt="1627034844671"></p>
+<h5 id="batch-first"><a href="#batch-first" class="headerlink" title="batch_first"></a>batch_first</h5><p><img src="img/1627035087401.png" alt="1627035087401"></p>
+<h3 id="example"><a href="#example" class="headerlink" title="example"></a>example</h3><h5 id="1-RNNCell"><a href="#1-RNNCell" class="headerlink" title="1.RNNCell"></a>1.RNNCell</h5><p><img src="img/1626966404366.png" alt="1626966404366"></p>
+<p><strong>注意：RNN Cell should be vectors of numbers.</strong></p>
+<p><img src="img/1627035551488.png" alt="1627035551488"></p>
+<h5 id="2-RNN"><a href="#2-RNN" class="headerlink" title="2.RNN"></a>2.RNN</h5><p><img src="img/1627134197073.png" alt="1627134197073"></p>
+<h3 id="补充"><a href="#补充" class="headerlink" title="补充"></a>补充</h3><h4 id="one-hot-encoding的改进-–EMBEDDING"><a href="#one-hot-encoding的改进-–EMBEDDING" class="headerlink" title="one_hot encoding的改进 –EMBEDDING"></a>one_hot encoding的改进 –EMBEDDING</h4><p>优点：Lower-dimension 、Dense、Learned from data</p>
+<p><img src="img/1627142397742.png" alt="1627142397742"></p>
+<p><img src="img/1627310420849.png" alt="1627310420849"></p>
+<p>output of embedding layer with shape:(seqlen,batchSize, <strong>Embedding_Size</strong>)</p>
+<h2 id="RNN应用"><a href="#RNN应用" class="headerlink" title="RNN应用"></a>RNN应用</h2><h3 id="1-模型"><a href="#1-模型" class="headerlink" title="1.模型"></a>1.模型</h3><p><img src="img/1627223105297.png" alt="1627223105297"></p>
+<h4 id="双向循环网络bidirectional"><a href="#双向循环网络bidirectional" class="headerlink" title="双向循环网络bidirectional"></a>双向循环网络bidirectional</h4><p><img src="img/%E5%8F%8C%E5%90%91%E5%BE%AA%E7%8E%AF%E7%BD%91%E7%BB%9C.png" alt="1627227867221"></p>
+<h4 id="GRU"><a href="#GRU" class="headerlink" title="GRU"></a>GRU</h4><p><img src="img/GRU.png" alt="1627312937634"></p>
+<p>为什么线性层是 hidden_size * self.n_directions：</p>
+<p><img src="img/1627313493124.png" alt="1627313493124"></p>
+<p><img src="img/1627387920164.png" alt="1627387920164"></p>
+<p><img src="img/1627388269060.png" alt="1627388269060"></p>
+<p>疑问1.为什么RNN层 后 接Linear层 要用 output作为结果 而不是 hidden </p>
+<h2 id="Torch"><a href="#Torch" class="headerlink" title="Torch"></a>Torch</h2><h4 id="Tenser-size"><a href="#Tenser-size" class="headerlink" title="Tenser.size()"></a>Tenser.size()</h4><p>该方法返回的是当前张量的形状,返回值是元组tuple的一个子类. </p>
+<h4 id="call"><a href="#call" class="headerlink" title="_call_()"></a>_<em>call</em>_()</h4><p>继承 torch.nn.Module </p>
+<p>__call__函数 中 自动调用 forward()  </p>
+<h4 id="enumerate"><a href="#enumerate" class="headerlink" title="enumerate"></a>enumerate</h4><p>enumerate() 函数用于将一个可遍历的数据对象(如列表、元组或字符串)组合为一个索引序列，同时列出数据和数据下标， </p>
+<p>seasons = [‘Spring’, ‘Summer’, ‘Fall’, ‘Winter’]<br> list(enumerate(seasons))<br>[(0, ‘Spring’), (1, ‘Summer’), (2, ‘Fall’), (3, ‘Winter’)]<br> list(enumerate(seasons, start=1))       # 下标从 1 开始<br>[(1, ‘Spring’), (2, ‘Summer’), (3, ‘Fall’), (4, ‘Winter’)]</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/" rel="tag"># 读书笔记</a>
+              <a href="/tags/pytorch/" rel="tag"># pytorch</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2021/08/15/dian-zi-shu-yi-ji-bi-ji/ji-qi-xue-xi/" rel="prev" title="基础学习|机器学习初认识">
+                  <i class="fa fa-chevron-left"></i> 基础学习|机器学习初认识
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2021/09/15/dian-zi-shu-yi-ji-bi-ji/zong-shu-lei-bi-ji/" rel="next" title="综述|研究方向预备知识总结">
+                  综述|研究方向预备知识总结 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">fanko</span>
+</div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/next-boot.js"></script>
+
+  
+<script src="https://cdn.jsdelivr.net/npm/hexo-generator-searchdb@1.4.0/dist/search.js" integrity="sha256-vXZMYLEqsROAXkEw93GGIvaB2ab+QW6w3+1ahD9nXXA=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+</body>
+</html>

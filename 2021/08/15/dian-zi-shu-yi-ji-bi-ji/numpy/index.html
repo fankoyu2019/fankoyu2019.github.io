@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)">
+<meta name="generator" content="Hexo 5.4.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/all.min.css" integrity="sha256-mUZM63G8m73Mcidfrv5E+Y61y7a12O5mW4ezU3bxqW4=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Gemini","darkmode":true,"version":"8.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+<meta name="description" content="NumPy简介具有自动广播的机制！ NumPy 是用于处理数组的 python 库。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="基础学习|Numpy初认识">
+<meta property="og:url" content="http://example.com/2021/08/15/dian-zi-shu-yi-ji-bi-ji/numpy/index.html">
+<meta property="og:site_name" content="前程似锦，一路繁华">
+<meta property="og:description" content="NumPy简介具有自动广播的机制！ NumPy 是用于处理数组的 python 库。">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2021-08-15T08:31:01.000Z">
+<meta property="article:modified_time" content="2021-11-03T06:18:13.913Z">
+<meta property="article:author" content="fanko">
+<meta property="article:tag" content="读书笔记">
+<meta property="article:tag" content="numpy">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://example.com/2021/08/15/dian-zi-shu-yi-ji-bi-ji/numpy/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://example.com/2021/08/15/dian-zi-shu-yi-ji-bi-ji/numpy/","path":"2021/08/15/dian-zi-shu-yi-ji-bi-ji/numpy/","title":"基础学习|Numpy初认识"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>基础学习|Numpy初认识 | 前程似锦，一路繁华</title>
+  
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">前程似锦，一路繁华</h1>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">坚持,努力,认真</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li>
+        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li>
+        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#NumPy%E7%AE%80%E4%BB%8B"><span class="nav-number">1.</span> <span class="nav-text">NumPy简介</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#0-D%E6%95%B0%E7%BB%84"><span class="nav-number">1.0.1.</span> <span class="nav-text">0-D数组</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#1-D%E6%95%B0%E7%BB%84"><span class="nav-number">1.0.2.</span> <span class="nav-text">1-D数组</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#2-D%E6%95%B0%E7%BB%84"><span class="nav-number">1.0.3.</span> <span class="nav-text">2-D数组</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#3-D%E6%95%B0%E7%BB%84"><span class="nav-number">1.0.4.</span> <span class="nav-text">3-D数组</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#ndmin"><span class="nav-number">1.0.5.</span> <span class="nav-text">ndmin</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%95%B0%E7%BB%84%E7%B4%A2%E5%BC%95"><span class="nav-number">2.</span> <span class="nav-text">数组索引</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%95%B0%E7%BB%84%E8%A3%81%E5%88%87"><span class="nav-number">3.</span> <span class="nav-text">数组裁切</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%A3%81%E5%88%872-D%E6%95%B0%E7%BB%84"><span class="nav-number">3.0.1.</span> <span class="nav-text">裁切2-D数组</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B"><span class="nav-number">4.</span> <span class="nav-text">数据类型</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E8%BD%AC%E6%8D%A2%E5%B7%B2%E6%9C%89%E6%95%B0%E7%BB%84%E7%9A%84%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B"><span class="nav-number">4.0.1.</span> <span class="nav-text">转换已有数组的数据类型</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%89%AF%E6%9C%AC%E5%92%8C%E8%A7%86%E5%9B%BE"><span class="nav-number">5.</span> <span class="nav-text">副本和视图</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%95%B0%E7%BB%84%E5%BD%A2%E7%8A%B6"><span class="nav-number">6.</span> <span class="nav-text">数组形状</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%95%B0%E7%BB%84%E9%87%8D%E5%A1%91"><span class="nav-number">7.</span> <span class="nav-text">数组重塑</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#reshape"><span class="nav-number">7.0.1.</span> <span class="nav-text">reshape</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E5%B1%95%E5%B9%B3%E6%95%B0%E7%BB%84"><span class="nav-number">7.0.2.</span> <span class="nav-text">展平数组</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%95%B0%E7%BB%84%E8%BF%AD%E4%BB%A3"><span class="nav-number">8.</span> <span class="nav-text">数组迭代</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8-nditer-%E8%BF%AD%E4%BB%A3%E6%95%B0%E7%BB%84"><span class="nav-number">8.0.1.</span> <span class="nav-text">使用 nditer() 迭代数组</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8-ndenumerate-%E8%BF%9B%E8%A1%8C%E6%9E%9A%E4%B8%BE%E8%BF%AD%E4%BB%A3"><span class="nav-number">8.0.2.</span> <span class="nav-text">使用 ndenumerate() 进行枚举迭代</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%BF%9E%E6%8E%A5%E6%95%B0%E7%BB%84%EF%BC%88%E4%B8%8D%E6%87%82%EF%BC%89"><span class="nav-number">9.</span> <span class="nav-text">连接数组（不懂）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8%E5%A0%86%E6%A0%88%E5%87%BD%E6%95%B0%E8%BF%9E%E6%8E%A5%E6%95%B0%E7%BB%84"><span class="nav-number">9.0.1.</span> <span class="nav-text">使用堆栈函数连接数组</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%95%B0%E7%BB%84%E6%8B%86%E5%88%86"><span class="nav-number">10.</span> <span class="nav-text">数组拆分</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%95%B0%E7%BB%84%E6%90%9C%E7%B4%A2"><span class="nav-number">11.</span> <span class="nav-text">数组搜索</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#where%E6%90%9C%E7%B4%A2%E6%95%B0%E7%BB%84"><span class="nav-number">11.0.1.</span> <span class="nav-text">where搜索数组</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#searchsorted%E6%90%9C%E7%B4%A2%E6%8E%92%E5%BA%8F"><span class="nav-number">11.0.2.</span> <span class="nav-text">searchsorted搜索排序</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%95%B0%E7%BB%84%E6%8E%92%E5%BA%8F"><span class="nav-number">12.</span> <span class="nav-text">数组排序</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%95%B0%E7%BB%84%E8%BF%87%E6%BB%A4"><span class="nav-number">13.</span> <span class="nav-text">数组过滤</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%9B%B4%E6%8E%A5%E4%BB%8E%E6%95%B0%E7%BB%84%E5%88%9B%E5%BB%BA%E8%BF%87%E6%BB%A4%E5%99%A8"><span class="nav-number">13.0.1.</span> <span class="nav-text">直接从数组创建过滤器</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%9A%8F%E6%9C%BA%E6%95%B0"><span class="nav-number">14.</span> <span class="nav-text">随机数</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#%E7%94%9F%E6%88%90%E6%95%B0%E7%BB%84"><span class="nav-number">14.0.1.</span> <span class="nav-text">生成数组</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#%E4%BB%8E%E6%95%B0%E7%BB%84%E4%B8%AD%E7%94%9F%E6%88%90%E9%9A%8F%E6%9C%BA%E6%95%B0"><span class="nav-number">14.0.2.</span> <span class="nav-text">从数组中生成随机数</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ufuncs"><span class="nav-number">15.</span> <span class="nav-text">ufuncs</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%9E%E4%BE%8B"><span class="nav-number">15.1.</span> <span class="nav-text">实例</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="fanko"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">fanko</p>
+  <div class="site-description" itemprop="description">-------- 济南大学17级本科生 --------大连理工大学21级研究生</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">176</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">6</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">43</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/fankoyu2019" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;fankoyu2019" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+  </div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/08/15/dian-zi-shu-yi-ji-bi-ji/numpy/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="fanko">
+      <meta itemprop="description" content="-------- 济南大学17级本科生 --------大连理工大学21级研究生">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="前程似锦，一路繁华">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          基础学习|Numpy初认识
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2021-08-15 16:31:01" itemprop="dateCreated datePublished" datetime="2021-08-15T16:31:01+08:00">2021-08-15</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">读书笔记</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h2 id="NumPy简介"><a href="#NumPy简介" class="headerlink" title="NumPy简介"></a>NumPy简介</h2><p>具有自动广播的机制！</p>
+<p>NumPy 是用于处理数组的 python 库。 </p>
+<span id="more"></span>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">import numpy as np </span><br><span class="line"></span><br><span class="line">arr = np.array([1, 2, 3, 4, 5]) </span><br><span class="line"></span><br><span class="line">print(arr)</span><br></pre></td></tr></table></figure>
+
+<p>要创建 ndarray，我们可以将列表、元组或任何类似数组的对象传递给 array() 方法，然后它将被转换为 ndarray：</p>
+<h4 id="0-D数组"><a href="#0-D数组" class="headerlink" title="0-D数组"></a>0-D数组</h4><p>0-D 数组，或标量（Scalars），是数组中的元素。数组中的每个值都是一个 0-D 数组。</p>
+<p>就是指一个数</p>
+<h4 id="1-D数组"><a href="#1-D数组" class="headerlink" title="1-D数组"></a>1-D数组</h4><p>其元素为 0-D 数组的数组，称为一维或 1-D 数组。</p>
+<h4 id="2-D数组"><a href="#2-D数组" class="headerlink" title="2-D数组"></a>2-D数组</h4><p> 其元素为 1-D 数组的数组，称为 2-D 数组。</p>
+<p>它们通常用于表示矩阵或二阶张量。</p>
+<p>NumPy 有一个专门用于矩阵运算的完整子模块 numpy.mat。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"></span><br><span class="line">arr = np.array([[<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>], [<span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>]])</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(arr)</span><br></pre></td></tr></table></figure>
+
+<h4 id="3-D数组"><a href="#3-D数组" class="headerlink" title="3-D数组"></a>3-D数组</h4><p>其元素为 2-D 数组的数组，称为 3-D 数组。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"></span><br><span class="line">arr = np.array([[[<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>], [<span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>]], [[<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>], [<span class="number">4</span>, <span class="number">5</span>, <span class="number">6</span>]]])</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(arr)</span><br></pre></td></tr></table></figure>
+
+
+
+<p>NumPy 数组提供了 ndim 属性，该属性返回一个整数，该整数会告诉我们数组有多少维。</p>
+<h4 id="ndmin"><a href="#ndmin" class="headerlink" title="ndmin"></a>ndmin</h4><p> 在创建数组时，可以使用 ndmin 参数定义维数。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">import numpy as np</span><br><span class="line"></span><br><span class="line">arr = np.array([1, 2, 3, 4], ndmin=5)</span><br><span class="line"></span><br><span class="line">print(arr)</span><br><span class="line">print(&#x27;number of dimensions :&#x27;, arr.ndim)</span><br></pre></td></tr></table></figure>
+
+<h2 id="数组索引"><a href="#数组索引" class="headerlink" title="数组索引"></a>数组索引</h2><p>要访问二维数组中的元素，我们可以使用逗号分隔的整数表示元素的维数和索引。 </p>
+<p>访问第一维中的第二个元素：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"></span><br><span class="line">arr = np.array([[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>], [<span class="number">6</span>,<span class="number">7</span>,<span class="number">8</span>,<span class="number">9</span>,<span class="number">10</span>]])</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;2nd element on 1st dim: &#x27;</span>, arr[<span class="number">0</span>, <span class="number">1</span>])</span><br></pre></td></tr></table></figure>
+
+<p>使用负索引从尾开始访问数组。 </p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"></span><br><span class="line">arr = np.array([[<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>], [<span class="number">6</span>,<span class="number">7</span>,<span class="number">8</span>,<span class="number">9</span>,<span class="number">10</span>]])</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;Last element from 2nd dim: &#x27;</span>, arr[<span class="number">1</span>, -<span class="number">1</span>])</span><br></pre></td></tr></table></figure>
+
+<h2 id="数组裁切"><a href="#数组裁切" class="headerlink" title="数组裁切"></a>数组裁切</h2><p>注释：结果包括了开始索引，但不包括结束索引。 <strong>[ ）</strong>左闭右开</p>
+<p>[<em>start</em>：<em>end</em>：<em>step</em>] </p>
+<p>如果我们不传递 <em>start</em>，则将其视为 0。</p>
+<p>如果我们不传递 <em>end</em>，则视为该维度内数组的长度。</p>
+<p>如果我们不传递 <em>step</em>，则视为 1。</p>
+<h4 id="裁切2-D数组"><a href="#裁切2-D数组" class="headerlink" title="裁切2-D数组"></a>裁切2-D数组</h4><p>从两个元素中返回索引 2： </p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"></span><br><span class="line">arr = np.array([[<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>], [<span class="number">6</span>, <span class="number">7</span>, <span class="number">8</span>, <span class="number">9</span>, <span class="number">10</span>]])</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(arr[<span class="number">0</span>:<span class="number">2</span>, <span class="number">2</span>])</span><br></pre></td></tr></table></figure>
+
+<h2 id="数据类型"><a href="#数据类型" class="headerlink" title="数据类型"></a>数据类型</h2><p>NumPy 数组对象有一个名为 dtype 的属性，该属性返回数组的数据类型： </p>
+<p>我们使用 array() 函数来创建数组，该函数可以使用可选参数：dtype，它允许我们定义数组元素的预期数据类型： </p>
+<h4 id="转换已有数组的数据类型"><a href="#转换已有数组的数据类型" class="headerlink" title="转换已有数组的数据类型"></a>转换已有数组的数据类型</h4><p>更改现有数组的数据类型的最佳方法，是使用 astype() 方法复制该数组。</p>
+<p>astype() 函数创建数组的副本，并允许您将数据类型指定为参数。</p>
+<p>数据类型可以使用字符串指定，例如 ‘f’ 表示浮点数，’i’ 表示整数等。或者您也可以直接使用数据类型，例如 float 表示浮点数，int 表示整数。</p>
+<h2 id="副本和视图"><a href="#副本和视图" class="headerlink" title="副本和视图"></a>副本和视图</h2><p>副本和数组视图之间的主要区别在于副本是一个新数组，而这个视图只是原始数组的视图。</p>
+<p>副本拥有数据，对副本所做的任何更改都不会影响原始数组，对原始数组所做的任何更改也不会影响副本。</p>
+<p>视图不拥有数据，对视图所做的任何更改都会影响原始数组，而对原始数组所做的任何更改都会影响视图。</p>
+<p>副本：x = arr.copy()</p>
+<p>视图：x = arr.view()</p>
+<p>如上所述，副本拥有数据，而视图不拥有数据，但是我们如何检查呢？</p>
+<p>每个 NumPy 数组都有一个属性 base，如果该数组拥有数据，则这个 base 属性返回 None。</p>
+<p>否则，base 属性将引用原始对象。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">import numpy as np</span><br><span class="line"></span><br><span class="line">arr = np.array([1, 2, 3, 4, 5])</span><br><span class="line"></span><br><span class="line">x = arr.copy()</span><br><span class="line">y = arr.view()</span><br><span class="line"></span><br><span class="line">print(x.base)  //None</span><br><span class="line">print(y.base)  //[1,2,3,4,5]</span><br></pre></td></tr></table></figure>
+
+<h2 id="数组形状"><a href="#数组形状" class="headerlink" title="数组形状"></a>数组形状</h2><p>NumPy 数组有一个名为 shape 的属性，该属性返回一个元组，每个索引具有相应元素的数量。 </p>
+<h2 id="数组重塑"><a href="#数组重塑" class="headerlink" title="数组重塑"></a>数组重塑</h2><h4 id="reshape"><a href="#reshape" class="headerlink" title="reshape"></a>reshape</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">import numpy as np</span><br><span class="line"></span><br><span class="line">arr = np.array([1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12])</span><br><span class="line"></span><br><span class="line">newarr = arr.reshape(4, 3)</span><br><span class="line"></span><br><span class="line">print(newarr)</span><br></pre></td></tr></table></figure>
+
+<p>返回原始数组，因此它是一个视图。 </p>
+<p>您可以使用一个“未知”维度。</p>
+<p>这意味着您不必在 reshape 方法中为维度之一指定确切的数字。</p>
+<p>传递 -1 作为值，NumPy 将为您计算该数字。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">import numpy as np</span><br><span class="line"></span><br><span class="line">arr = np.array([1, 2, 3, 4, 5, 6, 7, 8])</span><br><span class="line"></span><br><span class="line">newarr = arr.reshape(2, 2, -1)</span><br><span class="line"></span><br><span class="line">print(newarr)</span><br></pre></td></tr></table></figure>
+
+<p><strong>注释：我们不能将 -1 传递给一个以上的维度。</strong> </p>
+<h4 id="展平数组"><a href="#展平数组" class="headerlink" title="展平数组"></a>展平数组</h4><p>展平数组（Flattening the arrays）是指将多维数组转换为 1D 数组。</p>
+<p>我们可以使用 reshape(-1) 来做到这一点。</p>
+<h2 id="数组迭代"><a href="#数组迭代" class="headerlink" title="数组迭代"></a>数组迭代</h2><h4 id="使用-nditer-迭代数组"><a href="#使用-nditer-迭代数组" class="headerlink" title="使用 nditer() 迭代数组"></a>使用 nditer() 迭代数组</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">import numpy as np</span><br><span class="line"></span><br><span class="line">arr = np.array([[[1, 2], [3, 4]], [[5, 6], [7, 8]]])</span><br><span class="line"></span><br><span class="line">for x in np.nditer(arr):</span><br><span class="line">  print(x)</span><br></pre></td></tr></table></figure>
+
+<p>我们可以使用 op_dtypes 参数，并传递期望的数据类型，以在迭代时更改元素的数据类型。</p>
+<p>NumPy 不会就地更改元素的数据类型（元素位于数组中），因此它需要一些其他空间来执行此操作，该额外空间称为 buffer，为了在 nditer() 中启用它，我们传参 flags=[‘buffered’]。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">import numpy as np</span><br><span class="line"></span><br><span class="line">arr = np.array([1, 2, 3])</span><br><span class="line"></span><br><span class="line">for x in np.nditer(arr, flags=[&#x27;buffered&#x27;], op_dtypes=[&#x27;S&#x27;]):</span><br><span class="line">  print(x)</span><br></pre></td></tr></table></figure>
+
+<p>我们可以使用过滤，然后进行迭代。 </p>
+<p>每遍历 2D 数组的一个标量元素，跳过 1 个元素 </p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">import numpy as np</span><br><span class="line"></span><br><span class="line">arr = np.array([[1, 2, 3, 4], [5, 6, 7, 8]])</span><br><span class="line"></span><br><span class="line">for x in np.nditer(arr[:, ::2]):</span><br><span class="line">  print(x)</span><br></pre></td></tr></table></figure>
+
+<h4 id="使用-ndenumerate-进行枚举迭代"><a href="#使用-ndenumerate-进行枚举迭代" class="headerlink" title="使用 ndenumerate() 进行枚举迭代"></a>使用 ndenumerate() 进行枚举迭代</h4><p>枚举是指逐一提及事物的序号。</p>
+<p>有时，我们在迭代时需要元素的相应索引，对于这些用例，可以使用 ndenumerate() 方法。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">import numpy as np</span><br><span class="line"></span><br><span class="line">arr = np.array([[1, 2, 3, 4], [5, 6, 7, 8]])</span><br><span class="line"></span><br><span class="line">for idx, x in np.ndenumerate(arr):</span><br><span class="line">  print(idx, x)</span><br></pre></td></tr></table></figure>
+<h2 id="连接数组（不懂）"><a href="#连接数组（不懂）" class="headerlink" title="连接数组（不懂）"></a>连接数组（不懂）</h2><p>在 SQL 中，我们基于键来连接表，而在 NumPy 中，我们按轴连接数组。</p>
+<p>我们传递了一系列要与轴一起连接到 concatenate() 函数的数组。如果未显式传递轴，则将其视为 0。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">import numpy as np</span><br><span class="line"></span><br><span class="line">arr1 = np.array([1, 2, 3])</span><br><span class="line"></span><br><span class="line">arr2 = np.array([4, 5, 6])</span><br><span class="line"></span><br><span class="line">arr = np.concatenate((arr1, arr2))</span><br><span class="line"></span><br><span class="line">print(arr)</span><br><span class="line">//[1 2 3 4 5 6]</span><br></pre></td></tr></table></figure>
+
+<p>沿着行 (axis=1) 连接两个 2-D 数组： </p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">import numpy as np</span><br><span class="line"></span><br><span class="line">arr1 = np.array([[1, 2], [3, 4]])</span><br><span class="line"></span><br><span class="line">arr2 = np.array([[5, 6], [7, 8]])</span><br><span class="line"></span><br><span class="line">arr = np.concatenate((arr1, arr2), axis=1)</span><br><span class="line"></span><br><span class="line">print(arr)</span><br><span class="line">//</span><br><span class="line">[[1 2 5 6]</span><br><span class="line"> [3 4 7 8]]</span><br></pre></td></tr></table></figure>
+
+<h4 id="使用堆栈函数连接数组"><a href="#使用堆栈函数连接数组" class="headerlink" title="使用堆栈函数连接数组"></a>使用堆栈函数连接数组</h4><p>堆栈与级联相同，唯一的不同是堆栈是沿着新轴完成的。</p>
+<p>我们可以沿着第二个轴连接两个一维数组，这将导致它们彼此重叠，即，堆叠（stacking）。</p>
+<p>我们传递了一系列要与轴一起连接到 concatenate() 方法的数组。如果未显式传递轴，则将其视为 0。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">import numpy as np</span><br><span class="line"></span><br><span class="line">arr1 = np.array([1, 2, 3])</span><br><span class="line"></span><br><span class="line">arr2 = np.array([4, 5, 6])</span><br><span class="line"></span><br><span class="line">arr = np.stack((arr1, arr2), axis=1)</span><br><span class="line"></span><br><span class="line">print(arr)</span><br><span class="line">//</span><br><span class="line">[[1 4]</span><br><span class="line"> [2 5]</span><br><span class="line"> [3 6]]</span><br></pre></td></tr></table></figure>
+
+
+
+<p>NumPy 提供了一个辅助函数：hstack() 沿行堆叠。 </p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">import numpy as np</span><br><span class="line"></span><br><span class="line">arr1 = np.array([1, 2, 3])</span><br><span class="line"></span><br><span class="line">arr2 = np.array([4, 5, 6])</span><br><span class="line"></span><br><span class="line">arr = np.hstack((arr1, arr2))</span><br><span class="line"></span><br><span class="line">print(arr)</span><br><span class="line">//[1 2 3 4 5 6]</span><br></pre></td></tr></table></figure>
+
+
+
+<p>NumPy 提供了一个辅助函数：vstack() 沿列堆叠。 </p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">import numpy as np</span><br><span class="line"></span><br><span class="line">arr1 = np.array([1, 2, 3])</span><br><span class="line"></span><br><span class="line">arr2 = np.array([4, 5, 6])</span><br><span class="line"></span><br><span class="line">arr = np.vstack((arr1, arr2))</span><br><span class="line"></span><br><span class="line">print(arr)</span><br><span class="line">//[[1 2 3]</span><br><span class="line"> [4 5 6]]</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+<p>NumPy 提供了一个辅助函数：dstack() 沿高度堆叠，该高度与深度相同。 </p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">import numpy as np</span><br><span class="line"></span><br><span class="line">arr1 = np.array([1, 2, 3])</span><br><span class="line"></span><br><span class="line">arr2 = np.array([4, 5, 6])</span><br><span class="line"></span><br><span class="line">arr = np.dstack((arr1, arr2))</span><br><span class="line"></span><br><span class="line">print(arr)</span><br><span class="line">//</span><br><span class="line">[[[1 4]</span><br><span class="line">  [2 5]</span><br><span class="line">  [3 6]]]</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="数组拆分"><a href="#数组拆分" class="headerlink" title="数组拆分"></a>数组拆分</h2><p>我们使用 array_split() 分割数组，将要分割的数组和分割数传递给它。     </p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">import numpy as np</span><br><span class="line"></span><br><span class="line">arr = np.array([1, 2, 3, 4, 5, 6])</span><br><span class="line"></span><br><span class="line">newarr = np.array_split(arr, 4)</span><br><span class="line"></span><br><span class="line">print(newarr)</span><br></pre></td></tr></table></figure>
+
+<p>提示：我们也有 split() 方法可用，但是当源数组中的元素较少用于拆分时，它将不会调整元素，如上例那样，array_split() 正常工作，但 split() 会失败。 </p>
+<p>您可以指定要进行拆分的轴。 </p>
+<p>下面的例子还返回三个 2-D 数组，但它们沿行 (axis=1) 分割。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">import numpy as np</span><br><span class="line"></span><br><span class="line">arr = np.array([[1, 2, 3], [4, 5, 6], [7, 8, 9], [10, 11, 12], [13, 14, 15], [16, 17, 18]])</span><br><span class="line"></span><br><span class="line">newarr = np.array_split(arr, 3, axis=1)</span><br><span class="line"></span><br><span class="line">print(newarr)</span><br></pre></td></tr></table></figure>
+
+<p>另一种解决方案是使用与 hstack() 相反的 hsplit()。 </p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">import numpy as np</span><br><span class="line"></span><br><span class="line">arr = np.array([[1, 2, 3], [4, 5, 6], [7, 8, 9], [10, 11, 12], [13, 14, 15], [16, 17, 18]])</span><br><span class="line"></span><br><span class="line">newarr = np.hsplit(arr, 3)</span><br><span class="line"></span><br><span class="line">print(newarr)</span><br></pre></td></tr></table></figure>
+
+<p><strong>提示：vsplit() 和 dsplit() 可以使用与 vstack() 和 dstack() 类似的替代方法。</strong> </p>
+<h2 id="数组搜索"><a href="#数组搜索" class="headerlink" title="数组搜索"></a>数组搜索</h2><h4 id="where搜索数组"><a href="#where搜索数组" class="headerlink" title="where搜索数组"></a>where搜索数组</h4><p>您可以在数组中搜索（检索）某个值，然后返回获得匹配的索引。</p>
+<p>要搜索数组，请使用 where() 方法。</p>
+<h4 id="searchsorted搜索排序"><a href="#searchsorted搜索排序" class="headerlink" title="searchsorted搜索排序"></a>searchsorted搜索排序</h4><p>有一个名为 searchsorted() 的方法，该方法在数组中执行<strong>二进制</strong>搜索，并返回将在其中插入指定值以维持搜索顺序的索引。</p>
+<p>假定 searchsorted() 方法用于排序数组。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">import numpy as np</span><br><span class="line"></span><br><span class="line">arr = np.array([6, 7, 8, 9])</span><br><span class="line"></span><br><span class="line">x = np.searchsorted(arr, 7)</span><br><span class="line"></span><br><span class="line">print(x)</span><br></pre></td></tr></table></figure>
+
+<p>例子解释：应该在索引 1 上插入数字 7，以保持排序顺序。</p>
+<p>该方法从左侧开始搜索，并返回第一个索引，其中数字 7 不再大于下一个值。</p>
+<p><strong>返回第一个不小于7位置的索引</strong></p>
+<p>从右侧搜索</p>
+<p>默认情况下，返回最左边的索引，但是我们可以给定 side=’right’，以返回最右边的索引。</p>
+<p><strong>返回第一个不大于7位置的索引</strong></p>
+<p>要搜索多个值，请使用拥有指定值的数组。 </p>
+<p>查找应在其中插入值 2、4 和 6 的索引： </p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">import numpy as np</span><br><span class="line"></span><br><span class="line">arr = np.array([1, 3, 5, 7])</span><br><span class="line"></span><br><span class="line">x = np.searchsorted(arr, [2, 4, 6])</span><br><span class="line"></span><br><span class="line">print(x)</span><br></pre></td></tr></table></figure>
+
+<h2 id="数组排序"><a href="#数组排序" class="headerlink" title="数组排序"></a>数组排序</h2><p>NumPy ndarray 对象有一个名为 sort() 的函数，该函数将对指定的数组进行排序。 </p>
+<p>注释：此方法返回数组的副本，而原始数组保持不变。 </p>
+<p>如果在二维数组上使用 sort() 方法，则将对两个数组进行排序： </p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">import numpy as np</span><br><span class="line"></span><br><span class="line">arr = np.array([[3, 2, 4], [5, 0, 1]])</span><br><span class="line"></span><br><span class="line">print(np.sort(arr))</span><br></pre></td></tr></table></figure>
+
+<h2 id="数组过滤"><a href="#数组过滤" class="headerlink" title="数组过滤"></a>数组过滤</h2><p>从现有数组中取出一些元素并从中创建新数组称为过滤（filtering）。</p>
+<p> 在 NumPy 中，我们使用布尔索引列表来过滤数组。</p>
+<p>布尔索引列表是与数组中的索引相对应的布尔值列表。</p>
+<p>如果索引处的值为 True，则该元素包含在过滤后的数组中；如果索引处的值为 False，则该元素将从过滤后的数组中排除。</p>
+<p>用索引 0 和 2、4 上的元素创建一个数组：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">import numpy as np</span><br><span class="line"></span><br><span class="line">arr = np.array([61, 62, 63, 64, 65])</span><br><span class="line"></span><br><span class="line">x = [True, False, True, False, True]</span><br><span class="line"></span><br><span class="line">newarr = arr[x]</span><br><span class="line"></span><br><span class="line">print(newarr)</span><br></pre></td></tr></table></figure>
+
+<h4 id="直接从数组创建过滤器"><a href="#直接从数组创建过滤器" class="headerlink" title="直接从数组创建过滤器"></a>直接从数组创建过滤器</h4><p>我们可以在条件中直接替换数组而不是 iterable 变量，它会如我们期望地那样工作。 </p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">import numpy as np</span><br><span class="line"></span><br><span class="line">arr = np.array([61, 62, 63, 64, 65])</span><br><span class="line"></span><br><span class="line">filter_arr = arr &gt; 62</span><br><span class="line"></span><br><span class="line">newarr = arr[filter_arr]</span><br><span class="line"></span><br><span class="line">print(filter_arr)</span><br><span class="line">print(newarr)</span><br></pre></td></tr></table></figure>
+
+<h2 id="随机数"><a href="#随机数" class="headerlink" title="随机数"></a>随机数</h2><p>计算机在程序上工作，程序是权威的指令集。因此，这意味着必须有某种算法来生成随机数。</p>
+<p>如果存在生成随机数的程序，则可以预测它，因此它就不是真正的随机数。</p>
+<p>通过生成算法生成的随机数称为伪随机数。</p>
+<p>NumPy 提供了 random 模块来处理随机数。 </p>
+<p>生成一个 0 到 100 之间的随机整数：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">from numpy import random</span><br><span class="line"></span><br><span class="line">x = random.randint(100)</span><br><span class="line"></span><br><span class="line">print(x)</span><br></pre></td></tr></table></figure>
+
+
+
+<p>random 模块的 rand() 方法返回 0 到 1 之间的随机浮点数。</p>
+<p> 生成一个 0 到 1 之间的随机浮点数：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">from numpy import random</span><br><span class="line"></span><br><span class="line">x = random.rand()</span><br><span class="line"></span><br><span class="line">print(x)</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="生成数组"><a href="#生成数组" class="headerlink" title="生成数组"></a>生成数组</h4><p>randint() 方法接受 size 参数，您可以在其中指定数组的形状。 </p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">x=random.randint(100, size=(5))</span><br></pre></td></tr></table></figure>
+
+<p>生成有 3 行的 2-D 数组，每行包含 5 个从 0 到 100 之间的随机整数： </p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">x = random.randint(100, size=(3, 5))</span><br></pre></td></tr></table></figure>
+
+
+
+<p>rand() 方法还允许您指定数组的形状。</p>
+<p>生成包含 5 个随机浮点数的 1-D 数组： </p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">x = random.rand(5)</span><br></pre></td></tr></table></figure>
+
+<p>生成有 3 行的 2-D 数组，每行包含 5 个随机数： </p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">x = random.rand(3, 5)</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<h4 id="从数组中生成随机数"><a href="#从数组中生成随机数" class="headerlink" title="从数组中生成随机数"></a>从数组中生成随机数</h4><p>choice() 方法使您可以基于值数组生成随机值。</p>
+<p>choice() 方法将数组作为参数，并随机返回其中一个值。</p>
+<p>返回数组中的值之一：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">from numpy import random</span><br><span class="line"></span><br><span class="line">x = random.choice([3, 5, 7, 9])</span><br><span class="line"></span><br><span class="line">print(x)</span><br></pre></td></tr></table></figure>
+
+
+
+<p>choice() 方法还允许您返回一个值数组。</p>
+<p>请添加一个 size 参数以指定数组的形状。</p>
+<p>生成由数组参数（3、5、7 和 9）中的值组成的二维数组：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">from numpy import random</span><br><span class="line"></span><br><span class="line">x = random.choice([3, 5, 7, 9], size=(3, 5))</span><br><span class="line"></span><br><span class="line">print(x)</span><br></pre></td></tr></table></figure>
+
+<h2 id="ufuncs"><a href="#ufuncs" class="headerlink" title="ufuncs"></a>ufuncs</h2><p>ufuncs 指的是“通用函数”（Universal Functions），它们是对 ndarray 对象进行操作的 NumPy 函数。 </p>
+<p>ufunc 用于在 NumPy 中实现矢量化，这比迭代元素要快得多。</p>
+<p>它们还提供广播和其他方法，例如减少、累加等，它们对计算非常有帮助。</p>
+<p>ufuncs 还接受其他参数，比如：</p>
+<p>where 布尔值数组或条件，用于定义应在何处进行操作。</p>
+<p>dtype 定义元素的返回类型。</p>
+<p>out 返回值应被复制到的输出数组。</p>
+<p>如果没有 ufunc，我们可以使用 Python 的内置 zip() 方法：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">x = [1, 2, 3, 4]</span><br><span class="line">y = [4, 5, 6, 7]</span><br><span class="line">z = []</span><br><span class="line"></span><br><span class="line">for i, j in zip(x, y):</span><br><span class="line">  z.append(i + j)</span><br><span class="line">print(z)</span><br></pre></td></tr></table></figure>
+
+<p>对此，NumPy 有一个 ufunc，名为 add(x, y)，它会输出相同的结果。</p>
+<h3 id="实例"><a href="#实例" class="headerlink" title="实例"></a>实例</h3><p>通过 ufunc，我们可以使用 add() 函数：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">import numpy as np</span><br><span class="line"></span><br><span class="line">x = [1, 2, 3, 4]</span><br><span class="line">y = [4, 5, 6, 7]</span><br><span class="line">z = np.add(x, y)</span><br><span class="line"></span><br><span class="line">print(z)</span><br></pre></td></tr></table></figure>
+
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/" rel="tag"># 读书笔记</a>
+              <a href="/tags/numpy/" rel="tag"># numpy</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2021/07/30/dian-zi-shu-yi-ji-bi-ji/python/" rel="prev" title="基础学习|Python初认识">
+                  <i class="fa fa-chevron-left"></i> 基础学习|Python初认识
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2021/08/15/dian-zi-shu-yi-ji-bi-ji/ji-qi-xue-xi/" rel="next" title="基础学习|机器学习初认识">
+                  基础学习|机器学习初认识 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">fanko</span>
+</div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/next-boot.js"></script>
+
+  
+<script src="https://cdn.jsdelivr.net/npm/hexo-generator-searchdb@1.4.0/dist/search.js" integrity="sha256-vXZMYLEqsROAXkEw93GGIvaB2ab+QW6w3+1ahD9nXXA=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+</body>
+</html>
