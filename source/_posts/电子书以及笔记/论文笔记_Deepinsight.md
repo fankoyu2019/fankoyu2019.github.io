@@ -15,7 +15,7 @@ categories:
 
 <!--more-->
 
-![image-20211128182404924](F:\repositories\fankoyu2019.github.io\source\_posts\电子书以及笔记\img\image-20211128182404924.png)
+![image-20211128182404924](img\image-20211128182404924.png)
 
 
 
@@ -23,4 +23,4 @@ categories:
 
 
 
-![image-20211128184653621](F:\repositories\fankoyu2019.github.io\source\_posts\电子书以及笔记\img\image-20211128184653621.png)
+![image-20211128184653621](img\image-20211128184653621.png)
