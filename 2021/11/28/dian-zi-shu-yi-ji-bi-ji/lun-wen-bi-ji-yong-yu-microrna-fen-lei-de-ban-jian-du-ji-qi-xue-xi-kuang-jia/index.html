@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)">
+<meta name="generator" content="Hexo 5.4.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/all.min.css" integrity="sha256-mUZM63G8m73Mcidfrv5E+Y61y7a12O5mW4ezU3bxqW4=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Gemini","darkmode":true,"version":"8.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+<meta name="description" content="摘要本文探讨了半监督机器学习在miRNA分类中的应用，以最大限度地利用标记数据和未标记数据。我们在这里提出了两种半监督方法的新组合:主动学习和多视角联合训练。在6个不同物种上的结果表明，这阶段半监督方法能够使用非常少的标记实例来提高分类性能，有效地利用了可用的未标记数据。 提出的半监督miRNA分类管道有潜力以高查全率和精度识别新的miRNA，同时需要非常少量的已知miRNA。这种方法在研究小生境">
+<meta property="og:type" content="article">
+<meta property="og:title" content="论文笔记|用于microRNA分类的半监督机器学习框架">
+<meta property="og:url" content="http://example.com/2021/11/28/dian-zi-shu-yi-ji-bi-ji/lun-wen-bi-ji-yong-yu-microrna-fen-lei-de-ban-jian-du-ji-qi-xue-xi-kuang-jia/index.html">
+<meta property="og:site_name" content="前程似锦，一路繁华">
+<meta property="og:description" content="摘要本文探讨了半监督机器学习在miRNA分类中的应用，以最大限度地利用标记数据和未标记数据。我们在这里提出了两种半监督方法的新组合:主动学习和多视角联合训练。在6个不同物种上的结果表明，这阶段半监督方法能够使用非常少的标记实例来提高分类性能，有效地利用了可用的未标记数据。 提出的半监督miRNA分类管道有潜力以高查全率和精度识别新的miRNA，同时需要非常少量的已知miRNA。这种方法在研究小生境">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="f:/repositories/fankoyu2019.github.io/source_posts/电子书以及笔记/img/image-20211129175432118.png">
+<meta property="article:published_time" content="2021-11-28T12:45:01.000Z">
+<meta property="article:modified_time" content="2021-11-29T10:36:28.111Z">
+<meta property="article:author" content="fanko">
+<meta property="article:tag" content="论文笔记">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="f:/repositories/fankoyu2019.github.io/source_posts/电子书以及笔记/img/image-20211129175432118.png">
+
+
+<link rel="canonical" href="http://example.com/2021/11/28/dian-zi-shu-yi-ji-bi-ji/lun-wen-bi-ji-yong-yu-microrna-fen-lei-de-ban-jian-du-ji-qi-xue-xi-kuang-jia/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://example.com/2021/11/28/dian-zi-shu-yi-ji-bi-ji/lun-wen-bi-ji-yong-yu-microrna-fen-lei-de-ban-jian-du-ji-qi-xue-xi-kuang-jia/","path":"2021/11/28/dian-zi-shu-yi-ji-bi-ji/lun-wen-bi-ji-yong-yu-microrna-fen-lei-de-ban-jian-du-ji-qi-xue-xi-kuang-jia/","title":"论文笔记|用于microRNA分类的半监督机器学习框架"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>论文笔记|用于microRNA分类的半监督机器学习框架 | 前程似锦，一路繁华</title>
+  
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">前程似锦，一路繁华</h1>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">坚持,努力,认真</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li>
+        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li>
+        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%91%98%E8%A6%81"><span class="nav-number">1.</span> <span class="nav-text">摘要</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%83%8C%E6%99%AF"><span class="nav-number">2.</span> <span class="nav-text">背景</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Results"><span class="nav-number">3.</span> <span class="nav-text">Results</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%98%B6%E6%AE%B51-%E4%BD%BF%E7%94%A8MVCT%E5%A2%9E%E5%BC%BA%E6%A0%87%E8%AE%B0%E9%9B%86"><span class="nav-number">3.1.</span> <span class="nav-text">阶段1 使用MVCT增强标记集</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%98%B6%E6%AE%B52-Active%E5%AD%A6%E4%B9%A0"><span class="nav-number">3.2.</span> <span class="nav-text">阶段2-Active学习</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="fanko"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">fanko</p>
+  <div class="site-description" itemprop="description">-------- 济南大学17级本科生 --------大连理工大学21级研究生</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">179</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">45</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/fankoyu2019" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;fankoyu2019" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+  </div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/11/28/dian-zi-shu-yi-ji-bi-ji/lun-wen-bi-ji-yong-yu-microrna-fen-lei-de-ban-jian-du-ji-qi-xue-xi-kuang-jia/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="fanko">
+      <meta itemprop="description" content="-------- 济南大学17级本科生 --------大连理工大学21级研究生">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="前程似锦，一路繁华">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          论文笔记|用于microRNA分类的半监督机器学习框架
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2021-11-28 20:45:01" itemprop="dateCreated datePublished" datetime="2021-11-28T20:45:01+08:00">2021-11-28</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">论文笔记</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2><p>本文探讨了半监督机器学习在miRNA分类中的应用，以最大限度地利用标记数据和未标记数据。我们在这里提出了两种半监督方法的新组合:<strong>主动学习和多视角联合训练</strong>。在6个不同物种上的结果表明，这阶段半监督方法能够使用非常少的标记实例来提高分类性能，有效地利用了可用的未标记数据。</p>
+<p>提出的半监督miRNA分类管道有潜力以高查全率和精度识别新的miRNA，同时需要非常少量的已知miRNA。这种方法在研究小生境物种新测序基因组中的miRNA时非常有益，因为已知的miRNA例子很少。</p>
+<span id="more"></span>
+
+<h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><blockquote>
+<p>虽然使用不同于目标物种的物种数据来训练miRNA分类器是可能的，但我们之前已经表明，随着训练物种和测试物种之间的进化距离增加[21]，分类精度会降低。</p>
+</blockquote>
+<p>miRNA预测的问题可以从两种不同的角度进行检查，基于序列的或基于表达式的，导致两个独立的特征集描述相同的分类问题。</p>
+<p>问题的两种独立观点的可用性使得多视角联合训练(MVCT)方法能够应用于半监督的ML[24]。在这种方法中，使用可用的训练数据分别为每个视图创建miRNA分类器。然后将分类器应用于所有可用的未标记数据，并将置信度最高的预测添加到备选视图的训练集。这样，每个视图都加强了另一个视图的分类器。这已被证明是一种有效的方法，以避免简单地加强单一分类器的偏见。MVCT在生物信息学中的应用主要集中在预测蛋白功能[25]、预测乳腺癌存活能力[26]、检测人类癌症[27]中的错误定位蛋白、基因表达分类[28]、癌症样本分类[29]和表型预测[30]。我们最近研究了使用MVCT来提高miRNA分类器[31]的准确性。在该研究中，分类器分别针对每个视图进行训练。然后通过对两种观点进行信任加权投票来达成共识预测。在本文中，我们转而研究使用MVCT来增强起始标记训练集，用于使用集成特征集进行第二阶段的半监督学习。</p>
+<p>MVCT试图在不需要任何昂贵的湿实验室验证的情况下扩展现有的训练数据，而主动学习则试图识别那些最有利于标记的未标记样本，假设有有限的预算用于湿实验室验证实验。主动学习是一种迭代的方法，首先使用所有可用的训练数据训练分类器。分类器然后应用于所有未标记的数据，并且那些落在最接近决策边界的点被识别为后续实验验证的候选点。通过聚焦于分类器对其真实类别最不确定的点，可以在最小化湿实验室验证实验的同时为分类器收集最大的信息。我们先前已经证明了在miRNA分类[32]中主动学习的潜力。在生物信息学的其他领域，主动学习已被应用于药物发现[33,34]、癌症活组织检查[35]和组织病理学图像的基因表达谱[36,37]、蛋白质-蛋白质相互作用预测[38,39]和酶[40]的新底物识别。</p>
+<p>虽然这两种半监督的ML方法已经被证明是有效的隔离，据我们所知，他们还没有探索联合。事实上，MVCT关注的是将无标记点添加到分类器最自信的训练集中，而主动学习关注的是分类器最不自信的无标记点，我们假设这两种方法是互补的。在此，我们提出了一种新的半监督的miRNA分类方法，该方法结合了主动学习和多视图联合训练来提高分类性能。</p>
+<p>我们在这里进行重复交叉验证实验，以证明我们提出的双阶段半监督方法减少了训练过程中需要的标记实例的数量，从而最大限度地降低了开发miRNA预测器的总成本。从六个不同的物种中提取特征来训练和测试预测因子。学习过程包括两个阶段，首先是MVCT阶段，然后是主动学习。对于每个物种，每个阶段的个体贡献被量化，并且联合管道被证明比单独应用MVCT或主动学习更有效。在只使用32个标记训练样本的约束下，集成半监督管道的最终分类性能优于使用无约束数据集训练的先进分类器。</p>
+<p>本研究首次将MVCT和主动学习结合到集成的半监督学习语言学习框架中。虽然它被证明对miRNA分类非常有效，但它可能会有更广泛的应用。源代码可以在GitHub上免费获得。</p>
+<h2 id="Results"><a href="#Results" class="headerlink" title="Results"></a>Results</h2><h3 id="阶段1-使用MVCT增强标记集"><a href="#阶段1-使用MVCT增强标记集" class="headerlink" title="阶段1 使用MVCT增强标记集"></a>阶段1 使用MVCT增强标记集</h3><p>集成半监督miRNA分类管道的第一阶段将MVCT应用于可用的训练数据。如图1的上半部分所示。这个步骤的目的是在不进行任何昂贵的湿实验室实验的情况下最大限度地增加代表问题两种观点的数据集。对于这六个测试物种(见“方法”部分)，我们评估了应用MVCT进行miRNA分类的有效性。虽然阶段1的目标是为阶段2增加训练集，但我们在每次学习迭代中都评估序列和基于表达式的视图的性能，以表明不断增长的训练数据集的价值在增加。在这里，以及整个研究中，性能是通过使用保持测试集的精度-召回曲线(AUPRC)下的面积来衡量的(参见“方法”部分)。结果如表1所示，代表了每个视图分类器在100次随机选择的种子训练集(5个正训练样本和5个负训练样本)的平均性能。在MVCT的每次迭代中，最自信的正预测和负预测都被添加到备选视图的训练集中。</p>
+<p>从表1可以看出，每个物种的两种观点的AUPRC都有明显的改善在11次迭代学习完成之后。人类(hsa)和牛(bta)数据集表现出最大的性能增长。例如，基于人类序列的分类器发现AUPRC增加了121%。MVCT对鸡(gga)和马(eca)数据集的效果最差。应该注意的是，在应用MVCT之前，这两个物种的初始分类器是非常有效的(AUPRC  &gt;  0.87)，没有多少改进的空间。分类器性能的增加是非单调的，但对所有物种都是积极的趋势。这说明在MVCT过程中加入训练集的样本在大多数情况下都是正确标记的。</p>
+<p>MVCT阶段对每个物种进行11次迭代。虽然在文献中描述了动态停止标准，但这一选择是基于我们在[31]中之前的分析，该分析表明，在人的11次迭代后，MVCT性能趋于渐进。图2中的学习曲线证实了牛(bta)的性能，其中绘制了15次MVCT迭代的性能。结果代表了100次重复的平均AUPRC，每次重复都选择不同的种子训练集(5+/5个样本)。11次迭代后，两个视图的性能渐近线，证明了这个参数的选择是合理的。</p>
+<h3 id="阶段2-Active学习"><a href="#阶段2-Active学习" class="headerlink" title="阶段2-Active学习"></a>阶段2-Active学习</h3><p>第二步，对第一阶段MVCT得到的增广标记集进行主动学习。增强训练集由阶段1中每个视图的训练集并集形成。通过这样做，主动学习被应用于包含最多54个标记实例的初始训练集(种子集由5个+/5个−范例组成，加上11个正范例和11个负范例在MVCT期间添加到每个视图)。采用11次基于不确定性的主动学习迭代，每次迭代的AUPRC结果如表2所示。这些结果代表了阶段1和阶段2的100次重复，其中阶段1的起始数据集(MVCT)在每次重复中随机绘制。从表2中可以观察到，与第一轮相比，所有6个实验都表明，随着主动学习的应用，性能有所提高。除鸡(gga)为第二小数据集外，其余所有种属均有统计学意义(ttest，α&lt;  0.05)。最显著的性能提高是在人类物种中，经过11次主动学习，性能比初始分类器提高了15.9%。奶牛和果蝇miRNA分类器的性能也有了显著提高，分别提高了9.6%和2.2%。</p>
+<p><img src="F:\repositories\fankoyu2019.github.io\source_posts\电子书以及笔记\img\image-20211129175432118.png" alt="image-20211129175432118"></p>
+<p>流程：<br><strong>阶段一：</strong><br>未标记数据集（在本实验中是人为将已知标签数据集的部分设为未标记数据集，这样就不用进行人工专家验证）<br>标记数据集中选择5个正集和5个负集，<br>对数据集的处理同时两种形式进行，Seq形式和氨基酸形式<br>基于当前标记数据集训练生成分类器和训练模型，<br>Seq分类器中未标记数据集放入分类器中预测<br>更新标记数据集的正负集用另一个view预测的top结果（正集1个，负集1个）<br>更新未标记数据集将预测后选择中的top数据从未标记数据集中摘除<br>重复迭代11次<br>最终选择出基于seq（11个正集，11个负集）基于氨基酸（11个正集，11个负集）初始（5个正集，5个负集）的<strong>并集</strong>，作为下一阶段active learn的种子训练集<br>2个view中的未标记数据集的<strong>交集</strong>作为下一阶段的无标签数据集</p>
+<p><strong>阶段二:</strong></p>
+<p>利用标签数据集训练分类器</p>
+<p>使用分类器对无标签数据集进行预测，</p>
+<p>基于不确定性主动学习，选择最不确定样本，通过数据库找到其标签放入训练集</p>
+<p>重复迭代11次</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0/" rel="tag"># 论文笔记</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2021/11/28/dian-zi-shu-yi-ji-bi-ji/lun-wen-bi-ji-deepinsight/" rel="prev" title="论文笔记|Deepinsight">
+                  <i class="fa fa-chevron-left"></i> 论文笔记|Deepinsight
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">fanko</span>
+</div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/next-boot.js"></script>
+
+  
+<script src="https://cdn.jsdelivr.net/npm/hexo-generator-searchdb@1.4.0/dist/search.js" integrity="sha256-vXZMYLEqsROAXkEw93GGIvaB2ab+QW6w3+1ahD9nXXA=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+</body>
+</html>
