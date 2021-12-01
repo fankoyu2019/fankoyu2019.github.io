@@ -20,16 +20,16 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/all.min.css" integrity="sha256-mUZM63G8m73Mcidfrv5E+Y61y7a12O5mW4ezU3bxqW4=" crossorigin="anonymous">
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Gemini","darkmode":true,"version":"8.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
-<meta name="description" content="摘要本文探讨了半监督机器学习在miRNA分类中的应用，以最大限度地利用标记数据和未标记数据。我们在这里提出了两种半监督方法的新组合:主动学习和多视角联合训练。在6个不同物种上的结果表明，这阶段半监督方法能够使用非常少的标记实例来提高分类性能，有效地利用了可用的未标记数据。 提出的半监督miRNA分类管道有潜力以高查全率和精度识别新的miRNA，同时需要非常少量的已知miRNA。这种方法在研究小生境">
+<meta name="description" content="A semi-supervised machine learning framework for microRNA classification 摘要本文探讨了半监督机器学习在miRNA分类中的应用，以最大限度地利用标记数据和未标记数据。我们在这里提出了两种半监督方法的新组合:主动学习和多视角联合训练。在6个不同物种上的结果表明，这阶段半监督方法能够使用非常少的标记实例来提高分类性能，有效地利用了">
 <meta property="og:type" content="article">
 <meta property="og:title" content="论文笔记|用于microRNA分类的半监督机器学习框架">
 <meta property="og:url" content="http://example.com/2021/11/28/dian-zi-shu-yi-ji-bi-ji/lun-wen-bi-ji-yong-yu-microrna-fen-lei-de-ban-jian-du-ji-qi-xue-xi-kuang-jia/index.html">
 <meta property="og:site_name" content="前程似锦，一路繁华">
-<meta property="og:description" content="摘要本文探讨了半监督机器学习在miRNA分类中的应用，以最大限度地利用标记数据和未标记数据。我们在这里提出了两种半监督方法的新组合:主动学习和多视角联合训练。在6个不同物种上的结果表明，这阶段半监督方法能够使用非常少的标记实例来提高分类性能，有效地利用了可用的未标记数据。 提出的半监督miRNA分类管道有潜力以高查全率和精度识别新的miRNA，同时需要非常少量的已知miRNA。这种方法在研究小生境">
+<meta property="og:description" content="A semi-supervised machine learning framework for microRNA classification 摘要本文探讨了半监督机器学习在miRNA分类中的应用，以最大限度地利用标记数据和未标记数据。我们在这里提出了两种半监督方法的新组合:主动学习和多视角联合训练。在6个不同物种上的结果表明，这阶段半监督方法能够使用非常少的标记实例来提高分类性能，有效地利用了">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://example.com/2021/11/28/dian-zi-shu-yi-ji-bi-ji/lun-wen-bi-ji-yong-yu-microrna-fen-lei-de-ban-jian-du-ji-qi-xue-xi-kuang-jia/img%5Cimage-20211129175432118.png">
 <meta property="article:published_time" content="2021-11-28T12:45:01.000Z">
-<meta property="article:modified_time" content="2021-11-29T10:44:30.296Z">
+<meta property="article:modified_time" content="2021-12-01T06:18:31.345Z">
 <meta property="article:author" content="fanko">
 <meta property="article:tag" content="论文笔记">
 <meta name="twitter:card" content="summary">
@@ -149,7 +149,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%91%98%E8%A6%81"><span class="nav-number">1.</span> <span class="nav-text">摘要</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%83%8C%E6%99%AF"><span class="nav-number">2.</span> <span class="nav-text">背景</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Results"><span class="nav-number">3.</span> <span class="nav-text">Results</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%98%B6%E6%AE%B51-%E4%BD%BF%E7%94%A8MVCT%E5%A2%9E%E5%BC%BA%E6%A0%87%E8%AE%B0%E9%9B%86"><span class="nav-number">3.1.</span> <span class="nav-text">阶段1 使用MVCT增强标记集</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%98%B6%E6%AE%B52-Active%E5%AD%A6%E4%B9%A0"><span class="nav-number">3.2.</span> <span class="nav-text">阶段2-Active学习</span></a></li></ol></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%91%98%E8%A6%81"><span class="nav-number">1.</span> <span class="nav-text">摘要</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%83%8C%E6%99%AF"><span class="nav-number">2.</span> <span class="nav-text">背景</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Results"><span class="nav-number">3.</span> <span class="nav-text">Results</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%98%B6%E6%AE%B51-%E4%BD%BF%E7%94%A8MVCT%E5%A2%9E%E5%BC%BA%E6%A0%87%E8%AE%B0%E9%9B%86"><span class="nav-number">3.1.</span> <span class="nav-text">阶段1 使用MVCT增强标记集</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%98%B6%E6%AE%B52-Active%E5%AD%A6%E4%B9%A0"><span class="nav-number">3.2.</span> <span class="nav-text">阶段2-Active学习</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Methods"><span class="nav-number">4.</span> <span class="nav-text">Methods</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Data-set-selection"><span class="nav-number">4.1.</span> <span class="nav-text">Data set selection</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Feature-set-selection"><span class="nav-number">4.2.</span> <span class="nav-text">Feature set selection</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Classification-pipeline"><span class="nav-number">4.3.</span> <span class="nav-text">Classification pipeline</span></a></li></ol></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -272,7 +272,8 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2><p>本文探讨了半监督机器学习在miRNA分类中的应用，以最大限度地利用标记数据和未标记数据。我们在这里提出了两种半监督方法的新组合:<strong>主动学习和多视角联合训练</strong>。在6个不同物种上的结果表明，这阶段半监督方法能够使用非常少的标记实例来提高分类性能，有效地利用了可用的未标记数据。</p>
+        <p><strong>A semi-supervised machine learning framework for microRNA classification</strong></p>
+<h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2><p>本文探讨了半监督机器学习在miRNA分类中的应用，以最大限度地利用标记数据和未标记数据。我们在这里提出了两种半监督方法的新组合:<strong>主动学习和多视角联合训练</strong>。在6个不同物种上的结果表明，这阶段半监督方法能够使用非常少的标记实例来提高分类性能，有效地利用了可用的未标记数据。</p>
 <p>提出的半监督miRNA分类管道有潜力以高查全率和精度识别新的miRNA，同时需要非常少量的已知miRNA。这种方法在研究小生境物种新测序基因组中的miRNA时非常有益，因为已知的miRNA例子很少。</p>
 <span id="more"></span>
 
@@ -296,6 +297,16 @@
 <p>使用分类器对无标签数据集进行预测，</p>
 <p>基于不确定性主动学习，选择最不确定样本，通过数据库找到其标签放入训练集</p>
 <p>重复迭代11次</p>
+<h2 id="Methods"><a href="#Methods" class="headerlink" title="Methods"></a>Methods</h2><h3 id="Data-set-selection"><a href="#Data-set-selection" class="headerlink" title="Data set selection"></a>Data set selection</h3><p>本文利用5个数据源为每个物种创建测试和训练集:NGS表达数据、基因组数据、已知miRNAs、已知编码区域和其他已知功能性非编码RNA。表达数据来自NCBI  GEO数据库[45]的小RNA  NGS实验数据集。所有已知的“高可信度”miRNA的基因组序列从miRbase(第22版)[20]下载。每个动物物种的完整基因组从UCSC基因组浏览器数据库[46]下载。六种不同的物种被调查:人类，老鼠，果蝇，牛，马和鸡。数据汇总在表4中。</p>
+<p>每个样品的真实类别在[32]中确定。简单地说，miRDeep2的“mapper.pl”预处理脚本[41]将每个读取堆栈从NGS数据映射到物种的参考基因组。这将产生一组候选pre-miRNA，包括它们的序列、二级结构、与参考基因组的比对，以及与候选pre-miRNA匹配的NGS reads的收集。与已知miRNA序列匹配的候选miRBase[20]注释为真阳性。其他候选前mirna形成候选负集。如果候选负序列与已知编码区(来自Ensembl[47]或NCBI GEO数据库[45])的外显子序列匹配，则证实其为负序列。这种阴性序列的定义是合理的，因为已知是mRNA片段的序列不可能也形成miRNA。许多非编码RNA(来自mrfam[48])，已知的功能，而不是miRNA，被添加到负数据集，以确保预测器不会简单地学习识别编码区域为负。使用cd - hit[49]程序，以90%的序列识别阈值从正负数据集中去除冗余和高度相似的序列。表4总结了每个物种的最终数据集组成。最后，对于每个物种，数据被分割成80%的训练集和20%的保持测试集。</p>
+<h3 id="Feature-set-selection"><a href="#Feature-set-selection" class="headerlink" title="Feature set selection"></a>Feature set selection</h3><p>MVCT的特征集选择方法与多阶段方法的主动学习阶段略有不同。基于序列的特征从HeteroMiRPred[50]中获得，包括基于序列的、基于二级结构的、基于碱基对的、基于三元序列-结构的和与结构稳健性相关的特征。八个基于表达的特征，由[22]导出，也包括在两个学习者，包括以下:(1)成熟的microrna的nt的比例搭配,(2)的配对nt低杆,(3)pre-miRNA地区RNA-seq读取的百分比(%)读取与帽子不一致处理,(4)%读取映射到循环区域,(5)%读取映射到成熟的microrna的地区,(6)%读取地图的microrna的*,(7)  %从匹配Dicer处理的前体区域读取，(8)在前体区域读取的总次数，归一化为实验大小。</p>
+<p>在协同训练分类器中，将所有8个基于表达式的特征作为基于表达式分类器的特征集。为了创建基于序列的特征集，将<strong>Weka</strong>包[51]中的基于相关性的特征子集选择方法应用于6种动物的所有训练数据，选择来自HeteroMiRPred[50]中信息量最大的序列特征集。只使用了所有6个物种中用于特征选择的数据的训练部分(占总数据的80%)。该算法寻求最小化所选特征之间的相关性，同时最大限度地提高其预测能力。这导致了32个基于序列的特征向量，包括最小自由能衍生特征、序列/结构三重体特征、二核苷酸序列基序和结构稳健性特征。</p>
+<p>对于主动学习分类器，将Weka基于相关性的特征选择方法应用于所有6个物种训练数据集中的223个特征，选择一个集成的特征集。算法共得到19个特征，其中6个是基于表达式的特征，13个是基于序列的特征。所选特征为MEF3、dH、Tm、Tm/loop、Sc  x zG、Sc /(1-dP)、Probpair1-4、4个三元基序、CG、GA、#pb mature、% reads mature和% reads  miRNA*。在[22]中详细描述了每个特性。</p>
+<h3 id="Classification-pipeline"><a href="#Classification-pipeline" class="headerlink" title="Classification pipeline"></a>Classification pipeline</h3><p>本次实验的所有主动学习阶段和联合训练阶段的分类器都是使用SKLearn随机森林库[52]构建的;所有参数都被设置为默认值，除了树的数量被设置为500。与其他分类器相比，随机森林分类器在miRNA分类方面表现出了优异的性能[21,43]。</p>
+<p>由于半监督的ML方法需要一个小的标记数据集和一个大的未标记数据集，我们通过选择一个小的“种子”标记训练集(包含5个阳性样本和5个阴性样本)来模拟这个场景。所有剩余的样品被认为是没有标签的。在主动学习阶段，神谕只是检查已知的保留标签，因此不需要实际的湿实验室验证实验。</p>
+<p>我们的半监督方法包括两个学习阶段。该方法的第一步是实现一个MVCT学习算法。多视图联合训练利用问题的多个视图创建不同的分类器——每个视图一个。在miRNA分类的情况下，这两种观点是基于识别miRNA的典型特征:基于序列的从头预测或基于表达式的NGS预测。每个基于序列和表达式的分类器最初都训练在一个小的种子训练集上，该种子训练集包含5个正标记样本和5个负标记样本。然后将这些分类器应用于更大的无标签数据集。在没有实验验证的情况下，从这些视图中最可信地预测为正或负的样本被添加到备用视图的训练集中。可选地，可以在每次迭代中添加更多的样本，这可能会加快收敛。我们限制了MVCT算法在每次迭代中只选择两个样本，以确保后续训练集中只包含高置信的预测。对于每个数据集，使用多次学习迭代的联合训练，以增加该实验的标记集的大小，然后在具有较大标记集的问题上执行主动学习。本研究共进行了11次MVCT迭代;动态停止标准也可用[31,44]。因此，每个视图的最终标记集包含32个标记实例。</p>
+<p>在MVCT阶段结束时，通过从每个视图获取最终标记数据集的并集，创建主动学习分类器的种子训练集。因此，种子训练集包含54个标记样本(10个来自种子，22个来自协同训练的每个视图)。两个MVCT无标签数据集的交集形成了后续主动学习的无标签数据集。</p>
+<p>在主动学习阶段，采用基于不确定性的查询策略。因此，在每次迭代学习时，oracle将从未标记数据中选择最不自信的正预测和负预测进行注释。这些将是最接近决策边界的实例。一旦确定样本的真实类别，它们将从未标记集中删除，并添加到训练集中。这个过程在整个迭代过程中重复。每次迭代后，模型在新的训练集上重新训练，分类器的性能在分类器的学习曲线上记录。与MVCT阶段一样，共完成了11次主动学习。使用20%保持测试集计算每次迭代的性能。主动学习分类器的性能代表了我们方法的最终性能。为了计算性能指标的标准差，我们模拟了整个双阶段流水线100次，每次都从5个正样本和5个负样本的种子训练集的不同随机选择开始。所述方法的流程图如图1所示。</p>
 
     </div>
 
