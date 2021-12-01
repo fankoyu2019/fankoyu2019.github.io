@@ -15,7 +15,7 @@ categories:
 
 <!--more-->
 
-![image-20211128182404924](img\image-20211128182404924.png)
+![image-20211128182404924](论文笔记_Deepinsight/image-20211128182404924.png)
 
 
 
