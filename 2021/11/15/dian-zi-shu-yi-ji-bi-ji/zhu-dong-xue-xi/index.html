@@ -33,7 +33,7 @@
 <meta property="og:image" content="https://www.zhihu.com/equation?tex=%5C%7B%5Ctheta%5E%7B(1)%7D,%5Ccdots,%5Ctheta%5E%7B(C)%7D%5C%7D">
 <meta property="og:image" content="https://www.zhihu.com/equation?tex=%5Cmathcal%7BL%7D">
 <meta property="og:image" content="https://img-blog.csdnimg.cn/20200928093317507.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NTc5ODk0OQ==,size_16,color_FFFFFF,t_70#pic_center">
-<meta property="og:image" content="http://example.com/2021/11/15/dian-zi-shu-yi-ji-bi-ji/zhu-dong-xue-xi/img/20201008175605423.png">
+<meta property="og:image" content="http://example.com/2021/11/15/dian-zi-shu-yi-ji-bi-ji/zhu-dong-xue-xi/20201008175605423.png">
 <meta property="og:image" content="https://img-blog.csdnimg.cn/20201008175754729.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3dlaXhpbl80NTc5ODk0OQ==,size_16,color_FFFFFF,t_70#pic_center">
 <meta property="article:published_time" content="2021-11-15T07:57:01.000Z">
 <meta property="article:modified_time" content="2021-11-17T08:31:01.430Z">
@@ -352,7 +352,7 @@
 <h4 id="3-1-3-基于密度的方法应用"><a href="#3-1-3-基于密度的方法应用" class="headerlink" title="3.1.3 基于密度的方法应用"></a>3.1.3 基于密度的方法应用</h4><p>基于密度的方法主要是指从集合（核心集）的角度来考察样本的选择。核心集的构建正是这样一种具有代表性的查询策略。这种想法主要受到核心集数据集压缩思想的启发，试图使用核心集来代表整个原始数据集的特征空间的分布，从而降低AL的标注成本。</p>
 <p>​        总的来说，这些查询策略并非相互独立，而是相互联系的。基于Batch的BMDAL为AL查询的样本在DL模型上的更新训练提供了基础。尽管DAL中的查询策略丰富且复杂，但它们大都是为了在BMDAL中兼顾查询批次的多样性与不确定性。而先前基于不确定性的方法往往忽视batch中的多样性，因此，这些方法大致可以被归为两类–它们要么在输入或学习表示空间中设计明确鼓励批次多样性的机制，要么直接测量整个批次的互信息(MI)。</p>
 <h3 id="3-2-DAL中的数据不足"><a href="#3-2-DAL中的数据不足" class="headerlink" title="3.2 DAL中的数据不足"></a>3.2 DAL中的数据不足</h3><p>AL通常只需要少量的标记样本数据来实现学习和模型更新，而DL则需要大量的标记数据来进行有效的训练。因此，AL和DL的结合要求尽可能多地使用数据策略，而不消耗太多的人力资源来实现DAL模型训练。大多数以前的DAL方法通常只对查询策略所采样的标记样本集进行训练。然而，这忽略了现有未标记数据集的存在，这意味着相应的数据扩展和训练策略没有得到充分利用。这些策略有助于改善DAL训练中标记数据不足的问题，而不增加人工标记成本。因此，对这些策略的研究也是相当有意义的。例如，CEAL通过为模型预测中的高置信度样本分配伪标签，以及通过查询策略采样的标记数据集来丰富训练集。这个扩展的训练集也被用于DL模型的训练。该策略如图4所示。</p>
-<p><img src="img/20201008175605423.png" alt="在这里插入图片描述"></p>
+<p><img src="/2021/11/15/dian-zi-shu-yi-ji-bi-ji/zhu-dong-xue-xi/20201008175605423.png" alt="在这里插入图片描述"></p>
 <p>图4.CEAL将未标记数据集中的样本逐步输入初始化的CNN，然后CNN分类器输出两类样本：少量不确定样本和大量具有高预测置信度的样本。通过oracle对少量不确定样本进行标记，并利用CNN分类器对大量高预测置信度样本进行伪标记。然后使用这两种类型的样本对CNN进行微调，并重复更新过程。</p>
 <p>另一个非常流行的策略是对有标记和未标记的数据集进行无监督训练，并结合其他策略来训练整个网络结构。</p>
 <p>同时，也有研究者考虑使用生成性对抗网络（Generative atteriral Networks，GAN）进行数据扩充。GAAL首次将产生式对抗网络（Generative atrial Network，GAN）引入AL查询方法。GAAL的目标是使用生成性学习来生成比原始数据集更多的信息的样本。</p>

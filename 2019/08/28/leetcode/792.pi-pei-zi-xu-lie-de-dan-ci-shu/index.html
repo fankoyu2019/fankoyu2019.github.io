@@ -268,7 +268,7 @@
 <span id="more"></span>
 
 <h4 id="解法1：Map"><a href="#解法1：Map" class="headerlink" title="解法1：Map"></a>解法1：Map</h4><p>解题思路</p>
-<p>​    1.根据words数组每个字符串的首字母将其在数组内的索引值存入到首字母对应的map中，例如words[3]=”bacc” 则 map[‘b’]=[3];（map类型为&lt;char,vector<int>&gt;）</p>
+<p>​    1.根据words数组每个字符串的首字母将其在数组内的索引值存入到首字母对应的map中，例如words[3]=”bacc” 则 map[‘b’]=[3];（map类型为&lt;char,vector<int>&gt;）</int></p>
 <p>​    2.遍历S数组，若当前位置的字符在map中有值，将其map的值提出赋值给t数组，并将原来map值清空</p>
 <p>​    3.构建wordnum数组，用来存当前情况下，各个words已经匹配到的字符数。遍历t数组，提出每个索引，判断该索引words单词是否已经匹配完全，若未完全，根据其下一个字符放入对应map中</p>
 <p>​    4.遍历wordnum数组，若wordnum[i]&gt;=words[i].size()表示该单词匹配成功，res+1</p>
