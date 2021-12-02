@@ -19,9 +19,9 @@ categories:
 
 
 
-![image-20211128182120854](F:\repositories\fankoyu2019.github.io\source\_posts\电子书以及笔记\img\image-20211128182120854.png)
+![image-20211128182120854](论文笔记_Deepinsight/image-20211128182120854.png)
 
 
 
-![image-20211128184653621](img\image-20211128184653621.png)
+![image-20211128184653621](论文笔记_Deepinsight/image-20211128184653621.png)
 

@@ -8,7 +8,7 @@ categories:
  - 读书笔记
 ---
 
- ![1625734104819](img/1625734104819.png)
+ ![1625734104819](PyTroch/1625734104819.png)
 
 注意:**维度灾难**
 
@@ -131,7 +131,7 @@ $$
 
 #### 随机梯度下降 Stochastic Gradient Descent
 
-![1625993694363](img/1625993694363.png)
+![1625993694363](PyTroch/1625993694363.png)
 
 注意：梯度下降 比  随机梯度下降 效率高 （并行计算） 
 
@@ -141,9 +141,9 @@ $$
 
 ## Back Propagation
 
-![1625997767831](img/1625997767831.png)
+![1625997767831](PyTroch/1625997767831.png)
 
-![1625998757958](img/1625998757958.png)
+![1625998757958](PyTroch/1625998757958.png)
 
 
 
@@ -159,11 +159,11 @@ $$
 
 
 
-![1626099787237](img/1626099787237.png)
+![1626099787237](PyTroch/1626099787237.png)
 
 线性单元Linear Unit：z=w*x+b 
 
-![1626103020470](img/1626103020470.png)
+![1626103020470](PyTroch/1626103020470.png)
 
 ## 逻辑回归 Logistic Regression （分类任务）
 
@@ -175,39 +175,39 @@ Logistic Function:
 $$
 F（x)=\frac{1}{1+e^{-x}}
 $$
-![1626342564062](img/1626342564062.png)
+![1626342564062](PyTroch/1626342564062.png)
 
-![1626342599211](img/1626342599211.png)
+![1626342599211](PyTroch/1626342599211.png)
 
-![1626342812242](img/1626342812242.png)
+![1626342812242](PyTroch/1626342812242.png)
 
 
 
 #### cross - entropy 交叉熵
 
-![1626343415877](img/1626343638573.png)
+![1626343415877](PyTroch/1626343638573.png)
 
 越大越好(对数都小于1 结果都是负数 ， 总之 越接近0越好)
 
-![1626343638574](img/1626343638574.png)
+![1626343638574](PyTroch/1626343638574.png)
 
 
 
 #### 模型步骤
 
-![1626344543894](img/1626344543894.png)
+![1626344543894](PyTroch/1626344543894.png)
 
 
 
 ## 处理多维数据的输入
 
-![1626444328817](img/1626444328817.png)
+![1626444328817](PyTroch/1626444328817.png)
 
 为何向量化？：利用CPU/GPU并行能力提高运算效率 
 
-![1626444685998](img/1626444685998.png)
+![1626444685998](PyTroch/1626444685998.png)
 
-![1626447169024](img/1626447169024.png)
+![1626447169024](PyTroch/1626447169024.png)
 
 
 
@@ -223,27 +223,25 @@ DataLoader:batch_size = 2 , shuffle = True
 
 ## 多分类问题  Softmax Classifier
 
-
-
-![1626524794714](img/1626524794714.png)
+![1626524794714](PyTroch/1626524794714.png)
 
 NLL LOSS
 
-![NLLLoss](img/NLLLoss.png)
+![NLLLoss](PyTroch/NLLLoss.png)
 
 CrossEntropyLoss
 
-![1626525431879](img/CrossEntropyLoss.png)
+![1626525431879](PyTroch/CrossEntropyLoss.png)
 
 
 
 #### 处理图像多分类任务
 
-![1626526229710](img/1626526229710.png)
+![1626526229710](PyTroch/1626526229710.png)
 
 
 
-![1626595032703](img/1626595032703.png)
+![1626595032703](PyTroch/1626595032703.png)
 
 **为什么要激活？**
 
@@ -255,11 +253,11 @@ CrossEntropyLoss
 
 1.能保留空间信息 
 
-![1626622853583](img/CNN1.png)
+![1626622853583](PyTroch/CNN1.png)
 
 
 
-![1626624709731](img/CNN2.png)
+![1626624709731](PyTroch/CNN2.png)
 
 
 
@@ -269,7 +267,7 @@ CrossEntropyLoss
 
 ### Convolutional Layer 
 
-![1626691213183](img/ConvolutionalLayer.png)
+![1626691213183](PyTroch/ConvolutionalLayer.png)
 
 #### padding
 
@@ -287,7 +285,7 @@ kernel_size / 2
 
 
 
-![1626690552740](img/SimpleNeuralNetwork.png)
+![1626690552740](PyTroch/SimpleNeuralNetwork.png)
 
 
 
@@ -295,27 +293,27 @@ kernel_size / 2
 
 #### GoogleNet
 
-![1626788847241](img/GoogleNet_Inception.png)
+![1626788847241](PyTroch/GoogleNet_Inception.png)
 
-![1626774644914](img/1mult1.png)
+![1626774644914](PyTroch/1mult1.png)
 
 
 
-![1626865022809](img/1626865022809.png)
+![1626865022809](PyTroch/1626865022809.png)
 
-![1626873734166](img/1626873734166.png)
+![1626873734166](PyTroch/1626873734166.png)
 
 #### Residual Learning
 
-![1626778627989](img/1626778627989.png)
+![1626778627989](PyTroch/1626778627989.png)
 
 
 
-![1626877656952](img/1626877656952.png)
+![1626877656952](PyTroch/1626877656952.png)
 
-![1626877976836](img/1626877976836.png)
+![1626877976836](PyTroch/1626877976836.png)
 
-![1626788538968](img/总结1.png)
+![1626788538968](PyTroch/总结1.png)
 
 ## 循环神经网络RNN
 
@@ -325,9 +323,9 @@ kernel_size / 2
 
 #### RNNs
 
-![1626963851425](img/1626963851425.png)
+![1626963851425](PyTroch/1626963851425.png)
 
-![1626964486204](img/1626964486204.png)
+![1626964486204](PyTroch/1626964486204.png)
 
 
 
@@ -343,37 +341,37 @@ cell = torch.nn.RNNCell(input_size=input_size, hidden_size=hidden_size)
 
 hidden = cell(input, hidden)
 
-![1626964924150](img/1626964924150.png)
+![1626964924150](PyTroch/1626964924150.png)
 
 example:
 
-![1626965020891](img/1626965020891.png)
+![1626965020891](PyTroch/1626965020891.png)
 
 #### RNN
 
-![1626965260820](img/1626965260820.png)
+![1626965260820](PyTroch/1626965260820.png)
 
-![1627034844671](img/1627034844671.png)
+![1627034844671](PyTroch/1627034844671.png)
 
 ##### batch_first
 
-![1627035087401](img/1627035087401.png)
+![1627035087401](PyTroch/1627035087401.png)
 
 ### example
 
 ##### 1.RNNCell
 
-![1626966404366](img/1626966404366.png)
+![1626966404366](PyTroch/1626966404366.png)
 
 **注意：RNN Cell should be vectors of numbers.**
 
-![1627035551488](img/1627035551488.png)
+![1627035551488](PyTroch/1627035551488.png)
 
 
 
 ##### 2.RNN
 
-![1627134197073](img/1627134197073.png)
+![1627134197073](PyTroch/1627134197073.png)
 
 
 
@@ -385,9 +383,9 @@ example:
 
 优点：Lower-dimension 、Dense、Learned from data
 
-![1627142397742](img/1627142397742.png)
+![1627142397742](PyTroch/1627142397742.png)
 
-![1627310420849](img/1627310420849.png)
+![1627310420849](PyTroch/1627310420849.png)
 
 output of embedding layer with shape:(seqlen,batchSize, **Embedding_Size**)
 
@@ -395,25 +393,25 @@ output of embedding layer with shape:(seqlen,batchSize, **Embedding_Size**)
 
 ### 1.模型
 
-![1627223105297](img/1627223105297.png)
+![1627223105297](PyTroch/1627223105297.png)
 
 #### 双向循环网络bidirectional
 
-![1627227867221](img/双向循环网络.png)
+![1627227867221](PyTroch/双向循环网络.png)
 
 #### GRU
 
-![1627312937634](img/GRU.png)
+![1627312937634](PyTroch/GRU.png)
 
 为什么线性层是 hidden_size * self.n_directions：
 
-![1627313493124](img/1627313493124.png)
+![1627313493124](PyTroch/1627313493124.png)
 
 
 
-![1627387920164](img/1627387920164.png)
+![1627387920164](PyTroch/1627387920164.png)
 
-![1627388269060](img/1627388269060.png)
+![1627388269060](PyTroch/1627388269060.png)
 
 
 
