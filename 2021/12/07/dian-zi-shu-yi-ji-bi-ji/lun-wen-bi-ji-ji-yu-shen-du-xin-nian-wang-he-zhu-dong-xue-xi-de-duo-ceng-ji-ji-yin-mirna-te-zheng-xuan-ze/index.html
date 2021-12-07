@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)">
+<meta name="generator" content="Hexo 5.4.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/all.min.css" integrity="sha256-mUZM63G8m73Mcidfrv5E+Y61y7a12O5mW4ezU3bxqW4=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Gemini","darkmode":true,"version":"8.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+<meta name="description" content="Multi-Level Gene&#x2F;MiRNA Feature Selection using Deep Belief Nets and Active  Learning 摘要选择最具鉴别性的基因&#x2F;miRNAs已被提出作为生物信息学的一项重要任务，以增强疾病分类器和缓解维度诅咒问题。原始的特征选择方法是根据基因&#x2F;miRNAs的个体特征来选择它们，而不考虑它们如何共同表现。考虑群体特征而不是个体特征为">
+<meta property="og:type" content="article">
+<meta property="og:title" content="论文笔记|基于深度信念网和主动学习的多层级基因MiRNA特征选择">
+<meta property="og:url" content="http://example.com/2021/12/07/dian-zi-shu-yi-ji-bi-ji/lun-wen-bi-ji-ji-yu-shen-du-xin-nian-wang-he-zhu-dong-xue-xi-de-duo-ceng-ji-ji-yin-mirna-te-zheng-xuan-ze/index.html">
+<meta property="og:site_name" content="前程似锦，一路繁华">
+<meta property="og:description" content="Multi-Level Gene&#x2F;MiRNA Feature Selection using Deep Belief Nets and Active  Learning 摘要选择最具鉴别性的基因&#x2F;miRNAs已被提出作为生物信息学的一项重要任务，以增强疾病分类器和缓解维度诅咒问题。原始的特征选择方法是根据基因&#x2F;miRNAs的个体特征来选择它们，而不考虑它们如何共同表现。考虑群体特征而不是个体特征为">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/2021/12/07/dian-zi-shu-yi-ji-bi-ji/lun-wen-bi-ji-ji-yu-shen-du-xin-nian-wang-he-zhu-dong-xue-xi-de-duo-ceng-ji-ji-yin-mirna-te-zheng-xuan-ze/image-20211207134950713.png">
+<meta property="og:image" content="http://example.com/2021/12/07/dian-zi-shu-yi-ji-bi-ji/lun-wen-bi-ji-ji-yu-shen-du-xin-nian-wang-he-zhu-dong-xue-xi-de-duo-ceng-ji-ji-yin-mirna-te-zheng-xuan-ze/image-20211207151455551.png">
+<meta property="og:image" content="http://example.com/2021/12/07/dian-zi-shu-yi-ji-bi-ji/lun-wen-bi-ji-ji-yu-shen-du-xin-nian-wang-he-zhu-dong-xue-xi-de-duo-ceng-ji-ji-yin-mirna-te-zheng-xuan-ze/image-20211207151911636.png">
+<meta property="article:published_time" content="2021-12-07T07:21:00.000Z">
+<meta property="article:modified_time" content="2021-12-07T07:21:46.448Z">
+<meta property="article:author" content="fanko">
+<meta property="article:tag" content="论文笔记">
+<meta property="article:tag" content="miRNA">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/2021/12/07/dian-zi-shu-yi-ji-bi-ji/lun-wen-bi-ji-ji-yu-shen-du-xin-nian-wang-he-zhu-dong-xue-xi-de-duo-ceng-ji-ji-yin-mirna-te-zheng-xuan-ze/image-20211207134950713.png">
+
+
+<link rel="canonical" href="http://example.com/2021/12/07/dian-zi-shu-yi-ji-bi-ji/lun-wen-bi-ji-ji-yu-shen-du-xin-nian-wang-he-zhu-dong-xue-xi-de-duo-ceng-ji-ji-yin-mirna-te-zheng-xuan-ze/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://example.com/2021/12/07/dian-zi-shu-yi-ji-bi-ji/lun-wen-bi-ji-ji-yu-shen-du-xin-nian-wang-he-zhu-dong-xue-xi-de-duo-ceng-ji-ji-yin-mirna-te-zheng-xuan-ze/","path":"2021/12/07/dian-zi-shu-yi-ji-bi-ji/lun-wen-bi-ji-ji-yu-shen-du-xin-nian-wang-he-zhu-dong-xue-xi-de-duo-ceng-ji-ji-yin-mirna-te-zheng-xuan-ze/","title":"论文笔记|基于深度信念网和主动学习的多层级基因MiRNA特征选择"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>论文笔记|基于深度信念网和主动学习的多层级基因MiRNA特征选择 | 前程似锦，一路繁华</title>
+  
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">前程似锦，一路繁华</h1>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">坚持,努力,认真</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li>
+        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li>
+        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%91%98%E8%A6%81"><span class="nav-number">1.</span> <span class="nav-text">摘要</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Introduction"><span class="nav-number">2.</span> <span class="nav-text">Introduction</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#RELATED-WORK"><span class="nav-number">3.</span> <span class="nav-text">RELATED WORK</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#THE-PROPOSED-MLFS-%E6%96%B9%E6%B3%95"><span class="nav-number">4.</span> <span class="nav-text">THE PROPOSED MLFS 方法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#a-%E7%B3%BB%E7%BB%9F%E6%A6%82%E8%BF%B0"><span class="nav-number">4.1.</span> <span class="nav-text">a.系统概述</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#b-%E6%B7%B1%E5%BA%A6%E4%BF%A1%E5%BF%B5%E7%BD%91%E4%B8%8E%E7%89%B9%E5%BE%81%E9%80%89%E6%8B%A9"><span class="nav-number">4.2.</span> <span class="nav-text">b.深度信念网与特征选择</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#c-%E6%80%BB%E4%BD%93MLFS%E6%96%B9%E6%B3%95"><span class="nav-number">4.3.</span> <span class="nav-text">c.总体MLFS方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#D-MLFS-miRNA-MiRNAs%E7%89%B9%E5%BE%81%E9%80%89%E6%8B%A9%E6%89%A9%E5%B1%95"><span class="nav-number">4.4.</span> <span class="nav-text">D. MLFS-miRNA: MiRNAs特征选择扩展</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Results"><span class="nav-number">5.</span> <span class="nav-text">Results</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#a-MLFS%E8%AF%84%E4%BB%B7"><span class="nav-number">5.1.</span> <span class="nav-text">a.MLFS评价</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#B-%E6%97%A0%E7%9B%91%E7%9D%A3%E4%B8%BB%E5%8A%A8%E5%AD%A6%E4%B9%A0"><span class="nav-number">5.2.</span> <span class="nav-text">B.无监督主动学习</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#c-MLFS-miRNA%E8%AF%84%E4%BB%B7"><span class="nav-number">5.3.</span> <span class="nav-text">c.MLFS-miRNA评价</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#D-%E4%B8%8E%E7%9B%B8%E5%85%B3%E5%B7%A5%E4%BD%9C%E7%9A%84%E6%AF%94%E8%BE%83"><span class="nav-number">5.4.</span> <span class="nav-text">D.与相关工作的比较</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Conclusion"><span class="nav-number">6.</span> <span class="nav-text">Conclusion</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="fanko"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">fanko</p>
+  <div class="site-description" itemprop="description">-------- 济南大学17级本科生 --------大连理工大学21级研究生</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">182</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">46</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/fankoyu2019" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;fankoyu2019" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:1402704510@qq.com" title="E-Mail → mailto:1402704510@qq.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/12/07/dian-zi-shu-yi-ji-bi-ji/lun-wen-bi-ji-ji-yu-shen-du-xin-nian-wang-he-zhu-dong-xue-xi-de-duo-ceng-ji-ji-yin-mirna-te-zheng-xuan-ze/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="fanko">
+      <meta itemprop="description" content="-------- 济南大学17级本科生 --------大连理工大学21级研究生">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="前程似锦，一路繁华">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          论文笔记|基于深度信念网和主动学习的多层级基因MiRNA特征选择
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2021-12-07 15:21:00" itemprop="dateCreated datePublished" datetime="2021-12-07T15:21:00+08:00">2021-12-07</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">论文笔记</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <p><strong>Multi-Level Gene/MiRNA Feature Selection using Deep Belief Nets and Active  Learning</strong></p>
+<h2 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h2><p>选择最具鉴别性的基因/miRNAs已被提出作为生物信息学的一项重要任务，以增强疾病分类器和缓解维度诅咒问题。原始的特征选择方法是根据基因/miRNAs的个体特征来选择它们，而不考虑它们如何共同表现。考虑群体特征而不是个体特征为选择信息量最大的基因/miRNAs提供了一个更好的视角。最近，深度学习已经证明了它在多个抽象层次上表示数据的能力，允许更好地区分不同的类。然而，利用深度学习进行特征选择的思想在生物信息学领域还没有得到广泛的应用。本文提出了一种基于表达谱选择基因/miRNAs的多层次特征选择方法MLFS。这种方法基于深度学习和主动学习。此外，通过考虑miRNAs和基因之间的生物学关系，提出了将该技术用于miRNAs的扩展。实验结果表明，该方法对肝癌(HCC)、肺癌和乳腺癌的f1指标均优于传统特征选择方法，分别提高9%、6%和10%左右。结果也显示了我们的方法在f1  -测度中比最近在[1]和[2]中相关工作的增强。</p>
+<span id="more"></span>
+
+<h2 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h2><p>先前的研究([3]，[4])表明基因表达谱和疾病类型/亚型之间有很强的关系，使用基因表达集来检测或区分癌症或其亚型。基因表达集存在维数诅咒问题，这是由于基因数量多、样本数量少而造成的。为了解决这个问题，文献中提出了几种特征选择方法来选择一个子集的基因用于分类癌症或其亚型([1]，[2]，[5]，[6])。此外，特征选择方法可以在分类阶段剔除可能产生噪声的不相关基因，从而提高分类模型的执行时间、大小和准确性。</p>
+<p>本文将深度学习和主动学习结合起来。我们的<strong>目标是用最少数量的最具识别力的基因来提高分类精度</strong>。近年来，深度学习在图像、音频等领域得到了广泛的应用。深度信念网(Deep  Belief Net, DBN)是应用深度学习的一种算法。它也显示了其检测高水平特征和提高分类精度的能力。据我们所知，它首次被用于[1]，以增强基于基因表达谱的癌症诊断和分类。另一方面，原始特征选择方法([1]，[5]，[6])仅基于基因表达谱来选择用于检测癌症或其亚型的基因，而不考虑基因组如何一起执行。我们的方法通过主动学习缓解了这个问题。传统的主动学习[7]是一种半监督机器学习方法。它通常用于未标记数据非常丰富，但手动标记成本很高的情况。最初的主动学习方法是从训练一个带有小样本集的分类器开始的。本文介绍了主动学习在无监督情况下的一种扩展。</p>
+<p>此外，我们的方法被扩展到处理miRNA特征选择问题。MicroRNAs  (miRNAs)是短的(19-25个核苷酸)非编码单链RNA分子[8]，在转录或翻译水平上调节基因表达[8]。在本文中，我们的方法通过利用miRNA靶基因的生物学关系，利用多层次基因特征选择方法，扩展到miRNA特征的选择。</p>
+<p>论文的组织如下:第二节讨论了相关工作，第三节详细描述了所提出的方法，第四节展示了实验结果。最后第五部分对全文进行总结。</p>
+<h2 id="RELATED-WORK"><a href="#RELATED-WORK" class="headerlink" title="RELATED WORK"></a>RELATED WORK</h2><p>近年来文献中提出了许多基因特征选择方法，如([1]，[2]，[5]，[6])。作者在[5]中采用地形滤波特征选择方法，并使用SVM分类器对样本进行判别。[6]的工作使用了特征选择方法的集合，以提高特征选择的稳定性和分类精度。然而，基因的评估是独立的，而不管它们在一起表现如何;这个问题在我们提议的主动学习阶段得到解决，如下一节所示。同样，这个问题在[2]中得到了解决。[2]的作者没有单独考虑基因表现，而是与其他基因共同评估其表现。然而，我们的方法通过使用DBN特征和主动学习来评估联合基因的表现。</p>
+<p>深度学习最近在图像和音频应用([9]，[10])等几个领域得到了广泛的应用。本文采用DBN来寻找高水平更好表达的基因表达集。[1]通过解释一个自动编码器来使用深度学习来执行降维，然后使用DBN与新的维数来分类样本。在我们的方法中，基因没有首先映射到主成分，因为我们想跟踪最具鉴别性的基因，以便生物学家能够找到它们与疾病的关联。</p>
+<p>在下一节中，将详细描述拟议的方法MLFS，展示其主要组件以及如何将其扩展到与miRNAs一起工作。</p>
+<h2 id="THE-PROPOSED-MLFS-方法"><a href="#THE-PROPOSED-MLFS-方法" class="headerlink" title="THE PROPOSED MLFS 方法"></a>THE PROPOSED MLFS 方法</h2><h3 id="a-系统概述"><a href="#a-系统概述" class="headerlink" title="a.系统概述"></a>a.系统概述</h3><p>如图1所示，基因特征选择方法由三个主要组成部分组成:</p>
+<p>•Deep Belief Net:  DBN[11]用于生成捕获它们的相互作用和行为的基因的高水平表示。</p>
+<p>•特征选择:然后特征选择应用于DBN生成的高水平表示，以选择一个子集的基因。</p>
+<p>•无监督主动学习:无监督主动学习通过选择提高分类精度的基因来减少基因子集。</p>
+<p>此外，对该方法进行了扩展，用于miRNA特征选择，如图2所示。下面的小节详细解释了所提议的方法的每个组成部分。</p>
+<p><img src="/2021/12/07/dian-zi-shu-yi-ji-bi-ji/lun-wen-bi-ji-ji-yu-shen-du-xin-nian-wang-he-zhu-dong-xue-xi-de-duo-ceng-ji-ji-yin-mirna-te-zheng-xuan-ze/image-20211207134950713.png" alt="image-20211207134950713"></p>
+<h3 id="b-深度信念网与特征选择"><a href="#b-深度信念网与特征选择" class="headerlink" title="b.深度信念网与特征选择"></a>b.深度信念网与特征选择</h3><p>dbn被定义为图形模型，它可以学习提取训练数据的深层层次表示。我们使用[11]中提出的培训程序和[12]中的开源库实现。本文使用的深度学习库有两个隐藏层，每一层的神经元数量等于输入层的原始特征。</p>
+<p>特征选择步骤应用于DBN生成的高级特征。在这一步中，可以采用任何合适的特征选择方法，如统计t检验或relief-f。试验结果部分采用统计学t检验和relief-f检验。</p>
+<h3 id="c-总体MLFS方法"><a href="#c-总体MLFS方法" class="headerlink" title="c.总体MLFS方法"></a>c.总体MLFS方法</h3><p>提出的多层特征选择方法用于对用于区分癌症类型/亚型的样本分类器进行特征选择。我们的目标是用最少的基因数量来提高分类的准确性。该方法的步骤描述如下:</p>
+<p>1)利用DBN提取基因表达谱(e)的高水平表示(e’)。</p>
+<p>2)对高水平表示(e)应用经典特征选择方法，并根据其得分(如统计t检验中的p值)对基因进行排序。</p>
+<p>3)设n为使用的初始随机基因数，g为整组基因，λ为一定百分比，c为分类器，a为精度，Step为每次迭代加入n的基因数，bestGenes为精度最好的一组基因。选择要使用的基因数量如下:</p>
+<p> x=n<br>•bestGenes= top ranked x genes<br>•While(x &lt;=λ*|g|):<br>–c←TrainClassifier(bestGenes,trainingSet)<br>–a←MeasureAccuracy(bestGenes,testSet)<br>–If (a &gt; bestAccuracy):<br>∗bestGenes←top ranked x genes.<br>∗bestAccuracy←a<br>–x←x+Step.</p>
+<p>4)利用所提出的无监督主动学习方法，应用一个缩减阶段来减少最佳遗传集中的基因数量，从最佳遗传集中选择信息量最大的基因，如下:</p>
+<p>a)如果p值&lt; 0.05，则将最佳基因组中的所有基因标记为与癌症类型相关的基因。否则，将它们标记为不相关。</p>
+<p>b)使用bestgenes的随机小子集构建一个基因分类器。分类器是用来判断给定的基因是否与癌症类型有关，根据其表达谱。</p>
+<p>c)让分类器标记bestgenes set。然后，得到对分类器最有信息的基因，这些基因的分类置信度接近0.5，例如在0.4到0.6之间。</p>
+<p>d)使用统计t检验标记信息量最大的基因。这一阶段通常采用人的判断，但没有一个具有强烈生物背景的人的判断。因此，使用了统计学t检验标签。</p>
+<p>e)将信息量最大的基因添加到训练集中，重新训练分类器，回到步骤c。</p>
+<p>f)使用测试集记录准确性，当接近或高于使用所有bestGenes产生的基因时停止。</p>
+<h3 id="D-MLFS-miRNA-MiRNAs特征选择扩展"><a href="#D-MLFS-miRNA-MiRNAs特征选择扩展" class="headerlink" title="D. MLFS-miRNA: MiRNAs特征选择扩展"></a>D. MLFS-miRNA: MiRNAs特征选择扩展</h3><p>为了有效地使用DBN，应该给它提供一个包含大量未标记数据的训练集。然而，mirna的数量通常非常少。这就是为什么提出了一种新的扩展方法，而不是使用相同的多层次特征选择方法。我们的方法通过利用mirna  -靶基因的生物学关系进行扩展，如miRanda[15]数据库。microrna的排序是基于它们在前一个主动学习阶段产生的最终基因特征选择集中存在的目标基因的数量。最后，选择的mirna的数量与前面的方法相同。</p>
+<h2 id="Results"><a href="#Results" class="headerlink" title="Results"></a>Results</h2><p>我们的实验结果在四个小节中给出，以显示每个提议的分量对分类精度的影响。在无监督主动学习阶段使用SVM分类构建基因分类器，在样本分类器中使用随机森林分类器构建样本分类器。支持向量机和RF实现都来自Weka存储库[13]。采用6种癌症类型，即乳腺癌、肝细胞癌、肺癌、前列腺癌、结肠癌和卵巢癌，对提出的方法进行评估。表I、II和III显示了数据集的大小。</p>
+<h3 id="a-MLFS评价"><a href="#a-MLFS评价" class="headerlink" title="a.MLFS评价"></a>a.MLFS评价</h3><p>提出的方法的前两个阶段(将被称为DBN)首先与五种特征选择方法进行比较。这些是随机(随机选择k个基因)、统计t检验、信息增益、relief-f和卡方，应用于原始表达式。从[14]中使用统计t检验，而从Weka库[13]中使用信息增益、卡方和relief-f。使用F-measure将DBN方法与之前的方法进行比较。如图3所示，DBN方法能够在所有方法中获得最高的F-measure。</p>
+<p><img src="/2021/12/07/dian-zi-shu-yi-ji-bi-ji/lun-wen-bi-ji-ji-yu-shen-du-xin-nian-wang-he-zhu-dong-xue-xi-de-duo-ceng-ji-ji-yin-mirna-te-zheng-xuan-ze/image-20211207151455551.png" alt="image-20211207151455551"></p>
+<h3 id="B-无监督主动学习"><a href="#B-无监督主动学习" class="headerlink" title="B.无监督主动学习"></a>B.无监督主动学习</h3><p>使用无监督主动学习来减少最佳基因集，这是从我们的方法的前两个阶段获得的。表四和表五显示了应用主动学习阶段后的结果。表中显示，在提高或至少保持相同的分类精度的同时，主动学习能够降低最佳遗传集在肺癌中60%，在HCC中20%，在乳腺癌ER+/ER-中50%。</p>
+<h3 id="c-MLFS-miRNA评价"><a href="#c-MLFS-miRNA评价" class="headerlink" title="c.MLFS-miRNA评价"></a>c.MLFS-miRNA评价</h3><p>将用于基因表达集的相同的五种特征选择方法应用于miRNA表达谱，并与我们的方法MLFS-miRNA进行比较。图4显示了它们之间的比较。如图所示，miRNA延伸在所有曲线上表现较好。</p>
+<p><img src="/2021/12/07/dian-zi-shu-yi-ji-bi-ji/lun-wen-bi-ji-ji-yu-shen-du-xin-nian-wang-he-zhu-dong-xue-xi-de-duo-ceng-ji-ji-yin-mirna-te-zheng-xuan-ze/image-20211207151911636.png" alt="image-20211207151911636"></p>
+<h3 id="D-与相关工作的比较"><a href="#D-与相关工作的比较" class="headerlink" title="D.与相关工作的比较"></a>D.与相关工作的比较</h3><p>表III显示了用于比较我们的工作与[1]和[2]的数据集大小。而表VI显示了与[1]比较的10倍交叉验证分类精度结果。此外，我们使用两个数据集SRBCT和MLL[16]来比较我们的方法和[2]中提出的方法。由于统计t检验仅限于2类，它被Weka[13]中的浮雕特征选择所取代。表VII显示了10倍交叉验证结果。</p>
+<h2 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a>Conclusion</h2><p>本文提出了一种融合DBN和主动学习两种无监督机器学习方法的多层次特征选择方法，以选择最少数量的最具鉴别性的基因，提高样本分类精度。实验结果表明，本文提出的特征选择方法在肝癌和肺癌的f1测量中分别比经典特征选择方法提高9%和6%。此外，实验结果表明，与最近的相关工作相比，我们的方法在f1测量方面有提高</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0/" rel="tag"># 论文笔记</a>
+              <a href="/tags/miRNA/" rel="tag"># miRNA</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2021/12/05/dian-zi-shu-yi-ji-bi-ji/lun-wen-bi-ji-yong-yu-microrna-yu-ce-de-zhu-dong-xue-xi/" rel="prev" title="论文笔记|用于microRNA预测的主动学习">
+                  <i class="fa fa-chevron-left"></i> 论文笔记|用于microRNA预测的主动学习
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">fanko</span>
+</div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/next-boot.js"></script>
+
+  
+<script src="https://cdn.jsdelivr.net/npm/hexo-generator-searchdb@1.4.0/dist/search.js" integrity="sha256-vXZMYLEqsROAXkEw93GGIvaB2ab+QW6w3+1ahD9nXXA=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+</body>
+</html>
