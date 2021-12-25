@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)">
+<meta name="generator" content="Hexo 5.4.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/all.min.css" integrity="sha256-mUZM63G8m73Mcidfrv5E+Y61y7a12O5mW4ezU3bxqW4=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Gemini","darkmode":true,"version":"8.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+<meta name="description" content="基于表示学习和深度森林的 lncRNA 编码短肽预测模型深度神经网络DNN，同分布取样，筛选起始密码子为ATG，去冗余， 针对短肽预测研究中 lncRNA 中 sORFs 特征不鲜明且高可信度数据尚不充分的问题，提出一种基于表示学习的深度森林模型 提出一种自动编码器（AE）与深度森林结合的方法，实现lncRNA编码短肽的识别预测。 本文的主要贡献如下:  1)使用多个生物信息学软件获取拟南芥中的">
+<meta property="og:type" content="article">
+<meta property="og:title" content="论文笔记|基于表示学习和深度森林的 lncRNA 编码短肽预测模型">
+<meta property="og:url" content="http://example.com/2021/11/18/dian-zi-shu-yi-ji-bi-ji/lun-wen-bi-ji-ji-yu-biao-shi-xue-xi-he-shen-du-sen-lin-de-lncrna-bian-ma-duan-tai-yu-ce-mo-xing/index.html">
+<meta property="og:site_name" content="前程似锦，一路繁华">
+<meta property="og:description" content="基于表示学习和深度森林的 lncRNA 编码短肽预测模型深度神经网络DNN，同分布取样，筛选起始密码子为ATG，去冗余， 针对短肽预测研究中 lncRNA 中 sORFs 特征不鲜明且高可信度数据尚不充分的问题，提出一种基于表示学习的深度森林模型 提出一种自动编码器（AE）与深度森林结合的方法，实现lncRNA编码短肽的识别预测。 本文的主要贡献如下:  1)使用多个生物信息学软件获取拟南芥中的">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2021-11-18T07:21:00.000Z">
+<meta property="article:modified_time" content="2021-12-08T01:20:56.880Z">
+<meta property="article:author" content="fanko">
+<meta property="article:tag" content="论文笔记">
+<meta property="article:tag" content="lncRNA">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://example.com/2021/11/18/dian-zi-shu-yi-ji-bi-ji/lun-wen-bi-ji-ji-yu-biao-shi-xue-xi-he-shen-du-sen-lin-de-lncrna-bian-ma-duan-tai-yu-ce-mo-xing/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://example.com/2021/11/18/dian-zi-shu-yi-ji-bi-ji/lun-wen-bi-ji-ji-yu-biao-shi-xue-xi-he-shen-du-sen-lin-de-lncrna-bian-ma-duan-tai-yu-ce-mo-xing/","path":"2021/11/18/dian-zi-shu-yi-ji-bi-ji/lun-wen-bi-ji-ji-yu-biao-shi-xue-xi-he-shen-du-sen-lin-de-lncrna-bian-ma-duan-tai-yu-ce-mo-xing/","title":"论文笔记|基于表示学习和深度森林的 lncRNA 编码短肽预测模型"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>论文笔记|基于表示学习和深度森林的 lncRNA 编码短肽预测模型 | 前程似锦，一路繁华</title>
+  
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">前程似锦，一路繁华</h1>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">坚持,努力,认真</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li>
+        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li>
+        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9F%BA%E4%BA%8E%E8%A1%A8%E7%A4%BA%E5%AD%A6%E4%B9%A0%E5%92%8C%E6%B7%B1%E5%BA%A6%E6%A3%AE%E6%9E%97%E7%9A%84-lncRNA-%E7%BC%96%E7%A0%81%E7%9F%AD%E8%82%BD%E9%A2%84%E6%B5%8B%E6%A8%A1%E5%9E%8B"><span class="nav-number">1.</span> <span class="nav-text">基于表示学习和深度森林的 lncRNA 编码短肽预测模型</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%95%B0%E6%8D%AE%E9%9B%86"><span class="nav-number">1.1.</span> <span class="nav-text">数据集</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%89%B9%E5%BE%81%E6%8F%90%E5%8F%96"><span class="nav-number">1.2.</span> <span class="nav-text">特征提取</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A8%A1%E5%9E%8B"><span class="nav-number">1.3.</span> <span class="nav-text">模型</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#%E8%87%AA%E5%8A%A8%E7%BC%96%E7%A0%81%E5%99%A8"><span class="nav-number">1.3.0.1.</span> <span class="nav-text">自动编码器</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#%E6%B7%B1%E5%BA%A6%E6%A3%AE%E6%9E%97"><span class="nav-number">1.3.0.2.</span> <span class="nav-text">深度森林</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%A8%A1%E5%9E%8B%E5%AE%9E%E7%8E%B0"><span class="nav-number">1.4.</span> <span class="nav-text">模型实现</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="fanko"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">fanko</p>
+  <div class="site-description" itemprop="description">-------- 济南大学17级本科生 --------大连理工大学21级研究生</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">186</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">47</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/fankoyu2019" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;fankoyu2019" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:1402704510@qq.com" title="E-Mail → mailto:1402704510@qq.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/11/18/dian-zi-shu-yi-ji-bi-ji/lun-wen-bi-ji-ji-yu-biao-shi-xue-xi-he-shen-du-sen-lin-de-lncrna-bian-ma-duan-tai-yu-ce-mo-xing/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="fanko">
+      <meta itemprop="description" content="-------- 济南大学17级本科生 --------大连理工大学21级研究生">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="前程似锦，一路繁华">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          论文笔记|基于表示学习和深度森林的 lncRNA 编码短肽预测模型
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2021-11-18 15:21:00" itemprop="dateCreated datePublished" datetime="2021-11-18T15:21:00+08:00">2021-11-18</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">论文笔记</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h2 id="基于表示学习和深度森林的-lncRNA-编码短肽预测模型"><a href="#基于表示学习和深度森林的-lncRNA-编码短肽预测模型" class="headerlink" title="基于表示学习和深度森林的 lncRNA 编码短肽预测模型"></a>基于表示学习和深度森林的 lncRNA 编码短肽预测模型</h2><p>深度神经网络DNN，同分布取样，筛选起始密码子为ATG，去冗余，</p>
+<p>针对短肽预测研究中 lncRNA 中 sORFs 特征不鲜明且高可信度数据尚不充分的问题，提出一种基于表示学习的深度森林模型</p>
+<p>提出一种自动编码器（AE）与深度森林结合的方法，实现lncRNA编码短肽的识别预测。</p>
+<p>本文的主要贡献如下: </p>
+<p>1)使用多个生物信息学软件获取拟南芥中的 sORFs，对结果取交集以提高结果可信度。 </p>
+<p>2)提取 CDS 与 NCDS 候选 sORFs 序列在多种特征编码方式下的特征表达结果，对特征进行融合，并通过机器学习算法分析二者的差异。 </p>
+<p>3)结合自动编码器非监督表示学习思想，提出一种深度森林预测模型，实现 sORFs 编码短肽的识别预测。</p>
+<span id="more"></span>
+
+<h3 id="数据集"><a href="#数据集" class="headerlink" title="数据集"></a>数据集</h3><p>与胡鹤还师兄类似，采用拟南芥CDS和NCDS数据，作为正集和负集的数据源。</p>
+<h3 id="特征提取"><a href="#特征提取" class="headerlink" title="特征提取"></a>特征提取</h3><p>序列长度L</p>
+<p>（G+C）碱基含量 GC_content</p>
+<p>G与C的比例 GC_ratio</p>
+<p>融合后，Feature<del>1</del>=[L,GC_content,GC_ratio]</p>
+<p>k-mer 取1，2，3</p>
+<p>Feature<del>2</del>=[f<del>1</del>,…,f<del>84</del>]</p>
+<p>短序列模体,（不连续碱基）SSM</p>
+<p>Feature<del>3</del>=[SSM<del>1</del>,…,SSM<del>48</del>]</p>
+<p>信噪比R</p>
+<p>最终</p>
+<p>Feature=(Feature<del>1</del>,Feature<del>2</del>,Feature<del>3</del>,R)</p>
+<h3 id="模型"><a href="#模型" class="headerlink" title="模型"></a>模型</h3><h5 id="自动编码器"><a href="#自动编码器" class="headerlink" title="自动编码器"></a>自动编码器</h5><p>编码器，解码器</p>
+<h5 id="深度森林"><a href="#深度森林" class="headerlink" title="深度森林"></a>深度森林</h5><p>多粒度扫描，最终选取2，4滑动窗口进行采样。</p>
+<p>级联森林，</p>
+<h3 id="模型实现"><a href="#模型实现" class="headerlink" title="模型实现"></a>模型实现</h3><p>模型由特征编码、自动编码器和深度森林三部分组成。首先通过提取sORFs相关特征完成编码; 紧接着将结果输入到自动编码器中，经过RELU函数激活，完成表示学习过程;最后将表示学习得到的特征向量输入到深度森林中，经过自适应的层数完成训练，获得每一维增强特征对应的分类概率，通过argmax函数得到最终的分类结果，完成预测。</p>
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0/" rel="tag"># 论文笔记</a>
+              <a href="/tags/lncRNA/" rel="tag"># lncRNA</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2021/11/15/dian-zi-shu-yi-ji-bi-ji/zhu-dong-xue-xi/" rel="prev" title="基础学习|主动学习综述">
+                  <i class="fa fa-chevron-left"></i> 基础学习|主动学习综述
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2021/11/28/dian-zi-shu-yi-ji-bi-ji/lun-wen-bi-ji-mipepid-shi-yong-ji-qi-xue-xi-de-xiao-tai-shi-bie-gong-ju/" rel="next" title="论文笔记|MiPepid：使用机器学习的小肽识别工具">
+                  论文笔记|MiPepid：使用机器学习的小肽识别工具 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">fanko</span>
+</div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/next-boot.js"></script>
+
+  
+<script src="https://cdn.jsdelivr.net/npm/hexo-generator-searchdb@1.4.0/dist/search.js" integrity="sha256-vXZMYLEqsROAXkEw93GGIvaB2ab+QW6w3+1ahD9nXXA=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+</body>
+</html>
