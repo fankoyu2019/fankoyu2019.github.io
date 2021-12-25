@@ -279,6 +279,12 @@ kernel_size / 2
 
 步长 默认为 1
 
+输出大小 =  （输入大小+padding*2-kernel_size)/stride + 1 
+
+
+
+
+
 ### Max Pooling  Layer 
 
 默认 stride = 2

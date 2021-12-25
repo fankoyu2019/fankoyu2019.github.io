@@ -2,12 +2,12 @@
 title: 论文笔记|用于microRNA分类的半监督机器学习框架
 tags:
  - 论文笔记
+ - miRNA
+ - Active Learning
 date: 2021-11-28 20:45:01
 categories:
  - 论文笔记
 ---
-
-
 
 **A semi-supervised machine learning framework for microRNA classification**
 

@@ -7,7 +7,7 @@ categories:
  - 论文笔记
 ---
 
-## Deepinsight: A methodology to transform a non-image data to an image for  convolution neural network architecture
+**Deepinsight: A methodology to transform a non-image data to an image for  convolution neural network architecture**
 
 将非图像数据转换为可以可视化的图像
 
