@@ -265,6 +265,22 @@ CrossEntropyLoss
 
 卷积核的个数 是 输出通道数   M
 
+### CNN的多个卷积核为什么能提取到不同的特征
+
+答案原文：[https://www.quora.com/Why-does-each-filter-learn-different-features-in-a-convolutional-neural-network](https://link.zhihu.com/?target=https%3A//www.quora.com/Why-does-each-filter-learn-different-features-in-a-convolutional-neural-network)
+
+下面是机翻
+
+两个原因:
+
+1.过滤器的权重是随机初始化的
+
+2.只有卷积核学习到不同的特征，才会减少成本函数
+
+随机初始化的权重可能会确保每个过滤器收敛到成本函数的不同的局部最小值。
+
+每个过滤器开始模仿其他过滤器是不可能的，因为这几乎肯定会导致成本函数的增加，梯度下降算法不会让模型朝这个方向发展。
+
 ### Convolutional Layer 
 
 ![1626691213183](PyTroch/ConvolutionalLayer.png)
