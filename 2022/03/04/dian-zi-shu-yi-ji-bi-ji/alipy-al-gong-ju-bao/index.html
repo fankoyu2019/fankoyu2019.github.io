@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#222" media="(prefers-color-scheme: dark)">
+<meta name="generator" content="Hexo 5.4.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/all.min.css" integrity="sha256-mUZM63G8m73Mcidfrv5E+Y61y7a12O5mW4ezU3bxqW4=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Gemini","darkmode":true,"version":"8.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
+<meta name="description" content="Alipy使用（一）官网：http:&#x2F;&#x2F;parnec.nuaa.edu.cn&#x2F;huangsj&#x2F;alipy&#x2F; 博客文档讲解：https:&#x2F;&#x2F;blog.csdn.net&#x2F;weixin_44575152&#x2F;article&#x2F;details&#x2F;100783835 12345678910111213141516171819202122import alipy as apimport numpy as npfrom">
+<meta property="og:type" content="article">
+<meta property="og:title" content="工具学习|Alipy">
+<meta property="og:url" content="http://example.com/2022/03/04/dian-zi-shu-yi-ji-bi-ji/alipy-al-gong-ju-bao/index.html">
+<meta property="og:site_name" content="前程似锦，一路繁华">
+<meta property="og:description" content="Alipy使用（一）官网：http:&#x2F;&#x2F;parnec.nuaa.edu.cn&#x2F;huangsj&#x2F;alipy&#x2F; 博客文档讲解：https:&#x2F;&#x2F;blog.csdn.net&#x2F;weixin_44575152&#x2F;article&#x2F;details&#x2F;100783835 12345678910111213141516171819202122import alipy as apimport numpy as npfrom">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-03-04T07:05:01.000Z">
+<meta property="article:modified_time" content="2022-03-07T07:42:45.206Z">
+<meta property="article:author" content="fanko">
+<meta property="article:tag" content="读书笔记">
+<meta property="article:tag" content="Alipy">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://example.com/2022/03/04/dian-zi-shu-yi-ji-bi-ji/alipy-al-gong-ju-bao/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"zh-CN","comments":true,"permalink":"http://example.com/2022/03/04/dian-zi-shu-yi-ji-bi-ji/alipy-al-gong-ju-bao/","path":"2022/03/04/dian-zi-shu-yi-ji-bi-ji/alipy-al-gong-ju-bao/","title":"工具学习|Alipy"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>工具学习|Alipy | 前程似锦，一路繁华</title>
+  
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">前程似锦，一路繁华</h1>
+      <i class="logo-line"></i>
+    </a>
+      <p class="site-subtitle" itemprop="description">坚持,努力,认真</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+        <i class="fa fa-search fa-fw fa-lg"></i>
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li>
+        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li>
+        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li>
+      <li class="menu-item menu-item-search">
+        <a role="button" class="popup-trigger"><i class="fa fa-search fa-fw"></i>搜索
+        </a>
+      </li>
+  </ul>
+</nav>
+
+
+
+  <div class="search-pop-overlay">
+    <div class="popup search-popup"><div class="search-header">
+  <span class="search-icon">
+    <i class="fa fa-search"></i>
+  </span>
+  <div class="search-input-container">
+    <input autocomplete="off" autocapitalize="off" maxlength="80"
+           placeholder="搜索..." spellcheck="false"
+           type="search" class="search-input">
+  </div>
+  <span class="popup-btn-close" role="button">
+    <i class="fa fa-times-circle"></i>
+  </span>
+</div>
+<div class="search-result-container no-result">
+  <div class="search-result-icon">
+    <i class="fa fa-spinner fa-pulse fa-5x"></i>
+  </div>
+</div>
+
+    </div>
+  </div>
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Alipy%E4%BD%BF%E7%94%A8%EF%BC%88%E4%B8%80%EF%BC%89"><span class="nav-number">1.</span> <span class="nav-text">Alipy使用（一）</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Alipy%E6%A6%82%E8%BF%B0"><span class="nav-number">1.1.</span> <span class="nav-text">Alipy概述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%AB%98%E7%BA%A7%E5%B0%81%E8%A3%85"><span class="nav-number">1.2.</span> <span class="nav-text">高级封装</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1-1-%E5%88%92%E5%88%86%E6%95%B0%E6%8D%AE"><span class="nav-number">1.2.1.</span> <span class="nav-text">1.1.1 划分数据</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Alipy%E4%BD%BF%E7%94%A8%EF%BC%88%E4%BA%8C%EF%BC%89"><span class="nav-number">2.</span> <span class="nav-text">Alipy使用（二）</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-%E6%95%B0%E6%8D%AE%E6%93%8D%E4%BD%9C"><span class="nav-number">2.1.</span> <span class="nav-text">1 数据操作</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-1-%E6%95%B0%E6%8D%AE%E5%88%92%E5%88%86"><span class="nav-number">2.1.1.</span> <span class="nav-text">1.1 数据划分</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#1-2-%E7%89%B9%E5%BE%81%E7%BC%A9%E6%94%BE"><span class="nav-number">2.1.2.</span> <span class="nav-text">1.2 特征缩放</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-%E6%9F%A5%E8%AF%A2%E7%AD%96%E7%95%A5"><span class="nav-number">2.2.</span> <span class="nav-text">2 查询策略</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-1-%E4%BD%BF%E7%94%A8%E5%86%85%E7%BD%AE%E7%9A%84%E9%80%BB%E8%BE%91%E5%9B%9E%E5%BD%92%E6%A8%A1%E5%9E%8B%E9%80%89%E6%8B%A9"><span class="nav-number">2.2.1.</span> <span class="nav-text">2.1 使用内置的逻辑回归模型选择</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-Oracle"><span class="nav-number">2.3.</span> <span class="nav-text">3 Oracle</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#2-2-%E7%9F%A5%E8%AF%86%E5%BA%93"><span class="nav-number">2.3.1.</span> <span class="nav-text">2.2 知识库</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-%E7%B4%A2%E5%BC%95%E7%AE%A1%E7%90%86"><span class="nav-number">2.4.</span> <span class="nav-text">3 索引管理</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="fanko"
+      src="/images/avatar.jpg">
+  <p class="site-author-name" itemprop="name">fanko</p>
+  <div class="site-description" itemprop="description">-------- 济南大学17级本科生 --------大连理工大学21级研究生</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+        <a href="/archives/">
+          <span class="site-state-item-count">191</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+          <a href="/categories/">
+        <span class="site-state-item-count">7</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+          <a href="/tags/">
+        <span class="site-state-item-count">49</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://github.com/fankoyu2019" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;fankoyu2019" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:1402704510@qq.com" title="E-Mail → mailto:1402704510@qq.com" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+
+
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="返回顶部">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/03/04/dian-zi-shu-yi-ji-bi-ji/alipy-al-gong-ju-bao/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="fanko">
+      <meta itemprop="description" content="-------- 济南大学17级本科生 --------大连理工大学21级研究生">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="前程似锦，一路繁华">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          工具学习|Alipy
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2022-03-04 15:05:01" itemprop="dateCreated datePublished" datetime="2022-03-04T15:05:01+08:00">2022-03-04</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">读书笔记</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h1 id="Alipy使用（一）"><a href="#Alipy使用（一）" class="headerlink" title="Alipy使用（一）"></a>Alipy使用（一）</h1><p>官网：<a target="_blank" rel="noopener" href="http://parnec.nuaa.edu.cn/huangsj/alipy/">http://parnec.nuaa.edu.cn/huangsj/alipy/</a></p>
+<p>博客文档讲解：<a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_44575152/article/details/100783835">https://blog.csdn.net/weixin_44575152/article/details/100783835</a></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> alipy <span class="keyword">as</span> ap</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">from</span> alipy.metrics <span class="keyword">import</span> *</span><br><span class="line"><span class="keyword">from</span> sklearn.datasets <span class="keyword">import</span> load_iris</span><br><span class="line">np.random.seed(<span class="number">1</span>)  <span class="comment"># 保证你我的结果一直</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">test</span>():</span></span><br><span class="line">    X, Y = load_iris(return_X_y=<span class="literal">True</span>)</span><br><span class="line">    tool = ap.ToolBox(X=X, y=Y)</span><br><span class="line">    idx_tr, idx_te, idx_lab, idx_unlab = tool.split_AL(test_ratio=<span class="number">0.1</span>, initial_label_rate=<span class="number">0.1</span>, split_count=<span class="number">1</span>)</span><br><span class="line">    <span class="string">&quot;&quot;&quot;=============================================&quot;&quot;&quot;</span></span><br><span class="line">    model = tool.get_default_model()</span><br><span class="line">    model.fit(X[idx_lab[<span class="number">0</span>]], Y[idx_lab[<span class="number">0</span>]])</span><br><span class="line">    Y_pre = model.predict(X=X[idx_unlab[<span class="number">0</span>]])</span><br><span class="line">    <span class="comment"># 这里测试一下准确率</span></span><br><span class="line">    <span class="built_in">print</span>(accuracy_score(Y_pre, Y[idx_unlab[<span class="number">0</span>]]))</span><br><span class="line">    <span class="string">&quot;&quot;&quot;=============================================&quot;&quot;&quot;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&#x27;__main__&#x27;</span>:</span><br><span class="line">    test()</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="Alipy概述"><a href="#Alipy概述" class="headerlink" title="Alipy概述"></a>Alipy概述</h2><p> Alipy提供了一个基于模块的主动学习框架，其目标是用各种工具功能支持实验实现。这些工具是以低耦合的方式设计的，以便用户可以根据自己的习惯来编程实验项目。支持的模块如下：</p>
+<table>
+<thead>
+<tr>
+<th>序列</th>
+<th>模块名</th>
+<th>功用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td>alipy.data_manipulate</td>
+<td>数据划分</td>
+</tr>
+<tr>
+<td>2</td>
+<td>alipy.query_strategy</td>
+<td>数据查询策略</td>
+</tr>
+<tr>
+<td>3</td>
+<td>alipy.index.IndexCollection</td>
+<td>索引管理</td>
+</tr>
+<tr>
+<td>4</td>
+<td>alipy.metric</td>
+<td>模型性能计算</td>
+</tr>
+<tr>
+<td>5</td>
+<td>alipy.experiment.state/alipy.experiment.state_io</td>
+<td>保存每次查询后的中间结果并从断点恢复程序</td>
+</tr>
+<tr>
+<td>6</td>
+<td>alipy.experiment.stopping_criteria</td>
+<td>获取停止标准</td>
+</tr>
+<tr>
+<td>7</td>
+<td>alipy.experiment.experiment_analyser</td>
+<td>可视化实验结果</td>
+</tr>
+<tr>
+<td>8</td>
+<td>alipy.oracle</td>
+<td>提供清洁、噪音或者代价敏感的oracle</td>
+</tr>
+<tr>
+<td>9</td>
+<td>alipy.utils.multi_thread</td>
+<td>多次实验</td>
+</tr>
+</tbody></table>
+<p>支持以下算法：</p>
+<h2 id="高级封装"><a href="#高级封装" class="headerlink" title="高级封装"></a>高级封装</h2><h3 id="1-1-1-划分数据"><a href="#1-1-1-划分数据" class="headerlink" title="1.1.1 划分数据"></a>1.1.1 划分数据</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">alibox = ToolBox(X=data_set, y=label_set, query_type=<span class="string">&#x27;AllLabels&#x27;</span>, saving_path=<span class="string">&#x27;.&#x27;</span>)</span><br><span class="line">alibox.split_AL(test_ratio=<span class="number">0.3</span>, initial_label_rate=<span class="number">0.1</span>, split_count=<span class="number">1</span>)</span><br></pre></td></tr></table></figure>
+
+<p>执行这段代码后会在当前路径 生成4个数据文件，如果后期更改这个函数的参数，必须先把生成的文件删除，再执行程序</p>
+<p>即：若文件存在，会自动调用已经生成的文件，不会再调用该函数生成文件</p>
+<h1 id="Alipy使用（二）"><a href="#Alipy使用（二）" class="headerlink" title="Alipy使用（二）"></a>Alipy使用（二）</h1><h2 id="1-数据操作"><a href="#1-数据操作" class="headerlink" title="1 数据操作"></a>1 数据操作</h2><h3 id="1-1-数据划分"><a href="#1-1-数据划分" class="headerlink" title="1.1 数据划分"></a>1.1 数据划分</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> alipy <span class="keyword">as</span> ap</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">from</span> sklearn.datasets <span class="keyword">import</span> load_iris</span><br><span class="line">np.random.seed(<span class="number">1</span>)  <span class="comment"># 保证你我的结果一直</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">test</span>():</span></span><br><span class="line">    data = load_iris()</span><br><span class="line">    X, Y = data[<span class="string">&quot;data&quot;</span>], data[<span class="string">&quot;target&quot;</span>]</span><br><span class="line">    tool = ap.ToolBox(X=X, y=Y)</span><br><span class="line">    idx_tr, idx_te, idx_lab, idx_unlab = tool.split_AL(test_ratio=<span class="number">0.1</span>, initial_label_rate=<span class="number">0.1</span>, split_count=<span class="number">1</span>)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;训练集索引：&quot;</span>, idx_tr)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;测试集索引：&quot;</span>, idx_te)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;有标签集索引：&quot;</span>, idx_lab)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;无标签集索引：&quot;</span>, idx_unlab)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&#x27;__main__&#x27;</span>:</span><br><span class="line">    test()</span><br></pre></td></tr></table></figure>
+
+<h3 id="1-2-特征缩放"><a href="#1-2-特征缩放" class="headerlink" title="1.2 特征缩放"></a>1.2 特征缩放</h3><p>包括最大最小和标准缩放：<br>  1）<strong>最大最小缩放</strong>把数据集的属性值统一到[lower, upper]内：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">import numpy as np</span><br><span class="line">from sklearn.datasets import load_iris</span><br><span class="line">from alipy.data_manipulate import minmax_scale</span><br><span class="line">np.random.seed(1)  # 保证你我的结果一直</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">def test():</span><br><span class="line">    X, _ = load_iris(return_X_y=True)</span><br><span class="line">    # 通常将范围限定在[0, 1]</span><br><span class="line">    X = minmax_scale(X=X, feature_range=(0, 1))</span><br><span class="line">    print(X[:5])</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">if __name__ == &#x27;__main__&#x27;:</span><br><span class="line">    test()</span><br></pre></td></tr></table></figure>
+
+<p>2）<strong>标准缩放</strong>将指定值减去所在属性列的平均值，随后结果除以相应的标准差来处理：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">from</span> sklearn.datasets <span class="keyword">import</span> load_iris</span><br><span class="line"><span class="keyword">from</span> alipy.data_manipulate <span class="keyword">import</span> StandardScale</span><br><span class="line">np.random.seed(<span class="number">1</span>)  <span class="comment"># 保证你我的结果一直</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">test</span>():</span></span><br><span class="line">    X, _ = load_iris(return_X_y=<span class="literal">True</span>)</span><br><span class="line">    X = StandardScale(X=X)</span><br><span class="line">    <span class="built_in">print</span>(X[:<span class="number">5</span>])</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&#x27;__main__&#x27;</span>:</span><br><span class="line">    test()</span><br></pre></td></tr></table></figure>
+
+<h2 id="2-查询策略"><a href="#2-查询策略" class="headerlink" title="2 查询策略"></a>2 查询策略</h2><p>简单说来，查询策略即是<strong>如何从无标签集中查询实例的策略？</strong> 在Alipy中，已实现了七种不同的查询策略，具体可以参见：<a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_44575152/article/details/100783835">https://blog.csdn.net/weixin_44575152/article/details/100783835</a></p>
+<h3 id="2-1-使用内置的逻辑回归模型选择"><a href="#2-1-使用内置的逻辑回归模型选择" class="headerlink" title="2.1 使用内置的逻辑回归模型选择"></a>2.1 使用内置的逻辑回归模型选择</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">import alipy as ap</span><br><span class="line">import numpy as np</span><br><span class="line">from sklearn.datasets import load_iris</span><br><span class="line">from alipy.data_manipulate import StandardScale</span><br><span class="line">from alipy.query_strategy import QueryInstanceQBC</span><br><span class="line">np.random.seed(1)  # 保证你我的结果一直</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">def test():</span><br><span class="line">    X, Y = load_iris(return_X_y=True)</span><br><span class="line">    X = StandardScale(X=X)</span><br><span class="line">    # 初始化工具箱</span><br><span class="line">    tool = ap.ToolBox(X=X, y=Y)</span><br><span class="line">    idx_tr, idx_te, idx_lab, idx_unlab = tool.split_AL(test_ratio=0.1, initial_label_rate=0.1, split_count=1)</span><br><span class="line">    # 指定查询策略，当然不同的查询策略有不同的超参数</span><br><span class="line">    qbc = QueryInstanceQBC(X, Y)</span><br><span class="line">    # 使用默认模型</span><br><span class="line">    model = tool.get_default_model()</span><br><span class="line">    model.fit(X[idx_lab[0]], Y[idx_lab[0]])</span><br><span class="line">    &quot;&quot;&quot;这里是重点 --&gt; 获取查询结果&quot;&quot;&quot;</span><br><span class="line">    idx_query = qbc.select(idx_lab[0], idx_unlab[0], batch_size=10, model=model)</span><br><span class="line">    print(idx_lab[0])</span><br><span class="line">    print(idx_query)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">if __name__ == &#x27;__main__&#x27;:</span><br><span class="line">    test()</span><br></pre></td></tr></table></figure>
+
+<p>输出如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[ 14  98  75  16 131  56 141  44  29 120  94   5 102  51]</span><br><span class="line">[123 128 126 121 138 149 114  85 111 103] </span><br></pre></td></tr></table></figure>
+
+<p>查询将在无标签集中进行，所选择的样本可以用于之后的模型训练。</p>
+<h2 id="3-Oracle"><a href="#3-Oracle" class="headerlink" title="3 Oracle"></a>3 Oracle</h2><p> 1）指定索引和标签初始化：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> alipy <span class="keyword">as</span> ap</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">from</span> sklearn.datasets <span class="keyword">import</span> load_iris</span><br><span class="line"><span class="keyword">from</span> alipy.data_manipulate <span class="keyword">import</span> StandardScale</span><br><span class="line"><span class="keyword">from</span> alipy.oracle <span class="keyword">import</span> Oracle</span><br><span class="line">np.random.seed(<span class="number">1</span>)  <span class="comment"># 保证你我的结果一直</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">test</span>():</span></span><br><span class="line">    X, Y = load_iris(return_X_y=<span class="literal">True</span>)</span><br><span class="line">    X = StandardScale(X=X)</span><br><span class="line">    <span class="comment"># 初始化工具箱</span></span><br><span class="line">    tool = ap.ToolBox(X=X, y=Y)</span><br><span class="line">    idx_tr, idx_te, idx_lab, idx_unlab = tool.split_AL(test_ratio=<span class="number">0.1</span>, initial_label_rate=<span class="number">0.1</span>, split_count=<span class="number">1</span>)</span><br><span class="line">    <span class="string">&quot;&quot;&quot;=============================================&quot;&quot;&quot;</span></span><br><span class="line">    <span class="comment"># 其实就是把无标记集的标签和索引告诉他</span></span><br><span class="line">    <span class="comment"># 无标记集不是没有标签吗？</span></span><br><span class="line">    <span class="comment"># 这里可以看作是你通过魔镜获取的 哈哈哈</span></span><br><span class="line">    oracle = Oracle(labels=Y[idx_unlab[<span class="number">0</span>]], indexes=idx_unlab[<span class="number">0</span>])</span><br><span class="line">    <span class="built_in">print</span>(idx_unlab)</span><br><span class="line">    <span class="built_in">print</span>(oracle.index_keys)</span><br><span class="line">    <span class="string">&quot;&quot;&quot;=============================================&quot;&quot;&quot;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&#x27;__main__&#x27;</span>:</span><br><span class="line">    test()</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-2-知识库"><a href="#2-2-知识库" class="headerlink" title="2.2 知识库"></a>2.2 知识库</h3><p><code>alipy.oracle.ElementRepository </code>是一个类，用于存储查询的信息（例如，查询的标签，选择的索引，成本），它是oracle的支持工具。</p>
+<p>对于干净的预言机，此类通常是不必要的，因为您可以通过使用所选索引为您的真实标签矩阵编制索引来获取查询的标签。然而，在一些特殊设置（例如，嘈杂的预言机）中，用户可能希望存储查询的信息以供进一步分析。</p>
+<p>知识库的功能包括：</p>
+<p>1、免费获取查询信息</p>
+<p>2.历史记录</p>
+<p>3.获取训练模型的标签集</p>
+<p>下面我们介绍一下这个类的基本用法。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> alipy <span class="keyword">as</span> ap</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">from</span> sklearn.datasets <span class="keyword">import</span> load_iris</span><br><span class="line"><span class="keyword">from</span> alipy.data_manipulate <span class="keyword">import</span> StandardScale</span><br><span class="line"><span class="keyword">from</span> alipy.oracle <span class="keyword">import</span> Oracle, Oracles, ElementRepository, MatrixRepository</span><br><span class="line">np.random.seed(<span class="number">1</span>)  <span class="comment"># 保证你我的结果一直</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">test</span>():</span></span><br><span class="line">    X, Y = load_iris(return_X_y=<span class="literal">True</span>)</span><br><span class="line">    X = StandardScale(X=X)</span><br><span class="line">    <span class="comment"># 初始化工具箱</span></span><br><span class="line">    tool = ap.ToolBox(X=X, y=Y)</span><br><span class="line">    idx_tr, idx_te, idx_lab, idx_unlab = tool.split_AL(test_ratio=<span class="number">0.1</span>, initial_label_rate=<span class="number">0.1</span>, split_count=<span class="number">1</span>)</span><br><span class="line">    <span class="string">&quot;&quot;&quot;=============================================&quot;&quot;&quot;</span></span><br><span class="line">    <span class="comment"># 记录已标记或者已查询的</span></span><br><span class="line">    <span class="comment"># 如果不传入examples的话，两者没有区别</span></span><br><span class="line">    <span class="comment"># 传入的话，前者的样本可以是复杂对象，后者只能是array</span></span><br><span class="line">    rep_ele = ElementRepository(labels=Y[idx_lab[<span class="number">0</span>]], indexes=idx_lab[<span class="number">0</span>])</span><br><span class="line">    rep_mat = MatrixRepository(labels=Y[idx_lab[<span class="number">0</span>]], indexes=idx_lab[<span class="number">0</span>])</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;更新前&quot;</span>, idx_lab)</span><br><span class="line">    <span class="comment"># 更新一下</span></span><br><span class="line">    idx_select = [idx_unlab[<span class="number">0</span>][<span class="number">0</span>]]</span><br><span class="line">    rep_ele.update_query(labels=Y[idx_select], indexes=idx_select)</span><br><span class="line">    X, Y, idx_lab = rep_ele.get_training_data()</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;更新后&quot;</span>, idx_lab)</span><br><span class="line">    <span class="string">&quot;&quot;&quot;=============================================&quot;&quot;&quot;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&#x27;__main__&#x27;</span>:</span><br><span class="line">    test()</span><br></pre></td></tr></table></figure>
+
+<h2 id="3-索引管理"><a href="#3-索引管理" class="headerlink" title="3 索引管理"></a>3 索引管理</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> alipy <span class="keyword">as</span> ap</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">from</span> sklearn.datasets <span class="keyword">import</span> load_iris</span><br><span class="line">np.random.seed(<span class="number">1</span>)  <span class="comment"># 保证你我的结果一直</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">test</span>():</span></span><br><span class="line">    X, Y = load_iris(return_X_y=<span class="literal">True</span>)</span><br><span class="line">    tool = ap.ToolBox(X=X, y=Y)</span><br><span class="line">    idx_tr, idx_te, idx_lab, idx_unlab = tool.split_AL(test_ratio=<span class="number">0.1</span>, initial_label_rate=<span class="number">0.1</span>, split_count=<span class="number">1</span>)</span><br><span class="line">    <span class="string">&quot;&quot;&quot;=============================================&quot;&quot;&quot;</span></span><br><span class="line">    idx_collect = tool.IndexCollection(idx_lab[<span class="number">0</span>])</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;索引初始化：&quot;</span>, idx_collect.index)</span><br><span class="line">    <span class="comment"># 添加重复元素会警告，添加后却不是有序的，有点扯拐</span></span><br><span class="line">    idx_collect.add(idx_unlab[<span class="number">0</span>][<span class="number">0</span>])</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;添加一个元素：&quot;</span>, idx_collect.index)</span><br><span class="line">    idx_collect.discard(idx_unlab[<span class="number">0</span>][<span class="number">0</span>])</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;删除一个元素：&quot;</span>, idx_collect.index)</span><br><span class="line">    idx_collect.update(idx_unlab[<span class="number">0</span>][:<span class="number">3</span>])</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;添加多个元素：&quot;</span>, idx_collect.index)</span><br><span class="line">    idx_collect.difference_update(idx_unlab[<span class="number">0</span>][:<span class="number">3</span>])</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;删除多个元素：&quot;</span>, idx_collect.index)</span><br><span class="line">    <span class="string">&quot;&quot;&quot;=============================================&quot;&quot;&quot;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&#x27;__main__&#x27;</span>:</span><br><span class="line">    test()</span><br></pre></td></tr></table></figure>
+
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/" rel="tag"># 读书笔记</a>
+              <a href="/tags/Alipy/" rel="tag"># Alipy</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2021/12/07/dian-zi-shu-yi-ji-bi-ji/lun-wen-bi-ji-ji-yu-shen-du-xin-nian-wang-he-zhu-dong-xue-xi-de-duo-ceng-ji-ji-yin-mirna-te-zheng-xuan-ze/" rel="prev" title="论文笔记|基于深度信念网和主动学习的多层级基因MiRNA特征选择">
+                  <i class="fa fa-chevron-left"></i> 论文笔记|基于深度信念网和主动学习的多层级基因MiRNA特征选择
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2022/03/24/dian-zi-shu-yi-ji-bi-ji/pytorch-xue-xi/" rel="next" title="工具学习|Pytorch初学习">
+                  工具学习|Pytorch初学习 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">fanko</span>
+</div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a> 强力驱动
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/next-boot.js"></script>
+
+  
+<script src="https://cdn.jsdelivr.net/npm/hexo-generator-searchdb@1.4.0/dist/search.js" integrity="sha256-vXZMYLEqsROAXkEw93GGIvaB2ab+QW6w3+1ahD9nXXA=" crossorigin="anonymous"></script>
+<script src="/js/third-party/search/local-search.js"></script>
+
+
+
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+</body>
+</html>

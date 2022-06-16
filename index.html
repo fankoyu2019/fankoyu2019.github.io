@@ -159,7 +159,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
         <a href="/archives/">
-          <span class="site-state-item-count">186</span>
+          <span class="site-state-item-count">191</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -170,7 +170,7 @@
       </div>
       <div class="site-state-item site-state-tags">
           <a href="/tags/">
-        <span class="site-state-item-count">47</span>
+        <span class="site-state-item-count">49</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -207,6 +207,506 @@
 
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/06/05/dian-zi-shu-yi-ji-bi-ji/lun-wen-bi-ji-bu-ping-heng-shu-ju-yu-zhu-dong-xue-xi/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="fanko">
+      <meta itemprop="description" content="-------- 济南大学17级本科生 --------大连理工大学21级研究生">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="前程似锦，一路繁华">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2022/06/05/dian-zi-shu-yi-ji-bi-ji/lun-wen-bi-ji-bu-ping-heng-shu-ju-yu-zhu-dong-xue-xi/" class="post-title-link" itemprop="url">论文笔记|不平衡样本与主动学习-几篇</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2022-06-05 14:31:00" itemprop="dateCreated datePublished" datetime="2022-06-05T14:31:00+08:00">2022-06-05</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">论文笔记</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="1-目前有没有结合生物特征做不平衡数据处理的相关文献"><a href="#1-目前有没有结合生物特征做不平衡数据处理的相关文献" class="headerlink" title="1. 目前有没有结合生物特征做不平衡数据处理的相关文献"></a>1. 目前有没有结合生物特征做不平衡数据处理的相关文献</h1><p>1.作者利用GAN设计编码蛋白的人工DNA序列：以服从低维正态分布的向量作为生成器的输入，生成器产生的DNA序列与来自Uniprot数据库中超过3655条的天然蛋白编码序列共同作为判别器的输入，训练GAN生成编码蛋白的人工DNA序列。</p>
+<p>2.基于VAE的生成式模型引入小分子药物序列的设计中。2018年Lim等使用化合物的油水分配系数、氢键供体性质等性质作为条件向量输入，利用分子序列与条件向量成对输入到VAE中，最终生成了分别达到5类不同理化性能指标的人工化合物分子。</p>
+<p>3.利用基于LSTM的模型形成通用的蛋白序列表示空间，并利用该表示空间与绿色荧光蛋白的荧光强度模型相结合，进行绿色荧光蛋白序列的人工设计。</p>
+<p>目前多用于化合物分子团等单元数目较多的生物序列的生成。</p>
+<p>针对小开放阅读框的样本生成，即生成的样本之间相似度过高，影响人工生物序列的多样性。循环神经网络可灵活处理不定长的生物序列，但通常模型规模大，所需训练时间长，且生物分子序列相比于自然语言生成的场景，缺乏成熟的语义嵌入网络。</p>
+<h2 id="2-目前也有很多文献做不平衡数据的主动学习-问我这个有什么改进优势"><a href="#2-目前也有很多文献做不平衡数据的主动学习-问我这个有什么改进优势" class="headerlink" title="2.目前也有很多文献做不平衡数据的主动学习 问我这个有什么改进优势"></a>2.目前也有很多文献做不平衡数据的主动学习 问我这个有什么改进优势</h2><p>目前的一些针对不平衡数据的主动学习没有考虑到生物序列特征方面的相关特性，针对sorf 正集分布在较长区间，负集分布在较短区间。</p>
+<h2 id="3-然后建议我用结合生物序列结构的方式，不一定非用p-nts编码-那种方式"><a href="#3-然后建议我用结合生物序列结构的方式，不一定非用p-nts编码-那种方式" class="headerlink" title="3.然后建议我用结合生物序列结构的方式，不一定非用p-nts编码 那种方式"></a>3.然后建议我用结合生物序列结构的方式，不一定非用p-nts编码 那种方式</h2><p>p-nts 不能生成长度一致的向量必须用“n”或“0”填充以获得长度一致的向量。</p>
+<p>k-mer频率，作为输入向量</p>
+<h2 id="基于主动学习SMOTE的非均衡数据分类"><a href="#基于主动学习SMOTE的非均衡数据分类" class="headerlink" title="基于主动学习SMOTE的非均衡数据分类"></a>基于主动学习SMOTE的非均衡数据分类</h2><p>张永 2012 计算机应用与软件</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2022/06/05/dian-zi-shu-yi-ji-bi-ji/lun-wen-bi-ji-bu-ping-heng-shu-ju-yu-zhu-dong-xue-xi/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/04/18/dian-zi-shu-yi-ji-bi-ji/lun-wen-bi-ji-tong-guo-jie-jue-ju-bu-shu-ju-bu-ping-heng-yu-ce-rna-xu-lie-de-bian-ma-qian-li/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="fanko">
+      <meta itemprop="description" content="-------- 济南大学17级本科生 --------大连理工大学21级研究生">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="前程似锦，一路繁华">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2022/04/18/dian-zi-shu-yi-ji-bi-ji/lun-wen-bi-ji-tong-guo-jie-jue-ju-bu-shu-ju-bu-ping-heng-yu-ce-rna-xu-lie-de-bian-ma-qian-li/" class="post-title-link" itemprop="url">论文笔记|通过解决局部数据不平衡预测RNA序列的编码潜力</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2022-04-18 16:52:01" itemprop="dateCreated datePublished" datetime="2022-04-18T16:52:01+08:00">2022-04-18</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">论文笔记</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h2 id="Predicting-Coding-Potential-of-RNA-Sequences-by-Solving-Local-Data-Imbalance"><a href="#Predicting-Coding-Potential-of-RNA-Sequences-by-Solving-Local-Data-Imbalance" class="headerlink" title="Predicting Coding Potential of RNA Sequences by Solving Local Data Imbalance"></a>Predicting Coding Potential of RNA Sequences by Solving Local Data Imbalance</h2><h3 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h3><p>非编码RNA(ncRNAs)在多种生物学过程中发挥重要作用，并与疾病相关。区分编码RNA和ncRNAs，也就是预测RNA序列的编码潜力，是进行下游生物功能分析的关键。已经提出了许多基于机器学习的方法来预测RNA序列的编码潜力。最近的研究表明，现有的大多数方法对开放阅读框架较短的RNA序列(sORF，ORF长度&lt;303nt)的处理效果不佳。在本工作中，我们分析了RNA序列的ORF长度分布，发现具有sORF的编码RNA的数量不足，并且具有sORF的编码RNA的数量远远少于具有sORF的ncRNAs。因此，在含有sORF的RNA序列中存在局部数据不平衡的问题。我们提出了一种编码潜力预测方法CPE-SLDI，该方法使用数据过采样技术来增加带有sORF的编码RNA的样本，以缓解局部数据的不平衡。与现有方法相比，CPE-SLDI具有更好的性能，研究表明，通过各种数据过采样技术进行数据增强可以提高编码潜力预测的性能，特别是对于含有sORF的RNA序列。建议的方法的实施可在<a target="_blank" rel="noopener" href="https://github.com/chenxgscuec/CPESLDI%E4%B8%8A%E8%8E%B7%E5%BE%97%E3%80%82">https://github.com/chenxgscuec/CPESLDI上获得。</a></p>
+<p>关键字：非编码RNA、编码潜力预测、本地数据不平衡、过采样</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2022/04/18/dian-zi-shu-yi-ji-bi-ji/lun-wen-bi-ji-tong-guo-jie-jue-ju-bu-shu-ju-bu-ping-heng-yu-ce-rna-xu-lie-de-bian-ma-qian-li/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/04/13/dian-zi-shu-yi-ji-bi-ji/lun-wen-bi-ji-rsg-yi-chong-jian-dan-er-you-xiao-de-bu-ping-heng-shu-ju-ji-xue-xi-mo-xing/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="fanko">
+      <meta itemprop="description" content="-------- 济南大学17级本科生 --------大连理工大学21级研究生">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="前程似锦，一路繁华">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2022/04/13/dian-zi-shu-yi-ji-bi-ji/lun-wen-bi-ji-rsg-yi-chong-jian-dan-er-you-xiao-de-bu-ping-heng-shu-ju-ji-xue-xi-mo-xing/" class="post-title-link" itemprop="url">论文笔记|RSG：一种简单而有效的不平衡数据集学习模型</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2022-04-13 18:45:01" itemprop="dateCreated datePublished" datetime="2022-04-13T18:45:01+08:00">2022-04-13</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">论文笔记</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h2 id="RSG-A-Simple-but-Effective-Module-for-Learning-Imbalanced-Datasets"><a href="#RSG-A-Simple-but-Effective-Module-for-Learning-Imbalanced-Datasets" class="headerlink" title="RSG: A Simple but Effective Module for Learning Imbalanced Datasets"></a>RSG: A Simple but Effective Module for Learning Imbalanced Datasets</h2><h3 id="摘要"><a href="#摘要" class="headerlink" title="摘要"></a>摘要</h3><p>不平衡数据集在实际中广泛存在，对于训练具有较好泛化能力的非频繁类的深层神经模型是一个巨大的挑战。在这项工作中，我们提出了一个新的稀有类样本生成器(RSG)来解决这个问题。RSG的目标是在训练过程中为稀有类生成一些新的样本，特别是它具有以下优点：(1)使用方便，通用性强，因为它可以很容易地集成到任何一种卷积神经网络中，并且在结合不同的损失函数时效果很好，(2)它只在训练阶段使用，因此在测试阶段不会给深层神经网络带来额外的负担。在广泛的实验评估中，我们验证了RSG的有效性。此外，通过利用RSG，我们在不平衡的CIFAR上获得了有竞争力的结果，并在Places-LT、ImageNet-LT和iNaturalist  2018上获得了最新的结果。源代码可在<a target="_blank" rel="noopener" href="https://github.com/Jianf-Wang/RSG.%E4%B8%8A%E6%89%BE%E5%88%B0">https://github.com/Jianf-Wang/RSG.上找到</a></p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2022/04/13/dian-zi-shu-yi-ji-bi-ji/lun-wen-bi-ji-rsg-yi-chong-jian-dan-er-you-xiao-de-bu-ping-heng-shu-ju-ji-xue-xi-mo-xing/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/03/24/dian-zi-shu-yi-ji-bi-ji/pytorch-xue-xi/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="fanko">
+      <meta itemprop="description" content="-------- 济南大学17级本科生 --------大连理工大学21级研究生">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="前程似锦，一路繁华">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2022/03/24/dian-zi-shu-yi-ji-bi-ji/pytorch-xue-xi/" class="post-title-link" itemprop="url">工具学习|Pytorch初学习</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2022-03-24 18:01:01" itemprop="dateCreated datePublished" datetime="2022-03-24T18:01:01+08:00">2022-03-24</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">读书笔记</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h3 id="Dataset-与-Dataloader"><a href="#Dataset-与-Dataloader" class="headerlink" title="Dataset 与 Dataloader"></a>Dataset 与 Dataloader</h3><p><img src="/2022/03/24/dian-zi-shu-yi-ji-bi-ji/pytorch-xue-xi/image-20220324180417557.png" alt="image-20220324180417557"></p>
+<p>Dataset ： 提供一种方式去获取数据及其label，告诉我们总共有多少数据</p>
+<p>Dataloader : 为后面的网络提供不同的数据形式</p>
+<h3 id="TensorBoard"><a href="#TensorBoard" class="headerlink" title="TensorBoard"></a>TensorBoard</h3><p>tensorboard –logdir=logs –port=6007</p>
+<h3 id="CNN"><a href="#CNN" class="headerlink" title="CNN"></a>CNN</h3><h4 id="卷积层"><a href="#卷积层" class="headerlink" title="卷积层"></a>卷积层</h4><p><img src="/2022/03/24/dian-zi-shu-yi-ji-bi-ji/pytorch-xue-xi/image-20220329175337100.png" alt="image-20220329175337100"></p>
+<h4 id="池化层"><a href="#池化层" class="headerlink" title="池化层"></a>池化层</h4><p><img src="/2022/03/24/dian-zi-shu-yi-ji-bi-ji/pytorch-xue-xi/image-20220329205728266.png" alt="image-20220329205728266"></p>
+<p>input = torch.tensor([[    ]] , dtype = torch.float32)</p>
+<h4 id="非线性激活"><a href="#非线性激活" class="headerlink" title="非线性激活"></a>非线性激活</h4><h3 id="现有模型的修改"><a href="#现有模型的修改" class="headerlink" title="现有模型的修改"></a>现有模型的修改</h3><p><img src="/2022/03/24/dian-zi-shu-yi-ji-bi-ji/pytorch-xue-xi/image-20220404203839263.png" alt="image-20220404203839263"></p>
+<h3 id="模型的保存"><a href="#模型的保存" class="headerlink" title="模型的保存"></a>模型的保存</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">net = Net()</span><br><span class="line"><span class="comment"># 保存方式1</span></span><br><span class="line">torch.save(net, <span class="string">&quot;net_method1.pth&quot;</span>)</span><br><span class="line"><span class="comment"># 方式1-&gt; 模型定义必须带过来</span></span><br><span class="line">model = torch.load(<span class="string">&quot;net_method1.pth&quot;</span>)</span><br></pre></td></tr></table></figure>
+
+<h3 id="利用GPU训练"><a href="#利用GPU训练" class="headerlink" title="利用GPU训练"></a>利用GPU训练</h3><p><img src="/2022/03/24/dian-zi-shu-yi-ji-bi-ji/pytorch-xue-xi/image-20220405165703264.png" alt="image-20220405165703264"></p>
+<p><img src="/2022/03/24/dian-zi-shu-yi-ji-bi-ji/pytorch-xue-xi/image-20220405173525678.png" alt="image-20220405173525678"></p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/03/04/dian-zi-shu-yi-ji-bi-ji/alipy-al-gong-ju-bao/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="fanko">
+      <meta itemprop="description" content="-------- 济南大学17级本科生 --------大连理工大学21级研究生">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="前程似锦，一路繁华">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2022/03/04/dian-zi-shu-yi-ji-bi-ji/alipy-al-gong-ju-bao/" class="post-title-link" itemprop="url">工具学习|Alipy</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2022-03-04 15:05:01" itemprop="dateCreated datePublished" datetime="2022-03-04T15:05:01+08:00">2022-03-04</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">读书笔记</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="Alipy使用（一）"><a href="#Alipy使用（一）" class="headerlink" title="Alipy使用（一）"></a>Alipy使用（一）</h1><p>官网：<a target="_blank" rel="noopener" href="http://parnec.nuaa.edu.cn/huangsj/alipy/">http://parnec.nuaa.edu.cn/huangsj/alipy/</a></p>
+<p>博客文档讲解：<a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_44575152/article/details/100783835">https://blog.csdn.net/weixin_44575152/article/details/100783835</a></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> alipy <span class="keyword">as</span> ap</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">from</span> alipy.metrics <span class="keyword">import</span> *</span><br><span class="line"><span class="keyword">from</span> sklearn.datasets <span class="keyword">import</span> load_iris</span><br><span class="line">np.random.seed(<span class="number">1</span>)  <span class="comment"># 保证你我的结果一直</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">test</span>():</span></span><br><span class="line">    X, Y = load_iris(return_X_y=<span class="literal">True</span>)</span><br><span class="line">    tool = ap.ToolBox(X=X, y=Y)</span><br><span class="line">    idx_tr, idx_te, idx_lab, idx_unlab = tool.split_AL(test_ratio=<span class="number">0.1</span>, initial_label_rate=<span class="number">0.1</span>, split_count=<span class="number">1</span>)</span><br><span class="line">    <span class="string">&quot;&quot;&quot;=============================================&quot;&quot;&quot;</span></span><br><span class="line">    model = tool.get_default_model()</span><br><span class="line">    model.fit(X[idx_lab[<span class="number">0</span>]], Y[idx_lab[<span class="number">0</span>]])</span><br><span class="line">    Y_pre = model.predict(X=X[idx_unlab[<span class="number">0</span>]])</span><br><span class="line">    <span class="comment"># 这里测试一下准确率</span></span><br><span class="line">    <span class="built_in">print</span>(accuracy_score(Y_pre, Y[idx_unlab[<span class="number">0</span>]]))</span><br><span class="line">    <span class="string">&quot;&quot;&quot;=============================================&quot;&quot;&quot;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&#x27;__main__&#x27;</span>:</span><br><span class="line">    test()</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="Alipy概述"><a href="#Alipy概述" class="headerlink" title="Alipy概述"></a>Alipy概述</h2><p> Alipy提供了一个基于模块的主动学习框架，其目标是用各种工具功能支持实验实现。这些工具是以低耦合的方式设计的，以便用户可以根据自己的习惯来编程实验项目。支持的模块如下：</p>
+<table>
+<thead>
+<tr>
+<th>序列</th>
+<th>模块名</th>
+<th>功用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td>alipy.data_manipulate</td>
+<td>数据划分</td>
+</tr>
+<tr>
+<td>2</td>
+<td>alipy.query_strategy</td>
+<td>数据查询策略</td>
+</tr>
+<tr>
+<td>3</td>
+<td>alipy.index.IndexCollection</td>
+<td>索引管理</td>
+</tr>
+<tr>
+<td>4</td>
+<td>alipy.metric</td>
+<td>模型性能计算</td>
+</tr>
+<tr>
+<td>5</td>
+<td>alipy.experiment.state/alipy.experiment.state_io</td>
+<td>保存每次查询后的中间结果并从断点恢复程序</td>
+</tr>
+<tr>
+<td>6</td>
+<td>alipy.experiment.stopping_criteria</td>
+<td>获取停止标准</td>
+</tr>
+<tr>
+<td>7</td>
+<td>alipy.experiment.experiment_analyser</td>
+<td>可视化实验结果</td>
+</tr>
+<tr>
+<td>8</td>
+<td>alipy.oracle</td>
+<td>提供清洁、噪音或者代价敏感的oracle</td>
+</tr>
+<tr>
+<td>9</td>
+<td>alipy.utils.multi_thread</td>
+<td>多次实验</td>
+</tr>
+</tbody></table>
+<p>支持以下算法：</p>
+<h2 id="高级封装"><a href="#高级封装" class="headerlink" title="高级封装"></a>高级封装</h2><h3 id="1-1-1-划分数据"><a href="#1-1-1-划分数据" class="headerlink" title="1.1.1 划分数据"></a>1.1.1 划分数据</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">alibox = ToolBox(X=data_set, y=label_set, query_type=<span class="string">&#x27;AllLabels&#x27;</span>, saving_path=<span class="string">&#x27;.&#x27;</span>)</span><br><span class="line">alibox.split_AL(test_ratio=<span class="number">0.3</span>, initial_label_rate=<span class="number">0.1</span>, split_count=<span class="number">1</span>)</span><br></pre></td></tr></table></figure>
+
+<p>执行这段代码后会在当前路径 生成4个数据文件，如果后期更改这个函数的参数，必须先把生成的文件删除，再执行程序</p>
+<p>即：若文件存在，会自动调用已经生成的文件，不会再调用该函数生成文件</p>
+<h1 id="Alipy使用（二）"><a href="#Alipy使用（二）" class="headerlink" title="Alipy使用（二）"></a>Alipy使用（二）</h1><h2 id="1-数据操作"><a href="#1-数据操作" class="headerlink" title="1 数据操作"></a>1 数据操作</h2><h3 id="1-1-数据划分"><a href="#1-1-数据划分" class="headerlink" title="1.1 数据划分"></a>1.1 数据划分</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> alipy <span class="keyword">as</span> ap</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">from</span> sklearn.datasets <span class="keyword">import</span> load_iris</span><br><span class="line">np.random.seed(<span class="number">1</span>)  <span class="comment"># 保证你我的结果一直</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">test</span>():</span></span><br><span class="line">    data = load_iris()</span><br><span class="line">    X, Y = data[<span class="string">&quot;data&quot;</span>], data[<span class="string">&quot;target&quot;</span>]</span><br><span class="line">    tool = ap.ToolBox(X=X, y=Y)</span><br><span class="line">    idx_tr, idx_te, idx_lab, idx_unlab = tool.split_AL(test_ratio=<span class="number">0.1</span>, initial_label_rate=<span class="number">0.1</span>, split_count=<span class="number">1</span>)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;训练集索引：&quot;</span>, idx_tr)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;测试集索引：&quot;</span>, idx_te)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;有标签集索引：&quot;</span>, idx_lab)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;无标签集索引：&quot;</span>, idx_unlab)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&#x27;__main__&#x27;</span>:</span><br><span class="line">    test()</span><br></pre></td></tr></table></figure>
+
+<h3 id="1-2-特征缩放"><a href="#1-2-特征缩放" class="headerlink" title="1.2 特征缩放"></a>1.2 特征缩放</h3><p>包括最大最小和标准缩放：<br>  1）<strong>最大最小缩放</strong>把数据集的属性值统一到[lower, upper]内：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">import numpy as np</span><br><span class="line">from sklearn.datasets import load_iris</span><br><span class="line">from alipy.data_manipulate import minmax_scale</span><br><span class="line">np.random.seed(1)  # 保证你我的结果一直</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">def test():</span><br><span class="line">    X, _ = load_iris(return_X_y=True)</span><br><span class="line">    # 通常将范围限定在[0, 1]</span><br><span class="line">    X = minmax_scale(X=X, feature_range=(0, 1))</span><br><span class="line">    print(X[:5])</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">if __name__ == &#x27;__main__&#x27;:</span><br><span class="line">    test()</span><br></pre></td></tr></table></figure>
+
+<p>2）<strong>标准缩放</strong>将指定值减去所在属性列的平均值，随后结果除以相应的标准差来处理：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">from</span> sklearn.datasets <span class="keyword">import</span> load_iris</span><br><span class="line"><span class="keyword">from</span> alipy.data_manipulate <span class="keyword">import</span> StandardScale</span><br><span class="line">np.random.seed(<span class="number">1</span>)  <span class="comment"># 保证你我的结果一直</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">test</span>():</span></span><br><span class="line">    X, _ = load_iris(return_X_y=<span class="literal">True</span>)</span><br><span class="line">    X = StandardScale(X=X)</span><br><span class="line">    <span class="built_in">print</span>(X[:<span class="number">5</span>])</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&#x27;__main__&#x27;</span>:</span><br><span class="line">    test()</span><br></pre></td></tr></table></figure>
+
+<h2 id="2-查询策略"><a href="#2-查询策略" class="headerlink" title="2 查询策略"></a>2 查询策略</h2><p>简单说来，查询策略即是<strong>如何从无标签集中查询实例的策略？</strong> 在Alipy中，已实现了七种不同的查询策略，具体可以参见：<a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_44575152/article/details/100783835">https://blog.csdn.net/weixin_44575152/article/details/100783835</a></p>
+<h3 id="2-1-使用内置的逻辑回归模型选择"><a href="#2-1-使用内置的逻辑回归模型选择" class="headerlink" title="2.1 使用内置的逻辑回归模型选择"></a>2.1 使用内置的逻辑回归模型选择</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">import alipy as ap</span><br><span class="line">import numpy as np</span><br><span class="line">from sklearn.datasets import load_iris</span><br><span class="line">from alipy.data_manipulate import StandardScale</span><br><span class="line">from alipy.query_strategy import QueryInstanceQBC</span><br><span class="line">np.random.seed(1)  # 保证你我的结果一直</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">def test():</span><br><span class="line">    X, Y = load_iris(return_X_y=True)</span><br><span class="line">    X = StandardScale(X=X)</span><br><span class="line">    # 初始化工具箱</span><br><span class="line">    tool = ap.ToolBox(X=X, y=Y)</span><br><span class="line">    idx_tr, idx_te, idx_lab, idx_unlab = tool.split_AL(test_ratio=0.1, initial_label_rate=0.1, split_count=1)</span><br><span class="line">    # 指定查询策略，当然不同的查询策略有不同的超参数</span><br><span class="line">    qbc = QueryInstanceQBC(X, Y)</span><br><span class="line">    # 使用默认模型</span><br><span class="line">    model = tool.get_default_model()</span><br><span class="line">    model.fit(X[idx_lab[0]], Y[idx_lab[0]])</span><br><span class="line">    &quot;&quot;&quot;这里是重点 --&gt; 获取查询结果&quot;&quot;&quot;</span><br><span class="line">    idx_query = qbc.select(idx_lab[0], idx_unlab[0], batch_size=10, model=model)</span><br><span class="line">    print(idx_lab[0])</span><br><span class="line">    print(idx_query)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">if __name__ == &#x27;__main__&#x27;:</span><br><span class="line">    test()</span><br></pre></td></tr></table></figure>
+
+<p>输出如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[ 14  98  75  16 131  56 141  44  29 120  94   5 102  51]</span><br><span class="line">[123 128 126 121 138 149 114  85 111 103] </span><br></pre></td></tr></table></figure>
+
+<p>查询将在无标签集中进行，所选择的样本可以用于之后的模型训练。</p>
+<h2 id="3-Oracle"><a href="#3-Oracle" class="headerlink" title="3 Oracle"></a>3 Oracle</h2><p> 1）指定索引和标签初始化：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> alipy <span class="keyword">as</span> ap</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">from</span> sklearn.datasets <span class="keyword">import</span> load_iris</span><br><span class="line"><span class="keyword">from</span> alipy.data_manipulate <span class="keyword">import</span> StandardScale</span><br><span class="line"><span class="keyword">from</span> alipy.oracle <span class="keyword">import</span> Oracle</span><br><span class="line">np.random.seed(<span class="number">1</span>)  <span class="comment"># 保证你我的结果一直</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">test</span>():</span></span><br><span class="line">    X, Y = load_iris(return_X_y=<span class="literal">True</span>)</span><br><span class="line">    X = StandardScale(X=X)</span><br><span class="line">    <span class="comment"># 初始化工具箱</span></span><br><span class="line">    tool = ap.ToolBox(X=X, y=Y)</span><br><span class="line">    idx_tr, idx_te, idx_lab, idx_unlab = tool.split_AL(test_ratio=<span class="number">0.1</span>, initial_label_rate=<span class="number">0.1</span>, split_count=<span class="number">1</span>)</span><br><span class="line">    <span class="string">&quot;&quot;&quot;=============================================&quot;&quot;&quot;</span></span><br><span class="line">    <span class="comment"># 其实就是把无标记集的标签和索引告诉他</span></span><br><span class="line">    <span class="comment"># 无标记集不是没有标签吗？</span></span><br><span class="line">    <span class="comment"># 这里可以看作是你通过魔镜获取的 哈哈哈</span></span><br><span class="line">    oracle = Oracle(labels=Y[idx_unlab[<span class="number">0</span>]], indexes=idx_unlab[<span class="number">0</span>])</span><br><span class="line">    <span class="built_in">print</span>(idx_unlab)</span><br><span class="line">    <span class="built_in">print</span>(oracle.index_keys)</span><br><span class="line">    <span class="string">&quot;&quot;&quot;=============================================&quot;&quot;&quot;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&#x27;__main__&#x27;</span>:</span><br><span class="line">    test()</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-2-知识库"><a href="#2-2-知识库" class="headerlink" title="2.2 知识库"></a>2.2 知识库</h3><p><code>alipy.oracle.ElementRepository </code>是一个类，用于存储查询的信息（例如，查询的标签，选择的索引，成本），它是oracle的支持工具。</p>
+<p>对于干净的预言机，此类通常是不必要的，因为您可以通过使用所选索引为您的真实标签矩阵编制索引来获取查询的标签。然而，在一些特殊设置（例如，嘈杂的预言机）中，用户可能希望存储查询的信息以供进一步分析。</p>
+<p>知识库的功能包括：</p>
+<p>1、免费获取查询信息</p>
+<p>2.历史记录</p>
+<p>3.获取训练模型的标签集</p>
+<p>下面我们介绍一下这个类的基本用法。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> alipy <span class="keyword">as</span> ap</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">from</span> sklearn.datasets <span class="keyword">import</span> load_iris</span><br><span class="line"><span class="keyword">from</span> alipy.data_manipulate <span class="keyword">import</span> StandardScale</span><br><span class="line"><span class="keyword">from</span> alipy.oracle <span class="keyword">import</span> Oracle, Oracles, ElementRepository, MatrixRepository</span><br><span class="line">np.random.seed(<span class="number">1</span>)  <span class="comment"># 保证你我的结果一直</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">test</span>():</span></span><br><span class="line">    X, Y = load_iris(return_X_y=<span class="literal">True</span>)</span><br><span class="line">    X = StandardScale(X=X)</span><br><span class="line">    <span class="comment"># 初始化工具箱</span></span><br><span class="line">    tool = ap.ToolBox(X=X, y=Y)</span><br><span class="line">    idx_tr, idx_te, idx_lab, idx_unlab = tool.split_AL(test_ratio=<span class="number">0.1</span>, initial_label_rate=<span class="number">0.1</span>, split_count=<span class="number">1</span>)</span><br><span class="line">    <span class="string">&quot;&quot;&quot;=============================================&quot;&quot;&quot;</span></span><br><span class="line">    <span class="comment"># 记录已标记或者已查询的</span></span><br><span class="line">    <span class="comment"># 如果不传入examples的话，两者没有区别</span></span><br><span class="line">    <span class="comment"># 传入的话，前者的样本可以是复杂对象，后者只能是array</span></span><br><span class="line">    rep_ele = ElementRepository(labels=Y[idx_lab[<span class="number">0</span>]], indexes=idx_lab[<span class="number">0</span>])</span><br><span class="line">    rep_mat = MatrixRepository(labels=Y[idx_lab[<span class="number">0</span>]], indexes=idx_lab[<span class="number">0</span>])</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;更新前&quot;</span>, idx_lab)</span><br><span class="line">    <span class="comment"># 更新一下</span></span><br><span class="line">    idx_select = [idx_unlab[<span class="number">0</span>][<span class="number">0</span>]]</span><br><span class="line">    rep_ele.update_query(labels=Y[idx_select], indexes=idx_select)</span><br><span class="line">    X, Y, idx_lab = rep_ele.get_training_data()</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;更新后&quot;</span>, idx_lab)</span><br><span class="line">    <span class="string">&quot;&quot;&quot;=============================================&quot;&quot;&quot;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&#x27;__main__&#x27;</span>:</span><br><span class="line">    test()</span><br></pre></td></tr></table></figure>
+
+<h2 id="3-索引管理"><a href="#3-索引管理" class="headerlink" title="3 索引管理"></a>3 索引管理</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> alipy <span class="keyword">as</span> ap</span><br><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">from</span> sklearn.datasets <span class="keyword">import</span> load_iris</span><br><span class="line">np.random.seed(<span class="number">1</span>)  <span class="comment"># 保证你我的结果一直</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">test</span>():</span></span><br><span class="line">    X, Y = load_iris(return_X_y=<span class="literal">True</span>)</span><br><span class="line">    tool = ap.ToolBox(X=X, y=Y)</span><br><span class="line">    idx_tr, idx_te, idx_lab, idx_unlab = tool.split_AL(test_ratio=<span class="number">0.1</span>, initial_label_rate=<span class="number">0.1</span>, split_count=<span class="number">1</span>)</span><br><span class="line">    <span class="string">&quot;&quot;&quot;=============================================&quot;&quot;&quot;</span></span><br><span class="line">    idx_collect = tool.IndexCollection(idx_lab[<span class="number">0</span>])</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;索引初始化：&quot;</span>, idx_collect.index)</span><br><span class="line">    <span class="comment"># 添加重复元素会警告，添加后却不是有序的，有点扯拐</span></span><br><span class="line">    idx_collect.add(idx_unlab[<span class="number">0</span>][<span class="number">0</span>])</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;添加一个元素：&quot;</span>, idx_collect.index)</span><br><span class="line">    idx_collect.discard(idx_unlab[<span class="number">0</span>][<span class="number">0</span>])</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;删除一个元素：&quot;</span>, idx_collect.index)</span><br><span class="line">    idx_collect.update(idx_unlab[<span class="number">0</span>][:<span class="number">3</span>])</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;添加多个元素：&quot;</span>, idx_collect.index)</span><br><span class="line">    idx_collect.difference_update(idx_unlab[<span class="number">0</span>][:<span class="number">3</span>])</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;删除多个元素：&quot;</span>, idx_collect.index)</span><br><span class="line">    <span class="string">&quot;&quot;&quot;=============================================&quot;&quot;&quot;</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&#x27;__main__&#x27;</span>:</span><br><span class="line">    test()</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -617,419 +1117,8 @@
 
 
 
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/11/28/dian-zi-shu-yi-ji-bi-ji/lun-wen-bi-ji-deepinsight/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="fanko">
-      <meta itemprop="description" content="-------- 济南大学17级本科生 --------大连理工大学21级研究生">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="前程似锦，一路繁华">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2021/11/28/dian-zi-shu-yi-ji-bi-ji/lun-wen-bi-ji-deepinsight/" class="post-title-link" itemprop="url">论文笔记|Deepinsight</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2021-11-28 18:45:01" itemprop="dateCreated datePublished" datetime="2021-11-28T18:45:01+08:00">2021-11-28</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">论文笔记</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p><strong>Deepinsight: A methodology to transform a non-image data to an image for  convolution neural network architecture</strong></p>
-<p>将非图像数据转换为可以可视化的图像</p>
-<p>将特征向量根据特征之间的相关性等，改变其位置，构成新的特征矩阵，该特征矩阵找到的是各特征在矩阵中的位置！</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2021/11/28/dian-zi-shu-yi-ji-bi-ji/lun-wen-bi-ji-deepinsight/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/11/28/dian-zi-shu-yi-ji-bi-ji/lun-wen-bi-ji-mipepid-shi-yong-ji-qi-xue-xi-de-xiao-tai-shi-bie-gong-ju/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="fanko">
-      <meta itemprop="description" content="-------- 济南大学17级本科生 --------大连理工大学21级研究生">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="前程似锦，一路繁华">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2021/11/28/dian-zi-shu-yi-ji-bi-ji/lun-wen-bi-ji-mipepid-shi-yong-ji-qi-xue-xi-de-xiao-tai-shi-bie-gong-ju/" class="post-title-link" itemprop="url">论文笔记|MiPepid：使用机器学习的小肽识别工具</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2021-11-28 15:21:00" itemprop="dateCreated datePublished" datetime="2021-11-28T15:21:00+08:00">2021-11-28</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">论文笔记</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h2 id="MiPepid：使用机器学习的小肽识别工具"><a href="#MiPepid：使用机器学习的小肽识别工具" class="headerlink" title="MiPepid：使用机器学习的小肽识别工具"></a>MiPepid：使用机器学习的小肽识别工具</h2><p>一个基于ML的工具，专门用于直接从DNA序列中识别小肽</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2021/11/28/dian-zi-shu-yi-ji-bi-ji/lun-wen-bi-ji-mipepid-shi-yong-ji-qi-xue-xi-de-xiao-tai-shi-bie-gong-ju/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/11/18/dian-zi-shu-yi-ji-bi-ji/lun-wen-bi-ji-ji-yu-biao-shi-xue-xi-he-shen-du-sen-lin-de-lncrna-bian-ma-duan-tai-yu-ce-mo-xing/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="fanko">
-      <meta itemprop="description" content="-------- 济南大学17级本科生 --------大连理工大学21级研究生">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="前程似锦，一路繁华">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2021/11/18/dian-zi-shu-yi-ji-bi-ji/lun-wen-bi-ji-ji-yu-biao-shi-xue-xi-he-shen-du-sen-lin-de-lncrna-bian-ma-duan-tai-yu-ce-mo-xing/" class="post-title-link" itemprop="url">论文笔记|基于表示学习和深度森林的 lncRNA 编码短肽预测模型</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2021-11-18 15:21:00" itemprop="dateCreated datePublished" datetime="2021-11-18T15:21:00+08:00">2021-11-18</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">论文笔记</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h2 id="基于表示学习和深度森林的-lncRNA-编码短肽预测模型"><a href="#基于表示学习和深度森林的-lncRNA-编码短肽预测模型" class="headerlink" title="基于表示学习和深度森林的 lncRNA 编码短肽预测模型"></a>基于表示学习和深度森林的 lncRNA 编码短肽预测模型</h2><p>深度神经网络DNN，同分布取样，筛选起始密码子为ATG，去冗余，</p>
-<p>针对短肽预测研究中 lncRNA 中 sORFs 特征不鲜明且高可信度数据尚不充分的问题，提出一种基于表示学习的深度森林模型</p>
-<p>提出一种自动编码器（AE）与深度森林结合的方法，实现lncRNA编码短肽的识别预测。</p>
-<p>本文的主要贡献如下: </p>
-<p>1)使用多个生物信息学软件获取拟南芥中的 sORFs，对结果取交集以提高结果可信度。 </p>
-<p>2)提取 CDS 与 NCDS 候选 sORFs 序列在多种特征编码方式下的特征表达结果，对特征进行融合，并通过机器学习算法分析二者的差异。 </p>
-<p>3)结合自动编码器非监督表示学习思想，提出一种深度森林预测模型，实现 sORFs 编码短肽的识别预测。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2021/11/18/dian-zi-shu-yi-ji-bi-ji/lun-wen-bi-ji-ji-yu-biao-shi-xue-xi-he-shen-du-sen-lin-de-lncrna-bian-ma-duan-tai-yu-ce-mo-xing/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/11/15/dian-zi-shu-yi-ji-bi-ji/zhu-dong-xue-xi/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="fanko">
-      <meta itemprop="description" content="-------- 济南大学17级本科生 --------大连理工大学21级研究生">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="前程似锦，一路繁华">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2021/11/15/dian-zi-shu-yi-ji-bi-ji/zhu-dong-xue-xi/" class="post-title-link" itemprop="url">基础学习|主动学习综述</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2021-11-15 15:57:01" itemprop="dateCreated datePublished" datetime="2021-11-15T15:57:01+08:00">2021-11-15</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">读书笔记</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>主动学习通过一定的算法查询<strong>最有用的未标记样本</strong>，并交由专家进行标记，然后用查询到的样本训练分类模型来提高模型的精确度。</p>
-<p>不同于被动学习被动的接受知识，主动学习能够选择性地获取知识。</p>
-<p>如何从中挑选出对训练贡献度高的样例，标注后补充到训练集中来提升分类器性能是主动学习研究方向之一。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2021/11/15/dian-zi-shu-yi-ji-bi-ji/zhu-dong-xue-xi/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/11/08/dian-zi-shu-yi-ji-bi-ji/lun-wen-bi-ji-duo-chi-du-juan-ji-xiao-nang-wang-luo-de-zhi-wu-lncrna-bian-ma-xiao-tai-yu-ce/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg">
-      <meta itemprop="name" content="fanko">
-      <meta itemprop="description" content="-------- 济南大学17级本科生 --------大连理工大学21级研究生">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="前程似锦，一路繁华">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2021/11/08/dian-zi-shu-yi-ji-bi-ji/lun-wen-bi-ji-duo-chi-du-juan-ji-xiao-nang-wang-luo-de-zhi-wu-lncrna-bian-ma-xiao-tai-yu-ce/" class="post-title-link" itemprop="url">论文笔记|多尺度卷积胶囊网络的植物lncRNA 编码小肽预测</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2021-11-08 15:21:00" itemprop="dateCreated datePublished" datetime="2021-11-08T15:21:00+08:00">2021-11-08</time>
-    </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E8%AE%BA%E6%96%87%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index"><span itemprop="name">论文笔记</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>本文提出一种结合多尺度卷积胶囊网络的深度学习模型，既能够充分提取序列特征，又通过胶囊间的连接进行特征聚类。</p>
-<p>对lncRNA序列中的sORF是否具有编码能力进行预测</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2021/11/08/dian-zi-shu-yi-ji-bi-ji/lun-wen-bi-ji-duo-chi-du-juan-ji-xiao-nang-wang-luo-de-zhi-wu-lncrna-bian-ma-xiao-tai-yu-ce/#more" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
   <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/19/">19</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/20/">20</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
   </nav>
 
 </div>
