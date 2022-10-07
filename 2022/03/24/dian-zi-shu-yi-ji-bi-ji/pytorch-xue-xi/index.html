@@ -20,12 +20,12 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.4/css/all.min.css" integrity="sha256-mUZM63G8m73Mcidfrv5E+Y61y7a12O5mW4ezU3bxqW4=" crossorigin="anonymous">
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Gemini","darkmode":true,"version":"8.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"stickytabs":false,"motion":{"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"},"path":"/search.xml","localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false}}</script><script src="/js/config.js"></script>
-<meta name="description" content="Dataset 与 Dataloader Dataset ： 提供一种方式去获取数据及其label，告诉我们总共有多少数据 Dataloader : 为后面的网络提供不同的数据形式 TensorBoardtensorboard –logdir&#x3D;logs –port&#x3D;6007 CNN卷积层 池化层 input &#x3D; torch.tensor([[    ]] , dtype &#x3D; torch.float">
+<meta name="description" content="Dataset 与 Dataloader Dataset ： 提供一种方式去获取数据及其label，告诉我们总共有多少数据 Dataloader : 为后面的网络提供不同的数据形式">
 <meta property="og:type" content="article">
 <meta property="og:title" content="工具学习|Pytorch初学习">
 <meta property="og:url" content="http://example.com/2022/03/24/dian-zi-shu-yi-ji-bi-ji/pytorch-xue-xi/index.html">
 <meta property="og:site_name" content="前程似锦，一路繁华">
-<meta property="og:description" content="Dataset 与 Dataloader Dataset ： 提供一种方式去获取数据及其label，告诉我们总共有多少数据 Dataloader : 为后面的网络提供不同的数据形式 TensorBoardtensorboard –logdir&#x3D;logs –port&#x3D;6007 CNN卷积层 池化层 input &#x3D; torch.tensor([[    ]] , dtype &#x3D; torch.float">
+<meta property="og:description" content="Dataset 与 Dataloader Dataset ： 提供一种方式去获取数据及其label，告诉我们总共有多少数据 Dataloader : 为后面的网络提供不同的数据形式">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://example.com/2022/03/24/dian-zi-shu-yi-ji-bi-ji/pytorch-xue-xi/image-20220324180417557.png">
 <meta property="og:image" content="http://example.com/2022/03/24/dian-zi-shu-yi-ji-bi-ji/pytorch-xue-xi/image-20220329175337100.png">
@@ -34,7 +34,7 @@
 <meta property="og:image" content="http://example.com/2022/03/24/dian-zi-shu-yi-ji-bi-ji/pytorch-xue-xi/image-20220405165703264.png">
 <meta property="og:image" content="http://example.com/2022/03/24/dian-zi-shu-yi-ji-bi-ji/pytorch-xue-xi/image-20220405173525678.png">
 <meta property="article:published_time" content="2022-03-24T10:01:01.000Z">
-<meta property="article:modified_time" content="2022-04-05T09:35:25.775Z">
+<meta property="article:modified_time" content="2022-06-16T07:34:46.465Z">
 <meta property="article:author" content="fanko">
 <meta property="article:tag" content="读书笔记">
 <meta property="article:tag" content="pytorch">
@@ -284,6 +284,8 @@
         <h3 id="Dataset-与-Dataloader"><a href="#Dataset-与-Dataloader" class="headerlink" title="Dataset 与 Dataloader"></a>Dataset 与 Dataloader</h3><p><img src="/2022/03/24/dian-zi-shu-yi-ji-bi-ji/pytorch-xue-xi/image-20220324180417557.png" alt="image-20220324180417557"></p>
 <p>Dataset ： 提供一种方式去获取数据及其label，告诉我们总共有多少数据</p>
 <p>Dataloader : 为后面的网络提供不同的数据形式</p>
+<span id="more"></span>
+
 <h3 id="TensorBoard"><a href="#TensorBoard" class="headerlink" title="TensorBoard"></a>TensorBoard</h3><p>tensorboard –logdir=logs –port=6007</p>
 <h3 id="CNN"><a href="#CNN" class="headerlink" title="CNN"></a>CNN</h3><h4 id="卷积层"><a href="#卷积层" class="headerlink" title="卷积层"></a>卷积层</h4><p><img src="/2022/03/24/dian-zi-shu-yi-ji-bi-ji/pytorch-xue-xi/image-20220329175337100.png" alt="image-20220329175337100"></p>
 <h4 id="池化层"><a href="#池化层" class="headerlink" title="池化层"></a>池化层</h4><p><img src="/2022/03/24/dian-zi-shu-yi-ji-bi-ji/pytorch-xue-xi/image-20220329205728266.png" alt="image-20220329205728266"></p>
